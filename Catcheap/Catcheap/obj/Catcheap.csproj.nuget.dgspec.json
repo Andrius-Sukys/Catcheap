@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\VU\\2Kursas\\PSI\\Smarter-charge\\Catcheap\\Catcheap\\Catcheap.csproj": {}
+    "C:\\Users\\Andrius\\source\\repos\\Smarter-charge\\Catcheap\\Catcheap\\Catcheap.csproj": {}
   },
   "projects": {
-    "C:\\VU\\2Kursas\\PSI\\Smarter-charge\\Catcheap\\Catcheap\\Catcheap.csproj": {
+    "C:\\Users\\Andrius\\source\\repos\\Smarter-charge\\Catcheap\\Catcheap\\Catcheap.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\VU\\2Kursas\\PSI\\Smarter-charge\\Catcheap\\Catcheap\\Catcheap.csproj",
+        "projectUniqueName": "C:\\Users\\Andrius\\source\\repos\\Smarter-charge\\Catcheap\\Catcheap\\Catcheap.csproj",
         "projectName": "Catcheap",
-        "projectPath": "C:\\VU\\2Kursas\\PSI\\Smarter-charge\\Catcheap\\Catcheap\\Catcheap.csproj",
-        "packagesPath": "C:\\Users\\ignas\\.nuget\\packages\\",
-        "outputPath": "C:\\VU\\2Kursas\\PSI\\Smarter-charge\\Catcheap\\Catcheap\\obj\\",
+        "projectPath": "C:\\Users\\Andrius\\source\\repos\\Smarter-charge\\Catcheap\\Catcheap\\Catcheap.csproj",
+        "packagesPath": "C:\\Users\\Andrius\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Andrius\\source\\repos\\Smarter-charge\\Catcheap\\Catcheap\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ignas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Andrius\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
