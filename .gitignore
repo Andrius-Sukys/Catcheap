@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+.vs/Smarter-charge/FileContentIndex/
+.vs/slnx.sqlite
+Catcheap/Catcheap/Catcheap.csproj.user
+.vs/VSWorkspaceState.json
+Catcheap\Catcheap\Catcheap.csproj.user
+
 .nuspec/**/*.dll
 .nuspec/**/*.dylib
 .nuspec/**/*.so
