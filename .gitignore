@@ -8,7 +8,7 @@
 Catcheap/Catcheap/Catcheap.csproj.user
 .vs/VSWorkspaceState.json
 Catcheap\Catcheap\Catcheap.csproj.user
-Catcheap.csproj.user
+*.user
 
 .nuspec/**/*.dll
 .nuspec/**/*.dylib
