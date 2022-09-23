@@ -83,6 +83,7 @@ public partial class MainPage : ContentPage
             CalcedValue.Text = totalPrice.ToString() + "€";
         else
             CalcedValue.Text = "Invalid input!";
+    }
             
     private async void AddCarClicked(object sender, EventArgs e)
     {
