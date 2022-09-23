@@ -196,8 +196,15 @@
 
             </Grid>
 
+            <Button
+                x:Name="AddCarBtn"
+                Text="Add car"
+                SemanticProperties.Hint="Add car"
+                Clicked="AddCarClicked"
+                HorizontalOptions="Center" />
+                
         </VerticalStackLayout>
         
     </ScrollView>
-    
+
 </ContentPage>
