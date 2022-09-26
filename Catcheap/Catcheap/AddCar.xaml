@@ -13,6 +13,139 @@
             Text="add a car"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+          
+          <!-- Entry -->
+
+          <Label
+            FontSize="18"
+            Text="Enter car name"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand">
+
+          </Label>
+
+          <Frame
+              HeightRequest="50"
+              Padding="5"
+              WidthRequest="260"
+              HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+
+            <Entry
+                x:Name="CarNameEntry"
+                MaxLength="24"
+                Margin="10, 0, 20, 0"
+                Placeholder="Enter name"
+                ClearButtonVisibility="WhileEditing"
+                TextChanged="CarNameEntryTextChanged">
+            </Entry>
+
+          </Frame>
+          
+          <!-- Entry end-->
+
+          <!-- Entry -->
+
+          <Label
+            FontSize="18"
+            Text="Enter car battery size (kWh)"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand">
+
+          </Label>
+
+          <Frame
+              HeightRequest="50"
+              Padding="5"
+              WidthRequest="260"
+              HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+
+            <Entry
+                x:Name="CarBatterySizeEntry"
+                MaxLength="24"
+                Margin="10, 0, 20, 0"
+                Placeholder="Enter battery size"
+                ClearButtonVisibility="WhileEditing"
+                TextChanged="CarBatterySizeEntryTextChanged">
+            </Entry>
+
+          </Frame>
+
+          <!-- Entry end-->
+
+          <!-- Entry -->
+
+          <Label
+            FontSize="18"
+            Text="Enter car consumption rate (Wh/km)"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand">
+
+          </Label>
+
+          <Frame
+              HeightRequest="50"
+              Padding="5"
+              WidthRequest="260"
+              HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+
+            <Entry
+                x:Name="CarconsumtionEntry"
+                MaxLength="24"
+                Margin="10, 0, 20, 0"
+                Placeholder="Enter consumtion rate"
+                ClearButtonVisibility="WhileEditing"
+                TextChanged="CarconsumtionEntryTextChanged">
+            </Entry>
+
+          </Frame>
+
+          <!-- Entry end-->
+
+          <!-- Entry -->
+
+          <Label
+            FontSize="18"
+            Text="Enter charging power(kW)"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand">
+
+          </Label>
+
+          <Frame
+              HeightRequest="50"
+              Padding="5"
+              WidthRequest="260"
+              HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+
+            <Entry
+                x:Name="ChargingPowerEntry"
+                MaxLength="24"
+                Margin="10, 0, 20, 0"
+                Placeholder="Enter charging power rate"
+                ClearButtonVisibility="WhileEditing"
+                TextChanged="ChargingPowerEntryTextChanged">
+            </Entry>
+
+          </Frame>
+
+          <!-- Entry end-->
+
+          <Label
+                    x:Name="TestShowNameValue"
+                    Text=""
+                    FontSize="40"
+                    FontAttributes="Bold"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand">
+          </Label>
+
+          <Button
+                x:Name="SaveBtn"
+                Text="Save"
+                SemanticProperties.Hint="Save car info"
+                Clicked="SaveClicked"
+                HorizontalOptions="Fill"
+                VerticalOptions="End" />
 
             <Button
                 x:Name="BackBtn"
