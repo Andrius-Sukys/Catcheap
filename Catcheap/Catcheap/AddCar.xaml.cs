@@ -7,6 +7,8 @@ public partial class AddCar : ContentPage
 		InitializeComponent();
 	}
 
+    FileIO fileIO = new FileIO();
+
     private void CarNameEntryTextChanged(object sender, EventArgs e) {; }
 
     private void CarBatterySizeEntryTextChanged(object sender, EventArgs e) {; }
@@ -18,8 +20,13 @@ public partial class AddCar : ContentPage
     private void SaveClicked(object sender, EventArgs e)
     {
 
-        TestShowNameValue.Text = CarNameEntry.Text + " " + CarBatterySizeEntry.Text +  " kWh " + CarconsumtionEntry.Text + " kWh " + ChargingPowerEntry.Text + "kW";
+        fileIO.WirteTextToFile(CarNameEntry.Text + " " + CarBatterySizeEntry.Text + " kWh " + CarconsumtionEntry.Text + " kWh " + ChargingPowerEntry.Text + "kW", "carinfo.txt");
 
+    }
+
+    public void ReadClicked(object sender, EventArgs e)
+    {
+        TestShowNameValue.Text = fileIO.ReadTextFile("carinfo.txt");
     }
 
     private async void BackClicked(object sender, EventArgs e)
