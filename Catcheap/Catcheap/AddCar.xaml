@@ -147,6 +147,14 @@
                 HorizontalOptions="Fill"
                 VerticalOptions="End" />
 
+          <Button
+                x:Name="ReadBtn"
+                Text="Read"
+                SemanticProperties.Hint="Read car info"
+                Clicked="ReadClicked"
+                HorizontalOptions="Fill"
+                VerticalOptions="End" />
+
             <Button
                 x:Name="BackBtn"
                 Text="Back"
