@@ -22,7 +22,7 @@
         <ShellContent
             Title="History"
             Icon="icon_history"
-            ContentTemplate="{DataTemplate local:AddCar}"
+            ContentTemplate="{DataTemplate local:History}"
             Route="AddCar" />
 
     </TabBar>

@@ -8,18 +8,37 @@ namespace Catcheap
 {
     internal class FileIO
     {
-        public void WirteTextToFile(string text, string targetFileName)
+        public void WriteTextToFile(string text, string targetFileName)
+        {
+            string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);
+            
+            File.WriteAllText(_fileName, text);
+
+        }
+
+        public void UpdateTextFile(string text, string targetFileName)
         {
             string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);
 
-            File.WriteAllText(_fileName, text);
+            File.AppendAllText(_fileName, text);
+
         }
 
         public string ReadTextFile(string targetFileName)
         {
             string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);
+           
+            if(File.Exists(_fileName))
+                return File.ReadAllText(_fileName);
+            else 
+                return null;
+        }
 
-            return File.ReadAllText(_fileName);
+        public void ClearTextFile(string targetFileName)
+        {
+            string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);
+
+            File.WriteAllText(_fileName, String.Empty);
         }
 
     }

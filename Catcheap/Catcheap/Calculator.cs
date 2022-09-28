@@ -8,12 +8,15 @@ namespace Catcheap;
 
 internal class Calculator
 {
-    public double distance;
-    public double consumption;
-    public double electricityPrice;
+    public double distance { get; set; }
+    public double consumption { get; set; }
+    public double electricityPrice { get; set; }
+
+    FileIO fileIO = new FileIO();
+
     public double calculatePrice()
     {
-        if (distance == -1 || consumption == -1 || electricityPrice == -1)
+        if (distance <= 0 || consumption <= 0 || electricityPrice <= 0)
         {
             return -1;
         }

@@ -13,23 +13,20 @@ public partial class AddCar : ContentPage
 
     private void CarBatterySizeEntryTextChanged(object sender, EventArgs e) {; }
 
-    private void CarconsumtionEntryTextChanged(object sender, EventArgs e) {; }
+    private void CarConsumptionEntryTextChanged(object sender, EventArgs e) {; }
 
     private void ChargingPowerEntryTextChanged(object sender, EventArgs e) {; }
 
     private void SaveClicked(object sender, EventArgs e)
     {
-
-        fileIO.WirteTextToFile(CarNameEntry.Text + " " + CarBatterySizeEntry.Text + " kWh " + CarconsumtionEntry.Text + " kWh " + ChargingPowerEntry.Text + "kW", "carinfo.txt");
-
+        fileIO.WriteTextToFile("Name: " + CarNameEntry.Text + '\n' +
+                               "Battery size: " + CarBatterySizeEntry.Text + " kWh" + '\n' + 
+                               "Consumption rate: " + CarConsumptionEntry.Text + " kWh/100 km" + '\n' +
+                               "Charging power: " + ChargingPowerEntry.Text + " kW" + '\n', "carinfo.txt");
+        CarSpecs.Text = fileIO.ReadTextFile("carinfo.txt");
     }
 
-    public void ReadClicked(object sender, EventArgs e)
-    {
-        TestShowNameValue.Text = fileIO.ReadTextFile("carinfo.txt");
-    }
-
-    private async void BackClicked(object sender, EventArgs e)
+    private async void CancelClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//MainPage");
     }
