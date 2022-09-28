@@ -84,10 +84,5 @@ public partial class MainPage : ContentPage
         else
             CalcedValue.Text = "Invalid input!";
     }
-            
-    private async void AddCarClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("//AddCar");
-    }
 }
 
