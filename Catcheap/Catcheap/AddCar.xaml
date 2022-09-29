@@ -2,167 +2,169 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Catcheap.AddCar"
-             Title="AddCar">
+             Title="Add a car">
     <ScrollView>
         <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Fill">
+            Spacing="15"
+            Padding="15,0"
+            Margin="0, 10, 0, 0">
 
-            <Label 
-            Text="add a car"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-          
-          <!-- Entry -->
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="10">
 
-          <Label
-            FontSize="18"
-            Text="Enter car name"
-            HorizontalOptions="Center"
-            VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="23"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="23"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="23"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="0.5"></RowDefinition>
+                    <RowDefinition Height="120"></RowDefinition>
+                </Grid.RowDefinitions>
 
-          </Label>
+                <Label
+                    FontSize="18"
+                    Text="Enter the car's name"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="0">
+                </Label>
 
-          <Frame
-              HeightRequest="50"
-              Padding="5"
-              WidthRequest="260"
-              HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                <Frame
+                    HeightRequest="50"
+                    Padding="5"
+                    WidthRequest="360"
+                    HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                    Grid.Row="1">
 
-            <Entry
-                x:Name="CarNameEntry"
-                MaxLength="24"
-                Margin="10, 0, 20, 0"
-                Placeholder="Enter name"
-                ClearButtonVisibility="WhileEditing"
-                TextChanged="CarNameEntryTextChanged">
-            </Entry>
+                    <Entry
+                        x:Name="CarNameEntry"
+                        MaxLength="24"
+                        Margin="10, 0, 10, 0"
+                        Placeholder="Enter the name"
+                        ClearButtonVisibility="WhileEditing"
+                        TextChanged="CarNameEntryTextChanged">
+                    </Entry>
 
-          </Frame>
-          
-          <!-- Entry end-->
+                </Frame>
 
-          <!-- Entry -->
+                <Label
+                    FontSize="18"
+                    Text="Enter the battery size (kWh)"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="2">
+                </Label>
 
-          <Label
-            FontSize="18"
-            Text="Enter car battery size (kWh)"
-            HorizontalOptions="Center"
-            VerticalOptions="CenterAndExpand">
+                <Frame
+                    HeightRequest="50"
+                    Padding="5"
+                    WidthRequest="360"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="3">
 
-          </Label>
+                    <Entry
+                        x:Name="CarBatterySizeEntry"
+                        MaxLength="24"
+                        Margin="10, 0, 10, 0"
+                        Placeholder="Enter the battery size"
+                        ClearButtonVisibility="WhileEditing"
+                        TextChanged="CarBatterySizeEntryTextChanged">
+                    </Entry>
 
-          <Frame
-              HeightRequest="50"
-              Padding="5"
-              WidthRequest="260"
-              HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                </Frame>
 
-            <Entry
-                x:Name="CarBatterySizeEntry"
-                MaxLength="24"
-                Margin="10, 0, 20, 0"
-                Placeholder="Enter battery size"
-                ClearButtonVisibility="WhileEditing"
-                TextChanged="CarBatterySizeEntryTextChanged">
-            </Entry>
+                <Label
+                    FontSize="18"
+                    Text="Enter the consumption rate (kWh/100 km)"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="4">
+                </Label>
 
-          </Frame>
+                <Frame
+                    HeightRequest="50"
+                    Padding="5"
+                    WidthRequest="360"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="5">
 
-          <!-- Entry end-->
+                    <Entry
+                        x:Name="CarConsumptionEntry"
+                        MaxLength="24"
+                        Margin="10, 0, 10, 0"
+                        Placeholder="Enter the consumption rate"
+                        ClearButtonVisibility="WhileEditing"
+                        TextChanged="CarConsumptionEntryTextChanged">
+                    </Entry>
 
-          <!-- Entry -->
+                </Frame>
 
-          <Label
-            FontSize="18"
-            Text="Enter car consumption rate (Wh/km)"
-            HorizontalOptions="Center"
-            VerticalOptions="CenterAndExpand">
+                <Label
+                    FontSize="18"
+                    Text="Enter the charging power rate (kW)"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="6">
+                </Label>
 
-          </Label>
+                <Frame
+                    HeightRequest="50"
+                    Padding="5"
+                    WidthRequest="360"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="7">
 
-          <Frame
-              HeightRequest="50"
-              Padding="5"
-              WidthRequest="260"
-              HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                    <Entry
+                        x:Name="ChargingPowerEntry"
+                        MaxLength="24"
+                        Margin="10, 0, 10, 0"
+                        Placeholder="Enter the charging power rate"
+                        ClearButtonVisibility="WhileEditing"
+                        TextChanged="ChargingPowerEntryTextChanged">
+                    </Entry>
 
-            <Entry
-                x:Name="CarconsumtionEntry"
-                MaxLength="24"
-                Margin="10, 0, 20, 0"
-                Placeholder="Enter consumtion rate"
-                ClearButtonVisibility="WhileEditing"
-                TextChanged="CarconsumtionEntryTextChanged">
-            </Entry>
+                </Frame>
 
-          </Frame>
+                <Button
+                    x:Name="SaveBtn"
+                    Text="Save"
+                    HeightRequest="50"
+                    Clicked="SaveClicked"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="8"/>
 
-          <!-- Entry end-->
+                <Line
+                    BackgroundColor="Gray"
+                    Grid.Row="9">
+                    
+                </Line>
 
-          <!-- Entry -->
-
-          <Label
-            FontSize="18"
-            Text="Enter charging power(kW)"
-            HorizontalOptions="Center"
-            VerticalOptions="CenterAndExpand">
-
-          </Label>
-
-          <Frame
-              HeightRequest="50"
-              Padding="5"
-              WidthRequest="260"
-              HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
-
-            <Entry
-                x:Name="ChargingPowerEntry"
-                MaxLength="24"
-                Margin="10, 0, 20, 0"
-                Placeholder="Enter charging power rate"
-                ClearButtonVisibility="WhileEditing"
-                TextChanged="ChargingPowerEntryTextChanged">
-            </Entry>
-
-          </Frame>
-
-          <!-- Entry end-->
-
-          <Label
-                    x:Name="TestShowNameValue"
+                <Label
+                    x:Name="CarSpecs"
+                    FontSize="18"
                     Text=""
-                    FontSize="40"
-                    FontAttributes="Bold"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand">
-          </Label>
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="10">
+                </Label>
+                
 
-          <Button
-                x:Name="SaveBtn"
-                Text="Save"
-                SemanticProperties.Hint="Save car info"
-                Clicked="SaveClicked"
-                HorizontalOptions="Fill"
-                VerticalOptions="End" />
-
-          <Button
-                x:Name="ReadBtn"
-                Text="Read"
-                SemanticProperties.Hint="Read car info"
-                Clicked="ReadClicked"
-                HorizontalOptions="Fill"
-                VerticalOptions="End" />
+            </Grid>
 
             <Button
-                x:Name="BackBtn"
-                Text="Back"
-                SemanticProperties.Hint="Back to main page"
-                Clicked="BackClicked"
+                x:Name="CancelBtn"
+                Text="Cancel"
+                Clicked="CancelClicked"
                 HorizontalOptions="Start"
-                VerticalOptions="End" />
-
+                VerticalOptions="End"/>
 
         </VerticalStackLayout>
     </ScrollView>

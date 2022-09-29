@@ -6,14 +6,25 @@
     xmlns:local="clr-namespace:Catcheap"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Calculator"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Calculator"
+            Icon="icon_calculator"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
 
-    <ShellContent
-                Title="Add car"
-                ContentTemplate="{DataTemplate local:AddCar}"
-                Route="AddCar" />
+        <ShellContent
+            Title="My car"
+            Icon="icon_car"
+            ContentTemplate="{DataTemplate local:AddCar}"
+            Route="AddCar" />
+
+        <ShellContent
+            Title="History"
+            Icon="icon_history"
+            ContentTemplate="{DataTemplate local:History}"
+            Route="AddCar" />
+
+    </TabBar>
 
 </Shell>

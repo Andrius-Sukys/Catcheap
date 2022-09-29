@@ -8,6 +8,8 @@ public partial class MainPage : ContentPage
 
     Calculator calc = new Calculator();
 
+    FileIO fileIO = new FileIO();
+
     public MainPage()
 	{
 		InitializeComponent();
@@ -79,15 +81,15 @@ public partial class MainPage : ContentPage
     private void CalculateTotalPriceButtonClicked(object sender, EventArgs e)
     {
         double totalPrice = calc.calculatePrice();
-        if (totalPrice != -1)
+        if (totalPrice != -1 && !String.IsNullOrEmpty(DistanceEntry.Text)
+                             && !String.IsNullOrEmpty(ConsumptionEntry.Text)
+                             && !String.IsNullOrEmpty(ElectricityPriceEntry.Text))
+        { 
             CalcedValue.Text = totalPrice.ToString() + "€";
+            fileIO.UpdateTextFile(calc.distance + " km · " + calc.consumption + " kWh/100 km · " + calc.electricityPrice + " €/kWh · " + totalPrice + "€" + '\n' + '\n', "history.txt");
+        }
         else
             CalcedValue.Text = "Invalid input!";
-    }
-            
-    private async void AddCarClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("//AddCar");
     }
 }
 
