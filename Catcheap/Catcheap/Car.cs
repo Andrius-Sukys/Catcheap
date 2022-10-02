@@ -17,6 +17,8 @@ namespace Catcheap
         string Consumption { get; set; }
         string ChargingPower { get; set; }
 
+        public CarDistance carDistance = new CarDistance();
+
         private FileIO file = new FileIO();
 
         private string NamePattern = "Name: ";
@@ -36,6 +38,8 @@ namespace Catcheap
 
             ChargingPower = Regex.Replace(Regex.Match(temp, @"\b" + ChargingPattern + @"\S*").Value, @"\b" + ChargingPattern, "");
 
+            carDistance.load();
+
         }
 
         public void Save() {
@@ -44,6 +48,8 @@ namespace Catcheap
                                BatteryPattern + BatterySize + '\n' +
                                ConsumtionPattern + Consumption + '\n' +
                                ChargingPattern + ChargingPower + '\n', "carinfo.txt");
+
+            carDistance.save();
 
         }
 
@@ -60,7 +66,8 @@ namespace Catcheap
             return NamePattern + Name + '\n' +
                                BatteryPattern + BatterySize + " kWh" + '\n' +
                                ConsumtionPattern + Consumption + " kWh/100 km" + '\n' +
-                               ChargingPattern + ChargingPower + " kW" + '\n';
+                               ChargingPattern + ChargingPower + " kW" + '\n' +
+                               carDistance.ToString();
 
 
         }

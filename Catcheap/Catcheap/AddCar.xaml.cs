@@ -24,6 +24,9 @@ public partial class AddCar : ContentPage
 
         car.SetAll(CarNameEntry.Text, CarBatterySizeEntry.Text, CarConsumptionEntry.Text, ChargingPowerEntry.Text);
 
+        car.carDistance.addDistance(DateOnly.FromDateTime(DateTime.Today), 100);
+        car.carDistance.addDistance(DateOnly.Parse("10/2/2021"), 15);
+
         car.Save();
 
         car.Load();
