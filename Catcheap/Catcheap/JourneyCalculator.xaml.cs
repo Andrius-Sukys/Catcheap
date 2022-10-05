@@ -1,6 +1,6 @@
 ﻿namespace Catcheap;
 
-public partial class MainPage : ContentPage
+public partial class JourneyCalculator : ContentPage
 {
     private const string ENTER_A_POS_NUMBER = "Enter a positive number!";
 
@@ -10,7 +10,7 @@ public partial class MainPage : ContentPage
 
     FileIO fileIO = new FileIO();
 
-    public MainPage()
+    public JourneyCalculator()
 	{
 		InitializeComponent();
     }
@@ -86,7 +86,6 @@ public partial class MainPage : ContentPage
                              && !String.IsNullOrEmpty(ElectricityPriceEntry.Text))
         { 
             CalcedValue.Text = totalPrice.ToString() + "€";
-            fileIO.UpdateTextFile(calc.distance + " km · " + calc.consumption + " kWh/100 km · " + calc.electricityPrice + " €/kWh · " + totalPrice + "€" + '\n' + '\n', "history.txt");
         }
         else
             CalcedValue.Text = "Invalid input!";

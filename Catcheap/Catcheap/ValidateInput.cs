@@ -4,29 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catcheap
+namespace Catcheap;
+
+public  class ValidateInput
 {
-    internal class ValidateInput
+    public bool ValidateInputAsAPositiveNumber(string input)
     {
-        public bool ValidateInputAsAPositiveNumber(string input)
+        if (!double.TryParse(input, out double number) || number < 0)
         {
-            if (!double.TryParse(input, out double number) || number < 0)
-            {
-                return false;
-            }
+            return false;
+        }
+        return true;
+    }
+
+    public bool ValidateInputAsNull(string input)
+    {
+        if (String.IsNullOrEmpty(input))
+        {
             return true;
         }
-
-        public bool ValidateInputAsNull(string input)
+        else
         {
-            if (String.IsNullOrEmpty(input))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }
+

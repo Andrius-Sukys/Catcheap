@@ -10,7 +10,7 @@ namespace Catcheap
 {
     public struct Distance : IComparable<Distance>
     {
-        public DateOnly date;
+        public DateTime date;
         public int dist;
 
         public int CompareTo(Distance other)
@@ -37,7 +37,7 @@ namespace Catcheap
                string tempDate = Regex.Replace(Regex.Match(match.Value, @"\bDate: \S*").Value, @"\bDate: ", "");
                string tempDist = Regex.Replace(Regex.Match(match.Value, @"\bDist: \S*").Value, @"\bDist: ", "");
 
-                newDistance.date = DateOnly.Parse(tempDate);
+                newDistance.date = DateTime.Parse(tempDate);
                 newDistance.dist = Int16.Parse(tempDist);
 
                 distanceList.Add(newDistance);
@@ -69,7 +69,7 @@ namespace Catcheap
             return temp / count;
         }
 
-        public void addDistance(DateOnly date, int dist)
+        public void addDistance(DateTime date, int dist)
         {
 
             Distance newDistance = new Distance();

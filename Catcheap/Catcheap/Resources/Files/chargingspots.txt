@@ -1,0 +1,39 @@
+Vilnius,Inbalance grid,Ozo g. 18
+Vilnius,Ignitis ON,Liejyklos g. 2
+Vilnius,Lidl Charging Station,S. Nėries g. 16
+Vilnius,Inbalance grid,Pilaitės pr. 42
+Vilnius,Ignitis ON,Vokiečių g. 1
+Vilnius,Imbalance,Žalgirio g. 112
+Vilnius,Ignitis ON,Laisvės pr. 43C
+Vilnius,Ignitis ON,Didlaukio g. 80
+Vilnius,Ignitis ON,Gynėjų g. 2-4
+Vilnius,Ignitis ON,Šeškinės g. 59A
+Vilnius,Ignitis ON,Sėlių g. 25
+Vilnius,Ignitis ON,Laisvės pr. 58
+Vilnius,Ignitis ON,Žirmūnų g. 2A
+Vilnius,Ignitis ON,Ozo g. 25
+Vilnius,Inbalance,Konstitucijos pr. 24
+Vilnius,Inbalance,Žalgirio g. 135
+Vilnius,Inbalance,Aukštaičių g. 7
+Vilnius,Inbalance,Ulonų g. 2
+Vilnius,Inbalance,Kareivių g. 11B
+Vilnius,be.ENERGISED,S. Nėries g. 16
+Kaunas,-,Gedimino g. 1
+Kaunas,-,Laivės al. 96
+Kaunas,Elinta Charge,Jonavos g.
+Kaunas,Inbalance,Vieškeliuko g. 8
+Kaunas,Inbalance,Jonavos g. 60
+Kaunas,be.ENERGISED,Savanorių pr. 315
+Kaunas,Inbalance,Baltijos g. 59
+Kaunas,Elinta Charge,Partizanų g. 63M
+Kaunas,Tesla Supercharger,Inovacijų g.
+Kaunas,Ignitis ON,Jonavos g. 68B
+Klaipėda,Ignitis ON,Baltijos pr. 26A
+Klaipėda,Elinta Charge,Jūreivių g. 25
+Klaipėda,VIRTA,Baltijos pr. 40
+Klaipėda,-,Butkų Juzės g. 7
+Klaipėda,-,Taikos pr. 61
+Klaipėda,-,Laukininkų g. 31
+Klaipėda,-,Pilies g. 4
+Klaipėda,-,Liepų g. 11
+Klaipėda,-,Naujojo Sodo g. 1

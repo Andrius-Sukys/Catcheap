@@ -49,9 +49,58 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="History.xaml">
+	  <None Remove="Resources\Raw\chargingspots.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="AddJourneyPage.xaml.cs">
+	    <DependentUpon>AddJourneyPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="ChargingStations.xaml.cs">
+	    <DependentUpon>ChargingStations.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="JourneyCalculator.xaml.cs">
+	    <DependentUpon>JourneyCalculator.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MyJourneysPage.xaml.cs">
+	    <DependentUpon>MyJourneysPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="AddChargePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ChargingStations.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="DashboardPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="DisplayCarsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MyJourneysPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="AddJourneyPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="PricePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="StatsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="TrendsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Include="Resources\Files\chargingspots.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiAsset>
 	</ItemGroup>
 
 </Project>

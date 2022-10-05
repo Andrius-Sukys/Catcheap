@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catcheap.AddJourneyPage"
+             xmlns:local="clr-namespace:Catcheap"
+             x:DataType="local:AddJourneyPageViewModel"
+             Title="AddJourneyPage">
+
+    <VerticalStackLayout
+        Padding="10">
+
+        <Label Text="Add a new journey"
+               FontSize="18"/>
+
+        <Entry Placeholder="Journey distance"
+               Text="{Binding Journey.JourneyDistance}"/>
+
+        <Entry Placeholder="Journey date"
+               Text="{Binding Journey.JourneyDate}"/>
+
+        <Button Text="Add a journey"
+                Command="{Binding PostJourneys}"
+                HorizontalOptions="Center"/>
+
+    </VerticalStackLayout>
+    
+</ContentPage>

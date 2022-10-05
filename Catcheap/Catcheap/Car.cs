@@ -1,75 +1,100 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System;
-using System.Text.RegularExpressions;
-using static System.Net.Mime.MediaTypeNames;
+﻿using System.Text.RegularExpressions;
 
 namespace Catcheap
 {
     public class Car
     {
+        public string Manufacturer { get; set; }
 
-        string Name { get; set; }
-        string BatterySize { get; set; }
-        string Consumption { get; set; }
-        string ChargingPower { get; set; }
+        public string Model { get; set; }
 
-        public CarDistance carDistance = new CarDistance();
+        public double Mileage { get; set; }
+
+        public double ExpectedRange { get; set; }
+
+        public double BatteryCapacity { get; set; }
+
+        public double Consumption { get; set; }
+
+        public double BatteryLevel { get; set; }
 
         private FileIO file = new FileIO();
 
-        private string NamePattern = "Name: ";
-        private string BatteryPattern = "Battery size: ";
-        private string ConsumtionPattern = "Consumption rate: ";
-        private string ChargingPattern = "Charging power: ";
+        private string ManufacturerPattern = "Manufacturer: ";
+        private string ModelPattern = "Model: ";
+        private string MileagePattern = "Mileage: ";
+        private string ExpectedRangePattern = "Expected range: ";
+        private string BatteryCapacityPattern = "Battery size: ";
+        private string ConsumptionPattern = "Consumption rate: ";
+        private string BatteryLevelPattern = "Battery level: ";
 
         public void Load() {
 
             string temp = file.ReadTextFile("carinfo.txt");
 
-            Name = Regex.Replace(Regex.Match(temp, @"\b" + NamePattern + @"\S*").Value, @"\b" + NamePattern, "");
+            Manufacturer = Regex.Replace(Regex.Match(temp, @"\b" + ManufacturerPattern + @"\S*").Value, @"\b" + ManufacturerPattern, "");
 
-            BatterySize = Regex.Replace(Regex.Match(temp, @"\b" + BatteryPattern + @"\S*").Value, @"\b" + BatteryPattern, "");
+            Model = Regex.Replace(Regex.Match(temp, @"\b" + ModelPattern + @"\S*").Value, @"\b" + ModelPattern, "");
 
-            Consumption = Regex.Replace(Regex.Match(temp, @"\b" + ConsumtionPattern + @"\S*").Value, @"\b" + ConsumtionPattern, "");
+            Mileage = Double.Parse(Regex.Replace(Regex.Match(temp, @"\b" + MileagePattern + @"\S*").Value, @"\b" + MileagePattern, ""));
 
-            ChargingPower = Regex.Replace(Regex.Match(temp, @"\b" + ChargingPattern + @"\S*").Value, @"\b" + ChargingPattern, "");
+            ExpectedRange = Math.Round(Double.Parse(Regex.Replace(Regex.Match(temp, @"\b" + ExpectedRangePattern + @"\S*").Value, @"\b" + ExpectedRangePattern, "")), 2);
 
-            carDistance.load();
+            BatteryCapacity = Double.Parse(Regex.Replace(Regex.Match(temp, @"\b" + BatteryCapacityPattern + @"\S*").Value, @"\b" + BatteryCapacityPattern, ""));
+
+            Consumption = Double.Parse(Regex.Replace(Regex.Match(temp, @"\b" + ConsumptionPattern + @"\S*").Value, @"\b" + ConsumptionPattern, ""));
+
+            BatteryLevel = Math.Round(Double.Parse(Regex.Replace(Regex.Match(temp, @"\b" + BatteryLevelPattern + @"\S*").Value, @"\b" + BatteryLevelPattern, "")), 2);
 
         }
 
         public void Save() {
 
-            file.WriteTextToFile(NamePattern + Name + '\n' + 
-                               BatteryPattern + BatterySize + '\n' +
-                               ConsumtionPattern + Consumption + '\n' +
-                               ChargingPattern + ChargingPower + '\n', "carinfo.txt");
-
-            carDistance.save();
+            file.WriteTextToFile(ManufacturerPattern + Manufacturer + '\n' +
+                                 ModelPattern + Model + '\n' +
+                                 MileagePattern + Mileage + '\n' +
+                                 ExpectedRangePattern + ExpectedRange + '\n' +
+                                 BatteryCapacityPattern + BatteryCapacity + '\n' +
+                                 ConsumptionPattern + Consumption + '\n' +
+                                 BatteryLevelPattern + BatteryLevel + '\n', "carinfo.txt");
 
         }
 
-        public void SetAll(string Name, string BatterySize, string Consumption, string ChargingPower)
+        public void SetAll(string Manufacturer, string Model, string Mileage,
+                           string BatteryCapacity, string Consumption, string BatteryLevel)
         {
-            this.Name = Name;
-            this.BatterySize = BatterySize;
-            this.Consumption = Consumption;
-            this.ChargingPower = ChargingPower;
+            this.Manufacturer = Manufacturer;
+            this.Model = Model;
+            this.Mileage = Double.Parse(Mileage);
+            this.BatteryCapacity = Double.Parse(BatteryCapacity);
+            this.Consumption = Double.Parse(Consumption);
+            this.BatteryLevel = Double.Parse(BatteryLevel);
+            this.ExpectedRange = Math.Round(Double.Parse(BatteryCapacity) / Double.Parse(Consumption) * 100, 2);
+            if (this.ExpectedRange < 0)
+                this.ExpectedRange = 0;
         }
 
         public override string ToString() {
 
-            return NamePattern + Name + '\n' +
-                               BatteryPattern + BatterySize + " kWh" + '\n' +
-                               ConsumtionPattern + Consumption + " kWh/100 km" + '\n' +
-                               ChargingPattern + ChargingPower + " kW" + '\n' +
-                               carDistance.ToString();
+            return ManufacturerPattern + Manufacturer + '\n' +
+                   ModelPattern + Model + '\n' +
+                   MileagePattern + Mileage + " km\n" +
+                   ExpectedRangePattern + ExpectedRange + " km\n" +
+                   BatteryCapacityPattern + BatteryCapacity + " kWh\n" +
+                   ConsumptionPattern + Consumption + " kWh/100 km\n" +
+                   BatteryLevelPattern + BatteryLevel + " %\n";
 
+        }
 
+        public void UpdateCarPropertiesAfterJourney(double journeyDistance)
+        {
+            Load();
+            Mileage += journeyDistance;
+            BatteryLevel -= ((journeyDistance / 100 * Consumption) / BatteryCapacity) * 100;
+            if(BatteryLevel < 0)
+                BatteryLevel = 0;
+            ExpectedRange -= journeyDistance;
+            Save();
         }
 
     }
