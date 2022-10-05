@@ -1,9 +1,9 @@
 namespace Catcheap;
 
-public partial class History : ContentPage
+public partial class MyJourneysPage : ContentPage
 {
     FileIO fileIO = new FileIO();
-    public History()
+    public MyJourneysPage()
 	{
 		InitializeComponent();
 
@@ -12,13 +12,13 @@ public partial class History : ContentPage
 
     public void ReloadHistory()
     {
-        Placeholder.Text = fileIO.ReadTextFile("history.txt");
+        Placeholder.Text = fileIO.ReadTextFile("journeys.txt");
     }
 
     public void ClearHistory()
     {
         Placeholder.Text = "";
-        fileIO.ClearTextFile("history.txt");
+        fileIO.ClearTextFile("journeys.txt");
     }
 
     private void ClickedReloadHistory(object sender, EventArgs e)

@@ -20,14 +20,18 @@
                     <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="23"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="23"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="23"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="70"></RowDefinition>
-                    <RowDefinition Height="0.5"></RowDefinition>
-                    <RowDefinition Height="120"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    
                 </Grid.RowDefinitions>
 
                 <Label
                     FontSize="18"
-                    Text="Enter the car's name"
+                    Text="Enter the manufacturer"
                     HorizontalOptions="Start"
                     VerticalOptions="CenterAndExpand"
                     Grid.Row="0">
@@ -41,19 +45,18 @@
                     Grid.Row="1">
 
                     <Entry
-                        x:Name="CarNameEntry"
+                        x:Name="ManufacturerEntry"
                         MaxLength="24"
                         Margin="10, 0, 10, 0"
-                        Placeholder="Enter the name"
-                        ClearButtonVisibility="WhileEditing"
-                        TextChanged="CarNameEntryTextChanged">
+                        Placeholder="Manufacturer"
+                        ClearButtonVisibility="WhileEditing">
                     </Entry>
 
                 </Frame>
 
                 <Label
                     FontSize="18"
-                    Text="Enter the battery size (kWh)"
+                    Text="Enter the model"
                     HorizontalOptions="Start"
                     VerticalOptions="CenterAndExpand"
                     Grid.Row="2">
@@ -68,19 +71,18 @@
                     Grid.Row="3">
 
                     <Entry
-                        x:Name="CarBatterySizeEntry"
+                        x:Name="ModelEntry"
                         MaxLength="24"
                         Margin="10, 0, 10, 0"
-                        Placeholder="Enter the battery size"
-                        ClearButtonVisibility="WhileEditing"
-                        TextChanged="CarBatterySizeEntryTextChanged">
+                        Placeholder="Model"
+                        ClearButtonVisibility="WhileEditing">
                     </Entry>
 
                 </Frame>
 
                 <Label
                     FontSize="18"
-                    Text="Enter the consumption rate (kWh/100 km)"
+                    Text="Enter the mileage (km)"
                     HorizontalOptions="Start"
                     VerticalOptions="CenterAndExpand"
                     Grid.Row="4">
@@ -95,19 +97,18 @@
                     Grid.Row="5">
 
                     <Entry
-                        x:Name="CarConsumptionEntry"
+                        x:Name="MileageEntry"
                         MaxLength="24"
                         Margin="10, 0, 10, 0"
-                        Placeholder="Enter the consumption rate"
-                        ClearButtonVisibility="WhileEditing"
-                        TextChanged="CarConsumptionEntryTextChanged">
+                        Placeholder="Mileage"
+                        ClearButtonVisibility="WhileEditing">
                     </Entry>
 
                 </Frame>
 
                 <Label
                     FontSize="18"
-                    Text="Enter the charging power rate (kW)"
+                    Text="Enter the battery capacity (kWh)"
                     HorizontalOptions="Start"
                     VerticalOptions="CenterAndExpand"
                     Grid.Row="6">
@@ -122,12 +123,63 @@
                     Grid.Row="7">
 
                     <Entry
-                        x:Name="ChargingPowerEntry"
+                        x:Name="BatteryCapacityEntry"
                         MaxLength="24"
                         Margin="10, 0, 10, 0"
-                        Placeholder="Enter the charging power rate"
-                        ClearButtonVisibility="WhileEditing"
-                        TextChanged="ChargingPowerEntryTextChanged">
+                        Placeholder="Battery capacity"
+                        ClearButtonVisibility="WhileEditing">
+                    </Entry>
+
+                </Frame>
+
+                <Label
+                    FontSize="18"
+                    Text="Enter the consumption (kWh/100 km)"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="8">
+                </Label>
+
+                <Frame
+                    HeightRequest="50"
+                    Padding="5"
+                    WidthRequest="360"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="9">
+
+                    <Entry
+                        x:Name="ConsumptionEntry"
+                        MaxLength="24"
+                        Margin="10, 0, 10, 0"
+                        Placeholder="Consumption"
+                        ClearButtonVisibility="WhileEditing">
+                    </Entry>
+
+                </Frame>
+
+                <Label
+                    FontSize="18"
+                    Text="Enter the current battery level (%)"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="10">
+                </Label>
+
+                <Frame
+                    HeightRequest="50"
+                    Padding="5"
+                    WidthRequest="360"
+                    HorizontalOptions="Start"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="11">
+
+                    <Entry
+                        x:Name="BatteryLevelEntry"
+                        MaxLength="24"
+                        Margin="10, 0, 10, 0"
+                        Placeholder="Battery level"
+                        ClearButtonVisibility="WhileEditing">
                     </Entry>
 
                 </Frame>
@@ -139,32 +191,14 @@
                     Clicked="SaveClicked"
                     HorizontalOptions="Fill"
                     VerticalOptions="CenterAndExpand"
-                    Grid.Row="8"/>
-
-                <Line
-                    BackgroundColor="Gray"
-                    Grid.Row="9">
-                    
-                </Line>
+                    Grid.Row="12"/>
 
                 <Label
-                    x:Name="CarSpecs"
-                    FontSize="18"
+                    x:Name="Placeholder"
                     Text=""
-                    HorizontalOptions="Start"
-                    VerticalOptions="CenterAndExpand"
-                    Grid.Row="10">
-                </Label>
-                
+                    Grid.Row="13"/>
 
             </Grid>
-
-            <Button
-                x:Name="CancelBtn"
-                Text="Cancel"
-                Clicked="CancelClicked"
-                HorizontalOptions="Start"
-                VerticalOptions="End"/>
 
         </VerticalStackLayout>
     </ScrollView>

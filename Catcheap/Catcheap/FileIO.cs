@@ -34,6 +34,15 @@ namespace Catcheap
                 return null;
         }
 
+        public string ReadTextFileCustom(string targetFileName)
+        {
+            string _fileName = Path.Combine(FileSystem.AppDataDirectory, targetFileName);
+            if (File.Exists(_fileName))
+                return File.ReadAllText(_fileName);
+            else
+                return null;
+        }
+
         public void ClearTextFile(string targetFileName)
         {
             string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);

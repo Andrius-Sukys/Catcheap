@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catcheap.ChargingStations"
+             Title="ChargingStations">
+    <ScrollView>
+    <VerticalStackLayout
+        Padding="15,0"
+        Margin="0, 15, 0, 0"
+        Spacing="15">
+        
+        <Button Text="Load all"
+            Clicked="LoadButtonClicked">
+        </Button>
+
+        <Grid ColumnSpacing="15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="111"></ColumnDefinition>
+                <ColumnDefinition Width="111"></ColumnDefinition>
+                <ColumnDefinition Width="111"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button
+                Grid.Column="0"
+                Text="Vilnius"
+                Clicked="VilniusButtonClicked">
+            </Button>
+            
+            <Button
+                Grid.Column="1"
+                Text="Kaunas"
+                Clicked="KaunasButtonClicked">
+            </Button>
+
+            <Button
+                Grid.Column="2"
+                Text="Klaipėda"
+                Clicked="KlaipedaButtonClicked">
+            </Button>
+        </Grid>
+
+        <Label x:Name="Placeholder"
+            Text="" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

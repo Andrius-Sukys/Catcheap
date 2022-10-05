@@ -7,22 +7,65 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
+
+        <ShellContent
+            Title="Dashboard"
+            Icon=""
+            ContentTemplate="{DataTemplate local:DashboardPage}"
+            Route="DashboardPage" />
+
+        <ShellContent
+            Title="Cars"
+            Icon=""
+            ContentTemplate="{DataTemplate local:DisplayCarsPage}"
+            Route="DisplayCarsPage" />
+
+        <ShellContent
+            Title="Stats"
+            Icon=""
+            ContentTemplate="{DataTemplate local:StatsPage}"
+            Route="StatsPage" />
+
         <ShellContent
             Title="Calculator"
             Icon="icon_calculator"
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage" />
+            ContentTemplate="{DataTemplate local:JourneyCalculator}"
+            Route="JourneyCalculator" />
 
         <ShellContent
-            Title="My car"
+            Title="Add a journey"
+            Icon=""
+            ContentTemplate="{DataTemplate local:AddJourneyPage}"
+            Route="AddJourneyPage" />
+
+        <ShellContent
+            Title="My journeys"
+            Icon="icon_history"
+            ContentTemplate="{DataTemplate local:MyJourneysPage}"
+            Route="MyJourneysPage" />
+
+        <ShellContent
+            Title="Charging Stations"
+            Icon=""
+            ContentTemplate="{DataTemplate local:ChargingStations}"
+            Route="ChargingStations" />
+
+        <ShellContent
+            Title="Price"
+            Icon=""
+            ContentTemplate="{DataTemplate local:PricePage}"
+            Route="PricePage" />
+
+        <ShellContent
+            Title="Trends"
+            Icon=""
+            ContentTemplate="{DataTemplate local:TrendsPage}"
+            Route="TrendsPage" />
+
+        <ShellContent
+            Title="Add car"
             Icon="icon_car"
             ContentTemplate="{DataTemplate local:AddCar}"
-            Route="AddCar" />
-
-        <ShellContent
-            Title="History"
-            Icon="icon_history"
-            ContentTemplate="{DataTemplate local:History}"
             Route="AddCar" />
 
     </TabBar>

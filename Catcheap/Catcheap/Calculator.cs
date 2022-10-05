@@ -12,8 +12,6 @@ internal class Calculator
     public double consumption { get; set; }
     public double electricityPrice { get; set; }
 
-    FileIO fileIO = new FileIO();
-
     public double calculatePrice()
     {
         if (distance <= 0 || consumption <= 0 || electricityPrice <= 0)
