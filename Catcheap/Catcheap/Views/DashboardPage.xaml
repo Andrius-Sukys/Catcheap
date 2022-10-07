@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Catcheap.PricePage"
-             Title="PricePage">
+             x:Class="Catcheap.Views.DashboardPage"
+             Title="DashboardPage">
     <VerticalStackLayout>
         <Label 
-            Text="PRICE PLACEHOLDER" />
+            Text="DASHBOARD PLACEHOLDER"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>

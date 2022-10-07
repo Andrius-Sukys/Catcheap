@@ -3,7 +3,7 @@
     x:Class="Catcheap.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Catcheap"
+    xmlns:views="clr-namespace:Catcheap.Views"
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
@@ -11,61 +11,61 @@
         <ShellContent
             Title="Dashboard"
             Icon=""
-            ContentTemplate="{DataTemplate local:DashboardPage}"
+            ContentTemplate="{DataTemplate views:DashboardPage}"
             Route="DashboardPage" />
 
         <ShellContent
             Title="Cars"
             Icon=""
-            ContentTemplate="{DataTemplate local:DisplayCarsPage}"
+            ContentTemplate="{DataTemplate views:DisplayCarsPage}"
             Route="DisplayCarsPage" />
 
         <ShellContent
             Title="Stats"
             Icon=""
-            ContentTemplate="{DataTemplate local:StatsPage}"
+            ContentTemplate="{DataTemplate views:StatsPage}"
             Route="StatsPage" />
 
         <ShellContent
             Title="Calculator"
             Icon="icon_calculator"
-            ContentTemplate="{DataTemplate local:JourneyCalculator}"
+            ContentTemplate="{DataTemplate views:JourneyCalculator}"
             Route="JourneyCalculator" />
 
         <ShellContent
             Title="Add a journey"
             Icon=""
-            ContentTemplate="{DataTemplate local:AddJourneyPage}"
+            ContentTemplate="{DataTemplate views:AddJourneyPage}"
             Route="AddJourneyPage" />
 
         <ShellContent
             Title="My journeys"
             Icon="icon_history"
-            ContentTemplate="{DataTemplate local:MyJourneysPage}"
+            ContentTemplate="{DataTemplate views:MyJourneysPage}"
             Route="MyJourneysPage" />
 
         <ShellContent
             Title="Charging Stations"
             Icon=""
-            ContentTemplate="{DataTemplate local:ChargingStations}"
+            ContentTemplate="{DataTemplate views:ChargingStations}"
             Route="ChargingStations" />
 
         <ShellContent
             Title="Price"
             Icon=""
-            ContentTemplate="{DataTemplate local:PricePage}"
+            ContentTemplate="{DataTemplate views:PricePage}"
             Route="PricePage" />
 
         <ShellContent
             Title="Trends"
             Icon=""
-            ContentTemplate="{DataTemplate local:TrendsPage}"
+            ContentTemplate="{DataTemplate views:TrendsPage}"
             Route="TrendsPage" />
 
         <ShellContent
             Title="Add car"
             Icon="icon_car"
-            ContentTemplate="{DataTemplate local:AddCar}"
+            ContentTemplate="{DataTemplate views:AddCar}"
             Route="AddCar" />
 
     </TabBar>
