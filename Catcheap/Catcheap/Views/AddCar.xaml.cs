@@ -11,6 +11,8 @@ public partial class AddCar : ContentPage
 
     Car car = new Car();
 
+    CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
+
     ValidateInput validateInput = new ValidateInput();
 
     private void SaveClicked(object sender, EventArgs e)
@@ -27,9 +29,9 @@ public partial class AddCar : ContentPage
             car.SetAll(Manufacturer: ManufacturerEntry.Text, Model: ModelEntry.Text, Mileage: MileageEntry.Text,
                        BatteryCapacity: BatteryCapacityEntry.Text, Consumption: ConsumptionEntry.Text, BatteryLevel: BatteryLevelEntry.Text);
 
-            car.Save();
+            carLoaderSaver.Save(car);
 
-            car.Load();
+            carLoaderSaver.Load(car);
 
         }
 
