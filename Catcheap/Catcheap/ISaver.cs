@@ -9,7 +9,7 @@ namespace Catcheap
     public interface ISaver<in T>
     {
 
-        public void Save(T t);
+        public void Save(T t, String fileName);
 
     }
 }

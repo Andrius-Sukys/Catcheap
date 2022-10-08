@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.IO.Enumeration;
+using System.Text.RegularExpressions;
 
 
 namespace Catcheap
@@ -15,9 +16,9 @@ namespace Catcheap
         private string ConsumptionPattern = "Consumption rate: ";
         private string BatteryLevelPattern = "Battery level: ";
 
-        public void Load(Car car)
+        public void Load(Car car, String fileName = "carinfo.txt")
         {
-            string temp = file.ReadTextFile("carinfo.txt");
+            string temp = file.ReadTextFile(fileName);
 
             car.Manufacturer = Regex.Replace(Regex.Match(temp, @"\b" + ManufacturerPattern + @"\S*").Value, @"\b" + ManufacturerPattern, "");
 
@@ -34,7 +35,7 @@ namespace Catcheap
             car.BatteryLevel = Math.Round(Double.Parse(Regex.Replace(Regex.Match(temp, @"\b" + BatteryLevelPattern + @"\S*").Value, @"\b" + BatteryLevelPattern, "")), 2);
         }
 
-        public void Save(Car car)
+        public void Save(Car car, String fileName = "carinfo.txt")
         {
             file.WriteTextToFile(ManufacturerPattern + car.Manufacturer + '\n' +
                                  ModelPattern + car.Model + '\n' +

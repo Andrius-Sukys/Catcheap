@@ -9,7 +9,7 @@ namespace Catcheap
     public interface ILoader<in T>
     {
 
-        public void Load(T t);
+        public void Load(T t, String fileName);
 
     }
 }
