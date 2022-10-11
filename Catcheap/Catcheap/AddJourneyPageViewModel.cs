@@ -5,7 +5,7 @@ namespace Catcheap;
 
 public class AddJourneyPageViewModel : INotifyPropertyChanged
 {
-    public Journey Journey { get; } = new Journey();
+    public JourneyField JourneyField { get; } = new JourneyField();
     public AddJourneyPageViewModel()
     {
         PostJourneys = new Command(AddJourney);
@@ -21,14 +21,14 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
     public void AddJourney()
     {
         FileIO fileIO = new FileIO();
-        fileIO.UpdateTextFile(Journey.JourneyDistance + " " + Journey.JourneyDate + '\n', "journeys.txt");
+        fileIO.UpdateTextFile("Distance: " + JourneyField.JourneyDistance + " Date: " + JourneyField.JourneyDate + Environment.NewLine, "journeys.txt");
         Car car = new Car();
         CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
         carLoaderSaver.Load(car);
-        car.UpdateCarPropertiesAfterJourney(Journey.JourneyDistance);
+        car.UpdateCarPropertiesAfterJourney(JourneyField.JourneyDistance);
         carLoaderSaver.Save(car);
 
-        Journey.ClearFields();
+        JourneyField.ClearFields();
 
     }
 }

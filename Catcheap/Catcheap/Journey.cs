@@ -1,38 +1,19 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Catcheap;
-
-public class Journey : INotifyPropertyChanged
+namespace Catcheap
 {
-    DateOnly journeyDate = DateOnly.FromDateTime(DateTime.Today);
-    public DateOnly JourneyDate
+    public struct Journey : IComparable<Journey>
     {
-        get { return journeyDate; }
-        set { journeyDate = value; OnPropertyChanged(nameof(JourneyDate));  }
-    }
-    double journeyDistance;
-    public double JourneyDistance
-    {
-        get { return journeyDistance; }
-        set { journeyDistance = value; OnPropertyChanged(nameof(JourneyDistance)); }
-    }
+        public DateTime Date { get; set; }
+        public int Dist { get; set; }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    void OnPropertyChanged(string name) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
-    public void ClearFields()
-    {
-        JourneyDistance = 0;
+        public int CompareTo(Journey other)
+        {
+            return Date.CompareTo(other.Date);
+        }
     }
-
-    public void ClearJourneys()
-    {
-        FileIO fileIO = new FileIO();
-        if ("journeys.txt" != null)
-            fileIO.ClearTextFile("journeys.txt");
-    }
-    
 }
-
