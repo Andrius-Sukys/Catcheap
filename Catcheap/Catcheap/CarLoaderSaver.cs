@@ -46,6 +46,10 @@ namespace Catcheap
                     default: break;
                 }
             }
+
+            JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
+
+            journeysLoaderSaver.Load(car.GetJourneys());
         }
 
         public void Save(Car car, String fileName = "carinfo.txt")

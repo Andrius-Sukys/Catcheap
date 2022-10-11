@@ -26,6 +26,13 @@ namespace Catcheap
         private string ConsumptionPattern = "Consumption rate: ";
         private string BatteryLevelPattern = "Battery level: ";
 
+        Journeys journeys = new Journeys();
+
+        public Journeys GetJourneys()
+        {
+            return journeys;
+        }
+
         public void SetAll(string Manufacturer, string Model, string Mileage,
                            string BatteryCapacity, string Consumption, string BatteryLevel)
         {

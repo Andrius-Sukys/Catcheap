@@ -13,10 +13,10 @@
                FontSize="18"/>
 
         <Entry Placeholder="Journey distance"
-               Text="{Binding Journey.JourneyDistance}"/>
+               Text="{Binding JourneyField.JourneyDistance}"/>
 
         <Entry Placeholder="Journey date"
-               Text="{Binding Journey.JourneyDate}"/>
+               Text="{Binding JourneyField.JourneyDate}"/>
 
         <Button Text="Add a journey"
                 Command="{Binding PostJourneys}"
