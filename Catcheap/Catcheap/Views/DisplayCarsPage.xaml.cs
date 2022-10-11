@@ -1,8 +1,9 @@
-namespace Catcheap;
+namespace Catcheap.Views;
 
 public partial class DisplayCarsPage : ContentPage
 {
 	Car car = new Car();
+	CarLoaderSaver carLoaderSaver= new CarLoaderSaver();
 	public DisplayCarsPage()
 	{
 		InitializeComponent();
@@ -10,7 +11,7 @@ public partial class DisplayCarsPage : ContentPage
 
 	private void ReloadButtonClicked(object sender, EventArgs e)
 	{
-		car.Load();
+		carLoaderSaver.Load(car);
 		Placeholder.Text = car.ToString();
 	}
 }

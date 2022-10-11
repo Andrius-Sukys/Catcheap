@@ -53,46 +53,46 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="AddJourneyPage.xaml.cs">
+	  <Compile Update="Views\AddJourneyPage.xaml.cs">
 	    <DependentUpon>AddJourneyPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="ChargingStations.xaml.cs">
+	  <Compile Update="Views\ChargingStations.xaml.cs">
 	    <DependentUpon>ChargingStations.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="JourneyCalculator.xaml.cs">
+	  <Compile Update="Views\JourneyCalculator.xaml.cs">
 	    <DependentUpon>JourneyCalculator.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="MyJourneysPage.xaml.cs">
+	  <Compile Update="Views\MyJourneysPage.xaml.cs">
 	    <DependentUpon>MyJourneysPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="AddChargePage.xaml">
+	  <MauiXaml Update="Views\AddChargePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ChargingStations.xaml">
+	  <MauiXaml Update="Views\ChargingStations.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="DashboardPage.xaml">
+	  <MauiXaml Update="Views\DashboardPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="DisplayCarsPage.xaml">
+	  <MauiXaml Update="Views\DisplayCarsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MyJourneysPage.xaml">
+	  <MauiXaml Update="Views\MyJourneysPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="AddJourneyPage.xaml">
+	  <MauiXaml Update="Views\AddJourneyPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="PricePage.xaml">
+	  <MauiXaml Update="Views\PricePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="StatsPage.xaml">
+	  <MauiXaml Update="Views\StatsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TrendsPage.xaml">
+	  <MauiXaml Update="Views\TrendsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

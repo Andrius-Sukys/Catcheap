@@ -1,4 +1,4 @@
-namespace Catcheap;
+namespace Catcheap.Views;
 
 public partial class AddCar : ContentPage
 {
@@ -10,6 +10,8 @@ public partial class AddCar : ContentPage
     FileIO fileIO = new FileIO();
 
     Car car = new Car();
+
+    CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
 
     ValidateInput validateInput = new ValidateInput();
 
@@ -27,9 +29,9 @@ public partial class AddCar : ContentPage
             car.SetAll(Manufacturer: ManufacturerEntry.Text, Model: ModelEntry.Text, Mileage: MileageEntry.Text,
                        BatteryCapacity: BatteryCapacityEntry.Text, Consumption: ConsumptionEntry.Text, BatteryLevel: BatteryLevelEntry.Text);
 
-            car.Save();
+            carLoaderSaver.Save(car);
 
-            car.Load();
+            carLoaderSaver.Load(car);
 
         }
 

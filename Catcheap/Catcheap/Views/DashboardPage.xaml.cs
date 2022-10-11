@@ -1,4 +1,4 @@
-namespace Catcheap;
+namespace Catcheap.Views;
 
 public partial class DashboardPage : ContentPage
 {

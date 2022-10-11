@@ -23,7 +23,11 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
         FileIO fileIO = new FileIO();
         fileIO.UpdateTextFile(Journey.JourneyDistance + " " + Journey.JourneyDate + '\n', "journeys.txt");
         Car car = new Car();
+        CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
+        carLoaderSaver.Load(car);
         car.UpdateCarPropertiesAfterJourney(Journey.JourneyDistance);
+        carLoaderSaver.Save(car);
+
         Journey.ClearFields();
 
     }
