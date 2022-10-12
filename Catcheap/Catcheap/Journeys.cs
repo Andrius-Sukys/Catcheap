@@ -64,14 +64,29 @@ namespace Catcheap
             return temp;
         }
 
-        public float AverageDistance()
+        public List<Journey> GetWeekDayJourneyList(DayOfWeek dayOfWeek)
+        {
+            List<Journey> WeekDayJourneyList = 
+                (from weekDay in GetDayJourneyList()
+                where weekDay.Date.DayOfWeek == dayOfWeek
+                select weekDay).ToList();
+
+            return WeekDayJourneyList;
+        }
+
+        public static float AverageDistance(List<Journey> journeyList)
         {
             float temp = 0;
             int count = 0;
 
-            foreach(Journey distance in distanceList)
+            if (!journeyList.Any())
             {
-                temp += distance.Dist;
+                return 0;
+            }
+
+            foreach(Journey journey in journeyList)
+            {
+                temp += journey.Dist;
                 count++;
             }
 
