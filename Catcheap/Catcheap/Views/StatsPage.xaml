@@ -5,6 +5,28 @@
              Title="StatsPage">
     <VerticalStackLayout>
         <Label 
-            Text="STATS PLACEHOLDER" />
+            x:Name="Monday"
+            Text=""/>
+        <Label 
+            x:Name="Tuesday"
+            Text=""/>
+        <Label 
+            x:Name="Wednesday"
+            Text=""/>
+        <Label 
+            x:Name="Thursday"
+            Text=""/>
+        <Label 
+            x:Name="Friday"
+            Text=""/>
+        <Label 
+            x:Name="Saturday"
+            Text=""/>
+        <Label 
+            x:Name="Sunday"
+            Text=""/>
+        <Button
+            Text="Load"
+            Clicked="LoadButtonClicked"/>
     </VerticalStackLayout>
 </ContentPage>
