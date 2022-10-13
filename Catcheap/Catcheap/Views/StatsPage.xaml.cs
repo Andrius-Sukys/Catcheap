@@ -1,3 +1,5 @@
+using Catcheap.Models.Vehicles_Classes.Cars_Classes;
+
 namespace Catcheap.Views;
 
 public partial class StatsPage : ContentPage
