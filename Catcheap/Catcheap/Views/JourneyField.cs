@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
+using Catcheap.Models.FileIO_Classes;
 
-namespace Catcheap;
+namespace Catcheap.Views;
 
 public class JourneyField : INotifyPropertyChanged
 {
@@ -9,13 +10,20 @@ public class JourneyField : INotifyPropertyChanged
     public DateOnly JourneyDate
     {
         get { return journeyDate; }
-        set { journeyDate = value; OnPropertyChanged(nameof(JourneyDate));  }
+        set { journeyDate = value; OnPropertyChanged(nameof(JourneyDate)); }
     }
-    double journeyDistance;
-    public double JourneyDistance
+    double? journeyDistance;
+    public double? JourneyDistance
     {
         get { return journeyDistance; }
         set { journeyDistance = value; OnPropertyChanged(nameof(JourneyDistance)); }
+    }
+
+    int selectedIndex;
+    public int SelectedIndex
+    {
+        get { return selectedIndex; }
+        set { selectedIndex = value; OnPropertyChanged(nameof(SelectedIndex)); }
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
@@ -25,7 +33,7 @@ public class JourneyField : INotifyPropertyChanged
 
     public void ClearFields()
     {
-        JourneyDistance = 0;
+        JourneyDistance = null;
     }
 
     public void ClearJourneys()
@@ -34,6 +42,6 @@ public class JourneyField : INotifyPropertyChanged
         if ("journeys.txt" != null)
             fileIO.ClearTextFile("journeys.txt");
     }
-    
+
 }
 

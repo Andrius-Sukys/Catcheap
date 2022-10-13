@@ -1,7 +1,17 @@
 ﻿using System.Text;
+
+
+/* Unmerged change from project 'Catcheap (net6.0-windows10.0.19041.0)'
+Before:
+using System.Linq;
+After:
+using System.Linq;
+using Catcheap;
+using Catcheap.Models.ChargingStations_Classes;
+*/
 using System.Linq;
 
-namespace Catcheap;
+namespace Catcheap.Models.ChargingStations_Classes;
 
 public class ChargingStation
 {
@@ -18,7 +28,7 @@ public class ChargingStation
     public string address { get; }
 
     public List<ChargingStation> ChargingStations { get; set; }
-    
+
     public async void getChargingStations()
     {
         ChargingStations = new List<ChargingStation>();
@@ -38,28 +48,17 @@ public class ChargingStation
     {
         stations = stations ?? ChargingStations;
         StringBuilder stringBuilder = new StringBuilder();
-        foreach(ChargingStation ch in stations)
+        foreach (ChargingStation ch in stations)
         {
             stringBuilder.AppendFormat("{0} {1} {2} \n", ch.holder, ch.address, ch.city);
         }
         return stringBuilder.ToString();
     }
 
-    public string FilterQueryVilnius()
+    public string FilterByCity(string city)
     {
-        List<ChargingStation> subList = ChargingStations.Where(p => p.city == "Vilnius").ToList();
+        List<ChargingStation> subList = ChargingStations.Where(p => p.city == city).ToList();
         return displayChargingStations(subList);
     }
 
-    public string FilterQueryKaunas()
-    {
-        List<ChargingStation> subList = ChargingStations.Where(p => p.city == "Kaunas").ToList();
-        return displayChargingStations(subList);
-    }
-
-    public string FilterQueryKlaipeda()
-    {
-        List<ChargingStation> subList = ChargingStations.Where(p => p.city == "Klaipėda").ToList();
-        return displayChargingStations(subList);
-    }
 }

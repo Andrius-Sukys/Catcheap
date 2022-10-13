@@ -1,3 +1,8 @@
+using Catcheap.Models.FileIO_Classes;
+using Catcheap.Models.Validation_Classes;
+using Catcheap.Models.Vehicles_Classes;
+using Catcheap.Models.Vehicles_Classes.Cars_Classes;
+
 namespace Catcheap.Views;
 
 public partial class AddCar : ContentPage

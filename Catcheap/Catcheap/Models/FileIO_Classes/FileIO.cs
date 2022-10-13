@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catcheap
+namespace Catcheap.Models.FileIO_Classes
 {
     internal class FileIO
     {
         public void WriteTextToFile(string text, string targetFileName)
         {
             string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);
-            
+
             File.WriteAllText(_fileName, text);
 
         }
@@ -27,10 +27,10 @@ namespace Catcheap
         public string ReadTextFile(string targetFileName)
         {
             string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);
-           
-            if(File.Exists(_fileName))
+
+            if (File.Exists(_fileName))
                 return File.ReadAllText(_fileName);
-            else 
+            else
                 return null;
         }
 
@@ -47,7 +47,7 @@ namespace Catcheap
         {
             string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);
 
-            File.WriteAllText(_fileName, String.Empty);
+            File.WriteAllText(_fileName, string.Empty);
         }
 
     }

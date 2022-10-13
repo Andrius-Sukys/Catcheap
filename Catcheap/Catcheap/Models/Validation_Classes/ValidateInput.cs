@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catcheap;
+namespace Catcheap.Models.Validation_Classes;
 
-public  class ValidateInput
+public class ValidateInput
 {
     public bool ValidateInputAsAPositiveNumber(string input)
     {
@@ -19,7 +19,7 @@ public  class ValidateInput
 
     public bool ValidateInputAsNull(string input)
     {
-        if (String.IsNullOrEmpty(input))
+        if (string.IsNullOrEmpty(input))
         {
             return true;
         }

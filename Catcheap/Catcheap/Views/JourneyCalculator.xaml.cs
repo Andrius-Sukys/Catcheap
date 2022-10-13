@@ -1,5 +1,9 @@
 ﻿namespace Catcheap.Views;
 
+using Catcheap.Models.Calculator_Classes;
+using Catcheap.Models.FileIO_Classes;
+using Catcheap.Models.Validation_Classes;
+
 public partial class JourneyCalculator : ContentPage
 {
     private const string ENTER_A_POS_NUMBER = "Enter a positive number!";
