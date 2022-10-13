@@ -1,13 +1,15 @@
 ﻿using System.Text.RegularExpressions;
+using Catcheap.Models.FileIO_Classes;
+using Catcheap.Models.FileIO_Classes.Interfaces;
 
-namespace Catcheap
+namespace Catcheap.Models.Journeys_Classes
 {
     internal class JourneysLoaderSaver : ILoader<Journeys>, ISaver<Journeys>
     {
 
         private FileIO file = new FileIO();
 
-        public void Load(Journeys journeys, String fileName = "journeys.txt")
+        public void Load(Journeys journeys, string fileName = "journeys.txt")
         {
             journeys.ClearList();
 
@@ -20,14 +22,14 @@ namespace Catcheap
                 string tempDist = Regex.Replace(Regex.Match(match.Value, @"\bDistance: \S*").Value, @"\bDistance: ", "");
 
                 newDistance.Date = DateTime.Parse(tempDate);
-                newDistance.Dist = Int16.Parse(tempDist);
+                newDistance.Dist = Int32.Parse(tempDist);
 
                 journeys.AddJourney(newDistance);
 
             }
         }
 
-        public void Save(Journeys journeys, String fileName = "journeys.txt")
+        public void Save(Journeys journeys, string fileName = "journeys.txt")
         {
             file.WriteTextToFile(journeys.ToString(), fileName);
         }

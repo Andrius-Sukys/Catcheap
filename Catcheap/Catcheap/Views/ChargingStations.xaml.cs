@@ -1,4 +1,6 @@
-﻿namespace Catcheap.Views;
+﻿using Catcheap.Models.ChargingStations_Classes;
+
+namespace Catcheap.Views;
 
 public partial class ChargingStations : ContentPage
 {
@@ -18,18 +20,18 @@ public partial class ChargingStations : ContentPage
 	private void VilniusButtonClicked(object sender, EventArgs e)
 	{
         chargingStation.getChargingStations();
-        Placeholder.Text = chargingStation.FilterQueryVilnius();
+        Placeholder.Text = chargingStation.FilterByCity("Vilnius");
 	}
 
 	private void KaunasButtonClicked(object sender, EventArgs e)
 	{
         chargingStation.getChargingStations();
-        Placeholder.Text = chargingStation.FilterQueryKaunas();
+        Placeholder.Text = chargingStation.FilterByCity("Kaunas");
     }
 
 	private void KlaipedaButtonClicked(object sender, EventArgs e)
 	{
         chargingStation.getChargingStations();
-        Placeholder.Text = chargingStation.FilterQueryKlaipeda();
+        Placeholder.Text = chargingStation.FilterByCity("Klaipėda");
     }
 }

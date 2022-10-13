@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
+using Catcheap.Models.FileIO_Classes;
 
-namespace Catcheap;
+namespace Catcheap.Models.Charge_Classes;
 
 public class Charge : INotifyPropertyChanged
 {
@@ -44,7 +45,7 @@ public class Charge : INotifyPropertyChanged
     public void ClearCharges()
     {
         FileIO fileIO = new FileIO();
-        if("charges.txt" != null)
+        if ("charges.txt" != null)
             fileIO.ClearTextFile("charges.txt");
     }
 }

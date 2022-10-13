@@ -68,6 +68,16 @@
             ContentTemplate="{DataTemplate views:AddCar}"
             Route="AddCar" />
 
+        <ShellContent
+            Title="Add scooter"
+            ContentTemplate="{DataTemplate views:AddElectricScooter}"
+            Route="AddElectricScooter" />
+
+        <ShellContent
+            Title="My scooter"
+            ContentTemplate="{DataTemplate views:DisplayScooters}"
+            Route="AddElectricScooter" />
+
     </TabBar>
 
 </Shell>

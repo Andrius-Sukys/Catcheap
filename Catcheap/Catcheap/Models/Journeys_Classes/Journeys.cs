@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
-
-namespace Catcheap
+﻿namespace Catcheap.Models.Journeys_Classes
 {
 
     public class Journeys
@@ -22,15 +14,15 @@ namespace Catcheap
 
         public List<Journey> GetDayJourneyList()
         {
-           List<Journey> DayJourneyList = new List<Journey>();
+            List<Journey> DayJourneyList = new List<Journey>();
 
-           foreach(Journey journey in distanceList)
-           {
+            foreach (Journey journey in distanceList)
+            {
                 bool inDayJourney = false;
 
-                foreach(Journey dayJourney in DayJourneyList)
+                foreach (Journey dayJourney in DayJourneyList)
                 {
-                    if(DateOnly.FromDateTime(dayJourney.Date) == DateOnly.FromDateTime(journey.Date))
+                    if (DateOnly.FromDateTime(dayJourney.Date) == DateOnly.FromDateTime(journey.Date))
                     {
                         inDayJourney = true;
                         Journey newJourney = new Journey();
@@ -47,12 +39,12 @@ namespace Catcheap
                     DayJourneyList.Add(journey);
                 }
 
-           } 
+            }
 
-           return DayJourneyList;
+            return DayJourneyList;
         }
 
-        public String Test(List<Journey> DayJourneyList)
+        public string Test(List<Journey> DayJourneyList)
         {
             string temp = "";
 
@@ -69,7 +61,7 @@ namespace Catcheap
             float temp = 0;
             int count = 0;
 
-            foreach(Journey distance in distanceList)
+            foreach (Journey distance in distanceList)
             {
                 temp += distance.Dist;
                 count++;

@@ -2,15 +2,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Catcheap.Views.AddJourneyPage"
-             xmlns:local="clr-namespace:Catcheap"
-             x:DataType="local:AddJourneyPageViewModel"
+             xmlns:local="clr-namespace:Catcheap.Views"
              Title="AddJourneyPage">
 
     <VerticalStackLayout
         Padding="10">
+        
 
         <Label Text="Add a new journey"
                FontSize="18"/>
+
+        <Picker x:Name="picker"
+        Title="Select a vehicle">
+            <Picker.ItemsSource
+                SelectedIndex="{Binding JourneyField.SelectedItem, Mode=TwoWay}">
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Car</x:String>
+                    <x:String>Scooter</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
 
         <Entry Placeholder="Journey distance"
                Text="{Binding JourneyField.JourneyDistance}"/>

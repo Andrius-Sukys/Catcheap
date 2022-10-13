@@ -1,3 +1,5 @@
+using Catcheap.Models.FileIO_Classes;
+
 namespace Catcheap.Views;
 
 public partial class MyJourneysPage : ContentPage

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Catcheap;
+namespace Catcheap.Models.Calculator_Classes;
 
 internal class Calculator
 {
@@ -20,7 +20,7 @@ internal class Calculator
         }
         else
         {
-            return Math.Round((consumption / 100) * distance * electricityPrice, 2);
+            return Math.Round(consumption / 100 * distance * electricityPrice, 2);
         }
     }
 }
