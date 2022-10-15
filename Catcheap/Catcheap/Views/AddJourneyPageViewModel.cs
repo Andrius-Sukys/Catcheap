@@ -26,34 +26,38 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
     {
         FileIO fileIO = new FileIO();
 
-        fileIO.UpdateTextFile("Distance: " + JourneyField.JourneyDistance + " Date: " + JourneyField.JourneyDate + '\n', "journeys.txt");
-
-        if (JourneyField.SelectedIndex == 0)
+        if (JourneyField.JourneyDistance != null)
         {
-            CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
-            Car car = new Car();
+            fileIO.UpdateTextFile("Distance: " + JourneyField.JourneyDistance + " Date: " + JourneyField.JourneyDate + '\n', "journeys.txt");
 
-            carLoaderSaver.Load(car);
+            if (JourneyField.SelectedIndex == 0)
+            {
+                CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
+                Car car = new Car();
 
-            car.UpdateCarFieldsAfterJourney((double)JourneyField.JourneyDistance, car.batteryLevel, car.batteryCapacity, car.consumption);
+                carLoaderSaver.Load(car);
 
-            carLoaderSaver.Save(car);
-        }
+                car.UpdateCarFieldsAfterJourney((double)JourneyField.JourneyDistance, car.batteryLevel, car.batteryCapacity, car.consumption);
 
-        if (JourneyField.SelectedIndex == 1)
-        {
-            ScooterLoaderSaver scooterLS = new ScooterLoaderSaver();
-            VehicleScooter scooter = new VehicleScooter();
-            scooterLS.Load(scooter);
+                carLoaderSaver.Save(car);
+            }
 
-            ((Vehicle)scooter).UpdateFieldsAfterJourney((double)JourneyField.JourneyDistance, scooter.batteryLevel, scooter.batteryCapacity, scooter.consumption);
+            if (JourneyField.SelectedIndex == 1)
+            {
+                ScooterLoaderSaver scooterLS = new ScooterLoaderSaver();
+                VehicleScooter scooter = new VehicleScooter();
+                scooterLS.Load(scooter);
 
-            scooterLS.Save(scooter);
-        }
+                ((Vehicle)scooter).UpdateFieldsAfterJourney((double)JourneyField.JourneyDistance, scooter.batteryLevel, scooter.batteryCapacity, scooter.consumption);
 
-        else
-        { 
-            JourneyField.ClearFields();
+                scooterLS.Save(scooter);
+            }
+
+            else
+            {
+                JourneyField.ClearFields();
+            }
+
         }
 
         JourneyField.ClearFields();
