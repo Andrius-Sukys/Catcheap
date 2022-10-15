@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Catcheap.Views.AddElectricScooter"
              xmlns:local="clr-namespace:Catcheap"
-             Title="Add an electric Scooter">
+             Title="Add an Electric Scooter">
     <ScrollView>
     <VerticalStackLayout
             Spacing="15"

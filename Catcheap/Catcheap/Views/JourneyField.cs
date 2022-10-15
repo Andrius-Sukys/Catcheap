@@ -6,8 +6,8 @@ namespace Catcheap.Views;
 public class JourneyField : INotifyPropertyChanged
 {
 
-    DateOnly journeyDate = DateOnly.FromDateTime(DateTime.Today);
-    public DateOnly JourneyDate
+    string journeyDate = DateOnly.FromDateTime(DateTime.Today).ToString("yyyy-MM-dd");
+    public string JourneyDate
     {
         get { return journeyDate; }
         set { journeyDate = value; OnPropertyChanged(nameof(JourneyDate)); }
@@ -34,6 +34,8 @@ public class JourneyField : INotifyPropertyChanged
     public void ClearFields()
     {
         JourneyDistance = null;
+        JourneyDate = null;
+        SelectedIndex = -1;
     }
 
     public void ClearJourneys()

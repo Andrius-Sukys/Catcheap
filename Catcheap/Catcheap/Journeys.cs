@@ -24,7 +24,7 @@ namespace Catcheap
 
                 foreach(Journey dayJourney in DayJourneyList)
                 {
-                    if(DateOnly.FromDateTime(dayJourney.Date) == DateOnly.FromDateTime(journey.Date))
+                    if(dayJourney.Date == journey.Date)
                     {
                         inDayJourney = true;
                         Journey newJourney = new Journey();
@@ -62,7 +62,7 @@ namespace Catcheap
         {
             List<Journey> WeekDayJourneyList = 
                 (from weekDay in GetDayJourneyList()
-                where weekDay.Date.DayOfWeek == dayOfWeek
+                where (DateTime.ParseExact(weekDay.Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).DayOfWeek) == dayOfWeek
                 select weekDay).ToList();
 
             return WeekDayJourneyList;

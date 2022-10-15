@@ -3,15 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Catcheap.Views.AddJourneyPage"
              xmlns:local="clr-namespace:Catcheap.Views"
-             Title="AddJourneyPage">
+             Title="Add a Journey">
 
     <VerticalStackLayout
         Padding="10">
         
-
-        <Label Text="Add a new journey"
-               FontSize="18"/>
-
         <Picker x:Name="picker"
         Title="Select a vehicle">
             <Picker.ItemsSource

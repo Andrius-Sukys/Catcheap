@@ -76,6 +76,9 @@
 	  <MauiXaml Update="Views\AddChargePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Charges.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ChargingStations.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
