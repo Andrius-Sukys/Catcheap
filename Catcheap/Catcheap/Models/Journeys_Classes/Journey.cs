@@ -42,7 +42,7 @@ namespace Catcheap.Models.Journeys_Classes
 {
     public struct Journey : IComparable<Journey>
     {
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public int Dist { get; set; }
 
         public int CompareTo(Journey other)

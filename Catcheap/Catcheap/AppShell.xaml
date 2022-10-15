@@ -10,68 +10,63 @@
 
         <ShellContent
             Title="Dashboard"
-            Icon=""
-            ContentTemplate="{DataTemplate views:DashboardPage}"
-            Route="DashboardPage" />
+            Icon="icon_dashboard"
+            ContentTemplate="{DataTemplate views:DashboardPage}"/>
 
         <ShellContent
             Title="Vehicles"
-            Icon=""
-            ContentTemplate="{DataTemplate views:DisplayVehiclePage}"
-            Route="DisplayVehiclePage" />
+            Icon="icon_vehicles"
+            ContentTemplate="{DataTemplate views:DisplayVehiclePage}"/>
 
         <ShellContent
             Title="Stats"
-            Icon=""
-            ContentTemplate="{DataTemplate views:StatsPage}"
-            Route="StatsPage" />
+            Icon="icon_stats"
+            ContentTemplate="{DataTemplate views:StatsPage}"/>
+
+        <ShellContent
+            Title="Price"
+            Icon="icon_price"
+            ContentTemplate="{DataTemplate views:PricePage}"/>
+
+        <ShellContent
+            Title="Add a Journey"
+            Icon="icon_add_journey"
+            ContentTemplate="{DataTemplate views:AddJourneyPage}"/>
+
+        <ShellContent
+            Title="Add a Car"
+            Icon="icon_car"
+            ContentTemplate="{DataTemplate views:AddCar}"/>
+
+        <ShellContent
+            Title="Add a Scooter"
+            Icon="icon_scooter"
+            ContentTemplate="{DataTemplate views:AddElectricScooter}"/>
+
+        <ShellContent
+            Title="Add a Charge"
+            Icon="icon_charging"
+            ContentTemplate="{DataTemplate views:Charges}"/>
+
+        <ShellContent
+            Title="My Journeys"
+            Icon="icon_journeys"
+            ContentTemplate="{DataTemplate views:MyJourneysPage}"/>
+
+        <ShellContent
+            Title="Trends"
+            Icon="icon_trend"
+            ContentTemplate="{DataTemplate views:TrendsPage}"/>
+
+        <ShellContent
+            Title="Charging Stations"
+            Icon="icon_charging_station"
+            ContentTemplate="{DataTemplate views:ChargingStations}"/>
 
         <ShellContent
             Title="Calculator"
             Icon="icon_calculator"
-            ContentTemplate="{DataTemplate views:JourneyCalculator}"
-            Route="JourneyCalculator" />
-
-        <ShellContent
-            Title="Add a journey"
-            Icon=""
-            ContentTemplate="{DataTemplate views:AddJourneyPage}"
-            Route="AddJourneyPage" />
-
-        <ShellContent
-            Title="My journeys"
-            Icon="icon_history"
-            ContentTemplate="{DataTemplate views:MyJourneysPage}"
-            Route="MyJourneysPage" />
-
-        <ShellContent
-            Title="Charging Stations"
-            Icon=""
-            ContentTemplate="{DataTemplate views:ChargingStations}"
-            Route="ChargingStations" />
-
-        <ShellContent
-            Title="Price"
-            Icon=""
-            ContentTemplate="{DataTemplate views:PricePage}"
-            Route="PricePage" />
-
-        <ShellContent
-            Title="Trends"
-            Icon=""
-            ContentTemplate="{DataTemplate views:TrendsPage}"
-            Route="TrendsPage" />
-
-        <ShellContent
-            Title="Add car"
-            Icon="icon_car"
-            ContentTemplate="{DataTemplate views:AddCar}"
-            Route="AddCar" />
-
-        <ShellContent
-            Title="Add scooter"
-            ContentTemplate="{DataTemplate views:AddElectricScooter}"
-            Route="AddElectricScooter" />
+            ContentTemplate="{DataTemplate views:JourneyCalculator}"/>
 
     </TabBar>
 
