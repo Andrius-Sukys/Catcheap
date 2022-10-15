@@ -58,6 +58,9 @@
 	  <Compile Update="Views\ChargingStations.xaml.cs">
 	    <DependentUpon>ChargingStations.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\DisplayVehiclePage.xaml.cs">
+	    <DependentUpon>DisplayVehiclePage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\JourneyCalculator.xaml.cs">
 	    <DependentUpon>JourneyCalculator.xaml</DependentUpon>
 	  </Compile>
@@ -79,10 +82,7 @@
 	  <MauiXaml Update="Views\DashboardPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\DisplayCarsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\DisplayScooters.xaml">
+	  <MauiXaml Update="Views\DisplayVehiclePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MyJourneysPage.xaml">

@@ -15,10 +15,10 @@
             Route="DashboardPage" />
 
         <ShellContent
-            Title="Cars"
+            Title="Vehicles"
             Icon=""
-            ContentTemplate="{DataTemplate views:DisplayCarsPage}"
-            Route="DisplayCarsPage" />
+            ContentTemplate="{DataTemplate views:DisplayVehiclePage}"
+            Route="DisplayVehiclePage" />
 
         <ShellContent
             Title="Stats"
@@ -71,11 +71,6 @@
         <ShellContent
             Title="Add scooter"
             ContentTemplate="{DataTemplate views:AddElectricScooter}"
-            Route="AddElectricScooter" />
-
-        <ShellContent
-            Title="My scooter"
-            ContentTemplate="{DataTemplate views:DisplayScooters}"
             Route="AddElectricScooter" />
 
     </TabBar>
