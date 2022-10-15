@@ -29,7 +29,7 @@ namespace Catcheap
 
             if (temp != null)
             {
-                foreach (Match match in Regex.Matches(temp, @"\b\d \S*"))
+                foreach (Match match in Regex.Matches(temp, @"\b\d \S+"))
                 {
                     int en = Int16.Parse(Regex.Match(match.Value, @"\b\d").Value);
 

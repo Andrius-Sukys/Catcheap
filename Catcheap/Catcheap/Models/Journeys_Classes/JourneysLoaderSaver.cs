@@ -18,11 +18,11 @@ namespace Catcheap
 
             if (temp != null)
             {
-                foreach (Match match in Regex.Matches(temp, @"\bDistance: \S* Date: \S*"))
+                foreach (Match match in Regex.Matches(temp, @"\bDistance: \S+ Date: \S+"))
                 {
                     Journey newDistance = new Journey();
-                    string tempDate = Regex.Replace(Regex.Match(match.Value, @"\bDate: \S*").Value, @"\bDate: ", "");
-                    string tempDist = Regex.Replace(Regex.Match(match.Value, @"\bDistance: \S*").Value, @"\bDistance: ", "");
+                    string tempDate = Regex.Replace(Regex.Match(match.Value, @"\bDate: \S+").Value, @"\bDate: ", "");
+                    string tempDist = Regex.Replace(Regex.Match(match.Value, @"\bDistance: \S+").Value, @"\bDistance: ", "");
 
                     newDistance.Date = DateTime.Parse(tempDate);
                     newDistance.Dist = Int16.Parse(tempDist);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catcheap.Views.DisplayVehiclePage"
+             Title="Display Vehicle Page">
+    <VerticalStackLayout
+        Padding="15">
+        <Label 
+            x:Name="Placeholder"
+            Text=""/>
+        <Button
+            Text="Car"
+            Clicked="CarButtonClicked"/>
+        <Label Text=""/>
+        <Button
+            Text="Scooter"
+            Clicked="ScooterButtonClicked"/>
+        <Label Text=""/>
+        <Button
+            Text="All"
+            Clicked="AllButtonClicked"/>
+
+
+    </VerticalStackLayout>
+</ContentPage>

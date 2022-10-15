@@ -29,47 +29,49 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
         {
             string temp = file.ReadTextFile(fileName);
 
-            foreach (Match match in Regex.Matches(temp, @"\b\d \S*"))
-            {
-                int en = short.Parse(Regex.Match(match.Value, @"\b\d").Value);
-
-                switch (en)
+            if (temp != null) {
+                foreach (Match match in Regex.Matches(temp, @"\b\d \S*"))
                 {
-                    case (int)Pattern.Manufacturer:
-                        scooter.manufacturer = Regex.Replace(match.Value, @"\b\d ", "");
-                        break;
-                    case (int)Pattern.Model:
-                        scooter.model = Regex.Replace(match.Value, @"\b\d ", "");
-                        break;
-                    
-                    case (int)Pattern.BatteryCapacity:
-                        scooter.batteryCapacity = double.Parse(Regex.Replace(match.Value, @"\b\d ", ""));
-                        break;
-                    case (int)Pattern.Consumption:
-                        scooter.consumption = double.Parse(Regex.Replace(match.Value, @"\b\d ", ""));
-                        break;
-                    case (int)Pattern.BatteryLevel:
-                        scooter.batteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
-                        break;
-                    case (int)Pattern.ExpectedRange:
-                        scooter.expectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
-                        break;
-                    case (int)Pattern.Weight:
-                        scooter.weight = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
-                        break;
-                    case (int)Pattern.WeightCapacity:
-                        scooter.weightCapacity = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
-                        break;
-                    case (int)Pattern.WeightRider:
-                        scooter.weightRider = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
-                        break;
-                    case (int)Pattern.AverageSpeed:
-                        scooter.averageSpeed = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
-                        break;
-                    case (int)Pattern.TopSpeed:
-                        scooter.topSpeed = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
-                        break;
-                    default: break;
+                    int en = short.Parse(Regex.Match(match.Value, @"\b\d").Value);
+
+                    switch (en)
+                    {
+                        case (int)Pattern.Manufacturer:
+                            scooter.manufacturer = Regex.Replace(match.Value, @"\b\d ", "");
+                            break;
+                        case (int)Pattern.Model:
+                            scooter.model = Regex.Replace(match.Value, @"\b\d ", "");
+                            break;
+
+                        case (int)Pattern.BatteryCapacity:
+                            scooter.batteryCapacity = double.Parse(Regex.Replace(match.Value, @"\b\d ", ""));
+                            break;
+                        case (int)Pattern.Consumption:
+                            scooter.consumption = double.Parse(Regex.Replace(match.Value, @"\b\d ", ""));
+                            break;
+                        case (int)Pattern.BatteryLevel:
+                            scooter.batteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            break;
+                        case (int)Pattern.ExpectedRange:
+                            scooter.expectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            break;
+                        case (int)Pattern.Weight:
+                            scooter.weight = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            break;
+                        case (int)Pattern.WeightCapacity:
+                            scooter.weightCapacity = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            break;
+                        case (int)Pattern.WeightRider:
+                            scooter.weightRider = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            break;
+                        case (int)Pattern.AverageSpeed:
+                            scooter.averageSpeed = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            break;
+                        case (int)Pattern.TopSpeed:
+                            scooter.topSpeed = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            break;
+                        default: break;
+                    }
                 }
             }
 
