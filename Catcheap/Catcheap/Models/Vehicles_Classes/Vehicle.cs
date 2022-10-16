@@ -50,7 +50,7 @@ public class Vehicle
         if (expectedRange > 0)
             return expectedRange;
         else
-            return expectedRange;
+            return 0;
     }
 }
 
