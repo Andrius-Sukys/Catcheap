@@ -196,6 +196,46 @@
 
             </Grid>
 
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Text="Calculate price to charge my car"
+                       FontSize="18"
+                       VerticalOptions="StartAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       Grid.Row="0"
+                       Grid.Column="1">
+                </Label>
+
+                <Button
+                    x:Name="CalculateFullChargePrice"
+                    HeightRequest="50"
+                    Text="Calculate"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="1"
+                    Clicked="CalculateFullChargePriceButtonClicked"
+                    ClassId="1"
+                    IsEnabled="true">
+                </Button>
+
+                <Label
+                    x:Name="FullChargePrice"
+                    Text=""
+                    FontSize="40"
+                    FontAttributes="Bold"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="2">
+                </Label>
+
+            </Grid>
+
         </VerticalStackLayout>
         
     </ScrollView>
