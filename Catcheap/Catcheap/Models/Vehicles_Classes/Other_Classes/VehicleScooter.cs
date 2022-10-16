@@ -41,7 +41,7 @@ public class VehicleScooter : Vehicle
         weightRider = Double.Parse(RidersWeight);
         averageSpeed = Double.Parse(AverageSpeed);
         topSpeed = Double.Parse(TopSpeed);
-        expectedRange = CalculateExpectedRange(batteryLevel, batteryCapacity, consumption).AdjustExpectedRange(topSpeed, weight, weightCapacity, weightRider, averageSpeed = topSpeed);
+        expectedRange = CalculateExpectedRange().AdjustExpectedRange(topSpeed, weight, weightCapacity, weightRider, averageSpeed = topSpeed);
     }
 
 }

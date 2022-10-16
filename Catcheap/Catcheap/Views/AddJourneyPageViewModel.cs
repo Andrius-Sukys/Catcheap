@@ -37,7 +37,7 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
 
                 carLoaderSaver.Load(car);
 
-                car.UpdateCarFieldsAfterJourney((double)JourneyField.JourneyDistance, car.batteryLevel, car.batteryCapacity, car.consumption);
+                car.UpdateCarFieldsAfterJourney((double)JourneyField.JourneyDistance);
 
                 carLoaderSaver.Save(car);
             }
@@ -48,7 +48,7 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
                 VehicleScooter scooter = new VehicleScooter();
                 scooterLS.Load(scooter);
 
-                ((Vehicle)scooter).UpdateFieldsAfterJourney((double)JourneyField.JourneyDistance, scooter.batteryLevel, scooter.batteryCapacity, scooter.consumption);
+                ((Vehicle)scooter).UpdateFieldsAfterJourney((double)JourneyField.JourneyDistance);
 
                 scooterLS.Save(scooter);
             }
