@@ -29,46 +29,47 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
         {
             string temp = file.ReadTextFile(fileName);
 
-            if (temp != null) {
-                foreach (Match match in Regex.Matches(temp, @"\b\d \S*"))
+            if (temp != null) 
+            {
+                foreach (Match match in Regex.Matches(temp, @"^\b\d .*", RegexOptions.Multiline))
                 {
-                    int en = short.Parse(Regex.Match(match.Value, @"\b\d").Value);
+                    int en = short.Parse(Regex.Match(match.Value, @"^\b\d").Value);
 
                     switch (en)
                     {
                         case (int)Pattern.Manufacturer:
-                            scooter.manufacturer = Regex.Replace(match.Value, @"\b\d ", "");
+                            scooter.manufacturer = Regex.Replace(match.Value, @"^\b\d ", "");
                             break;
                         case (int)Pattern.Model:
-                            scooter.model = Regex.Replace(match.Value, @"\b\d ", "");
+                            scooter.model = Regex.Replace(match.Value, @"^\b\d ", "");
                             break;
 
                         case (int)Pattern.BatteryCapacity:
-                            scooter.batteryCapacity = double.Parse(Regex.Replace(match.Value, @"\b\d ", ""));
+                            scooter.batteryCapacity = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                             break;
                         case (int)Pattern.Consumption:
-                            scooter.consumption = double.Parse(Regex.Replace(match.Value, @"\b\d ", ""));
+                            scooter.consumption = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                             break;
                         case (int)Pattern.BatteryLevel:
-                            scooter.batteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            scooter.batteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
                         case (int)Pattern.ExpectedRange:
-                            scooter.expectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            scooter.expectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
                         case (int)Pattern.Weight:
-                            scooter.weight = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            scooter.weight = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
                         case (int)Pattern.WeightCapacity:
-                            scooter.weightCapacity = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            scooter.weightCapacity = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
                         case (int)Pattern.WeightRider:
-                            scooter.weightRider = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            scooter.weightRider = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
                         case (int)Pattern.AverageSpeed:
-                            scooter.averageSpeed = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            scooter.averageSpeed = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
                         case (int)Pattern.TopSpeed:
-                            scooter.topSpeed = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                            scooter.topSpeed = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
                         default: break;
                     }

@@ -25,32 +25,32 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
         {
             string temp = file.ReadTextFile(fileName);
 
-            foreach (Match match in Regex.Matches(temp, @"\b\d \S*"))
+            foreach (Match match in Regex.Matches(temp, @"^\b\d .*", RegexOptions.Multiline))
             {
-                int en = short.Parse(Regex.Match(match.Value, @"\b\d").Value);
+                int en = short.Parse(Regex.Match(match.Value, @"^\b\d").Value);
 
                 switch (en)
                 {
                     case (int)Pattern.Manufacturer:
-                        car.manufacturer = Regex.Replace(match.Value, @"\b\d ", "");
+                        car.manufacturer = Regex.Replace(match.Value, @"^\b\d ", "");
                         break;
                     case (int)Pattern.Model:
-                        car.model = Regex.Replace(match.Value, @"\b\d ", "");
+                        car.model = Regex.Replace(match.Value, @"^\b\d ", "");
                         break;
                     case (int)Pattern.Mileage:
-                        car.mileage = double.Parse(Regex.Replace(match.Value, @"\b\d ", ""));
+                        car.mileage = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                         break;
                     case (int)Pattern.ExpectedRange:
-                        car.expectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                        car.expectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                         break;
                     case (int)Pattern.BatteryCapacity:
-                        car.batteryCapacity = double.Parse(Regex.Replace(match.Value, @"\b\d ", ""));
+                        car.batteryCapacity = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                         break;
                     case (int)Pattern.Consumption:
-                        car.consumption = double.Parse(Regex.Replace(match.Value, @"\b\d ", ""));
+                        car.consumption = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                         break;
                     case (int)Pattern.BatteryLevel:
-                        car.batteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"\b\d ", "")), 2);
+                        car.batteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                         break;
                     default: break;
                 }
