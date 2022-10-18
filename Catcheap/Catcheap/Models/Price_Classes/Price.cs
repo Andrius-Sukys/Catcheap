@@ -20,7 +20,7 @@ public class Price
 
 		foreach(DayPrice dayPrice in dayPrices)
 		{
-			rez += dayPrice.ToString() + "\n";
+			rez += dayPrice.ToString() + "\n\n";
 		}
 
 		return rez;
