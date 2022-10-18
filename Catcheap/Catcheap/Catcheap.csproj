@@ -48,6 +48,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Files\price.txt" />
 	  <None Remove="Resources\Raw\chargingspots.txt" />
 	</ItemGroup>
 
@@ -107,6 +108,9 @@
 
 	<ItemGroup>
 	  <MauiAsset Include="Resources\Files\chargingspots.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiAsset>
+	  <MauiAsset Include="Resources\Files\price.txt">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </MauiAsset>
 	</ItemGroup>
