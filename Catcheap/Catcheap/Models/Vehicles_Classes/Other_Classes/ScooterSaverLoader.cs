@@ -10,21 +10,6 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
     {
         private FileIO file = new FileIO();
 
-        enum Pattern : int
-        {
-            Manufacturer,
-            Model,
-            BatteryCapacity,
-            Consumption,
-            BatteryLevel,
-            ExpectedRange,
-            Weight,
-            WeightCapacity,
-            WeightRider,
-            AverageSpeed,
-            TopSpeed
-        }
-
         public void Load(VehicleScooter scooter, string fileName = "scooterinfo.txt")
         {
             string temp = file.ReadTextFile(fileName);
@@ -37,37 +22,38 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
 
                     switch (en)
                     {
-                        case (int)Pattern.Manufacturer:
+                        case (int)ScooterPattern.Manufacturer:
                             scooter.manufacturer = Regex.Replace(match.Value, @"^\b\d ", "");
                             break;
-                        case (int)Pattern.Model:
+                        case (int)ScooterPattern.Model:
                             scooter.model = Regex.Replace(match.Value, @"^\b\d ", "");
                             break;
                         case (int)Pattern.BatteryCapacity:
+
                             scooter.batteryCapacity = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                             break;
-                        case (int)Pattern.Consumption:
+                        case (int)ScooterPattern.Consumption:
                             scooter.consumption = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                             break;
-                        case (int)Pattern.BatteryLevel:
+                        case (int)ScooterPattern.BatteryLevel:
                             scooter.batteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
-                        case (int)Pattern.ExpectedRange:
+                        case (int)ScooterPattern.ExpectedRange:
                             scooter.expectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
-                        case (int)Pattern.Weight:
+                        case (int)ScooterPattern.Weight:
                             scooter.weight = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
-                        case (int)Pattern.WeightCapacity:
+                        case (int)ScooterPattern.WeightCapacity:
                             scooter.weightCapacity = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
-                        case (int)Pattern.WeightRider:
+                        case (int)ScooterPattern.WeightRider:
                             scooter.weightRider = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
-                        case (int)Pattern.AverageSpeed:
+                        case (int)ScooterPattern.AverageSpeed:
                             scooter.averageSpeed = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
-                        case (int)Pattern.TopSpeed:
+                        case (int)ScooterPattern.TopSpeed:
                             scooter.topSpeed = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
                         default: break;
