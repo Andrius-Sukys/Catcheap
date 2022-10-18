@@ -20,7 +20,6 @@ public partial class DisplayVehiclePage : ContentPage
 	{
 		InitializeComponent();
         vehicleList.Add(car);
-        vehicleList.Add(car);
         vehicleList.Add(scooter);
     }
 
@@ -33,7 +32,7 @@ public partial class DisplayVehiclePage : ContentPage
             if(vehicle is Car)
             {
                 carLoaderSaver.Load((Car)vehicle);
-                Placeholder.Text += carString.ToString(vehicle) + '\n';
+                Placeholder.Text += carString.ToString((Car)vehicle) + '\n';
             }
         }
 	}
@@ -46,8 +45,8 @@ public partial class DisplayVehiclePage : ContentPage
         {
             if (vehicle is VehicleScooter)
             {
-                scooterLoaderSaver.Load((VehicleScooter)vehicle);
-                Placeholder.Text += scooterString.ToString(vehicle) + '\n'; 
+                scooterLoaderSaver.Load((VehicleScooter)scooter);
+                Placeholder.Text += scooterString.ToString((VehicleScooter)scooter) + '\n'; 
             }
         }
     }
@@ -62,10 +61,10 @@ public partial class DisplayVehiclePage : ContentPage
             {
                 carLoaderSaver.Load((Car)vehicle);
                 Placeholder.Text += carString.ToString((Car)vehicle) + '\n';
-            }else if (vehicle is VehicleScooter)
+            }else if (vehicle is VehicleScooter scooter)
             {
-                scooterLoaderSaver.Load((VehicleScooter)vehicle);
-                Placeholder.Text += scooterString.ToString(vehicle) + '\n';
+                scooterLoaderSaver.Load((VehicleScooter)scooter);
+                Placeholder.Text += scooterString.ToString((VehicleScooter)scooter) + '\n';
             }
         }
     }

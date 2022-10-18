@@ -31,6 +31,6 @@ public partial class StatsPage : ContentPage
         PastYear.Text = "Past year: " + Journeys.DistancePastYear().ToString();
 
         ThisMonth.Text = "This month (" + (DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture)) + "): " + Journeys.DistanceThisMonth().ToString();
-        ThisYear.Text = "Past year (" + (DateTime.Now.Year.ToString()) + "): "  + Journeys.DistanceThisYear().ToString();
+        ThisYear.Text = "This year (" + (DateTime.Now.Year.ToString()) + "): "  + Journeys.DistanceThisYear().ToString();
     }
 }

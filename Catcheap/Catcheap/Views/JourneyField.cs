@@ -19,11 +19,11 @@ public class JourneyField : INotifyPropertyChanged
         set { journeyDistance = value; OnPropertyChanged(nameof(JourneyDistance)); }
     }
 
-    int? selectedIndex;
-    public int? SelectedIndex
+    string selectedItem;
+    public string SelectedItem
     {
-        get { return selectedIndex; }
-        set { selectedIndex = value; OnPropertyChanged(nameof(SelectedIndex)); }
+        get { return selectedItem; }
+        set { selectedItem = value; OnPropertyChanged(nameof(SelectedItem)); }
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
@@ -34,7 +34,6 @@ public class JourneyField : INotifyPropertyChanged
     public void ClearFields()
     {
         JourneyDistance = null;
-        SelectedIndex = null;
     }
 
     public void ClearJourneys()

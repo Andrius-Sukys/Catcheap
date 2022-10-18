@@ -30,8 +30,10 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
         {
             fileIO.UpdateTextFile("Distance: " + JourneyField.JourneyDistance + " Date: " + JourneyField.JourneyDate + '\n', "journeys.txt");
 
-            if (JourneyField.SelectedIndex == 0)
+            if (JourneyField.SelectedItem == "Car")
             {
+                
+
                 CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
                 Car car = new Car();
 
@@ -42,13 +44,14 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
                 carLoaderSaver.Save(car);
             }
 
-            if (JourneyField.SelectedIndex == 1)
+            if (JourneyField.SelectedItem == "Scooter")
             {
+
                 ScooterLoaderSaver scooterLS = new ScooterLoaderSaver();
                 VehicleScooter scooter = new VehicleScooter();
                 scooterLS.Load(scooter);
 
-                ((Vehicle)scooter).UpdateFieldsAfterJourney((double)JourneyField.JourneyDistance);
+                scooter.UpdateFieldsAfterJourney((double)JourneyField.JourneyDistance);
 
                 scooterLS.Save(scooter);
             }

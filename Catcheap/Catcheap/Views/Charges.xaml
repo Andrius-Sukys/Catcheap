@@ -2,9 +2,67 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Catcheap.Views.Charges"
-             Title="Charges">
-    <VerticalStackLayout>
-        <Label 
-            Text="Charges placeholder" />
-    </VerticalStackLayout>
+             Title="Add a Charge">
+
+<VerticalStackLayout Spacing="10" Padding="15" MaximumWidthRequest="900">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Text="Charging Speed"/>
+            <Entry Grid.Row="1" Keyboard="Numeric" Margin="0, 5, 0, 0" Text=""/>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Text="Charging Price"/>
+            <Entry Grid.Row="1" Keyboard="Numeric" Margin="0, 5, 0, 0" Text=""/>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Start Time"/>
+            <TimePicker Grid.Row="1" Grid.Column="0"/>
+
+            <Label Grid.Row="0" Grid.Column="1" Margin="10, 0, 0, 0" Text="End Time"/>
+            <TimePicker Grid.Row="1" Grid.Column="1" x:Name="EndTimePicker" Margin="10, 0, 0, 0"/>
+
+        </Grid>
+
+        <StackLayout Grid.Row="3" Orientation="Horizontal">
+            <Button Text="Submit" Command=""/>
+            <Button Margin="10, 0, 0, 0" Text="Cancel" Command=""/>
+        </StackLayout>
+
+    </Grid>
+
+
+
+</VerticalStackLayout>
 </ContentPage>

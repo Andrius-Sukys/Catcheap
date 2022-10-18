@@ -14,6 +14,7 @@ public class ElectricScooterString : VehicleString
     {
         return ManufacturerPattern + scooter.manufacturer + '\n' +
                ModelPattern + scooter.model + '\n' +
+               ExpectedRangePattern + scooter.expectedRange + " km\n" +
                BatteryCapacityPattern + scooter.batteryCapacity + " kWh\n" +
                ConsumptionPattern + scooter.consumption + " kWh/100 km\n" +
                BatteryLevelPattern + scooter.batteryLevel + " %\n" +
@@ -21,8 +22,6 @@ public class ElectricScooterString : VehicleString
                WeightCapacityPattern + scooter.weightCapacity + " kg\n" +
                WeightRider + scooter.weightRider + " kg\n" +
                AverageSpeed + scooter.averageSpeed + " km/h\n" +
-               TopSpeed + scooter.topSpeed + " km/h\n" +
-               ExpectedRangePattern + scooter.expectedRange + " km\n";
+               TopSpeed + scooter.topSpeed + " km/h\n";
     }
 }
-

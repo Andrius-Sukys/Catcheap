@@ -12,9 +12,9 @@
 
         <Picker
             x:Name="picker"
-            Title="Select a vehicle">
-            <Picker.ItemsSource
-                SelectedIndex="{Binding JourneyField.SelectedItem, Mode=TwoWay}">
+            Title="Select a vehicle"
+            SelectedItem="{Binding JourneyField.SelectedItem, Mode=TwoWay}">
+            <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Car</x:String>
                         <x:String>Scooter</x:String>

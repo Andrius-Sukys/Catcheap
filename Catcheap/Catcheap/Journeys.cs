@@ -178,7 +178,7 @@ namespace Catcheap
 
             foreach (Journey journey in distanceList)
             {
-                temp += "Distance: " + journey.Dist + " Date: " + journey.Date + Environment.NewLine;
+                temp += "Distance: " + journey.Dist + "Date: " + journey.Date + Environment.NewLine;
             }
 
             return temp;

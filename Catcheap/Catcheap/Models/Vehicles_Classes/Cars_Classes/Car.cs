@@ -15,14 +15,14 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
             batteryCapacity = double.Parse(BatteryCapacity);
             consumption = double.Parse(Consumption);
             batteryLevel = double.Parse(BatteryLevel);
-            expectedRange = CalculateExpectedRange(batteryCapacity, batteryLevel, consumption);
+            expectedRange = CalculateExpectedRange();
         }
 
 
         public void UpdateCarFieldsAfterJourney(double journeyDistance)
         {
             DecreaseExpectedRange(journeyDistance);
-            DecreaseBatteryLevel(journeyDistance);
+            DecreaseBatteryLevel(journeyDistance, consumption, batteryCapacity);
             IncreaseMileage(journeyDistance);
         }
 
