@@ -4,6 +4,7 @@ using Catcheap.Models.Calculator_Classes;
 using Catcheap.Models.FileIO_Classes;
 using Catcheap.Models.Validation_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
+using Catcheap.Models.Price_Classes;
 
 public partial class JourneyCalculator : ContentPage
 {
@@ -100,10 +101,11 @@ public partial class JourneyCalculator : ContentPage
     {
         Car car = new Car();
         CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
+        Price price = new Price();
 
         carLoaderSaver.Load(car);
 
-        FullChargePrice.Text = calc.calculateFullChargePrice(car.batteryCapacity, car.batteryLevel, 0.4).ToString() + "€";
+        FullChargePrice.Text = calc.calculateFullChargePrice(car.batteryCapacity, car.batteryLevel, price.getCurrentPrice()).ToString() + "€";
     }
 }
 

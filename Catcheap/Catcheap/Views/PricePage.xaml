@@ -5,6 +5,20 @@
              Title="Nord Pool Price">
     <VerticalStackLayout>
         <Label 
-            Text="PRICE PLACEHOLDER" />
+            x:Name="PriceLabel"
+            Text=""/>
+
+        <Button
+            Text="Load"
+            Clicked="LoadButtonClicked"/>
+
+        <Label 
+            x:Name="CurrentPriceLabel"
+            Text=""/>
+
+        <Button
+            Text="LoadCurrentPrice"
+            Clicked="LoadCurrentPriceButtonClicked"/>
+
     </VerticalStackLayout>
 </ContentPage>
