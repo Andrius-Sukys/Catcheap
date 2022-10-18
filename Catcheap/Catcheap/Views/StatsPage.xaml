@@ -3,7 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Catcheap.Views.StatsPage"
              Title="Stats">
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="10" Padding="15">
+
+        <Button
+            Text="Load"
+            Clicked="LoadButtonClicked"/>
+
         <Label 
             x:Name="Monday"
             Text=""/>
@@ -25,8 +30,26 @@
         <Label 
             x:Name="Sunday"
             Text=""/>
-        <Button
-            Text="Load"
-            Clicked="LoadButtonClicked"/>
+
+        <Label 
+            x:Name="PastWeek"
+            Text=""/>
+
+        <Label 
+            x:Name="PastMonth"
+            Text=""/>
+
+        <Label 
+            x:Name="PastYear"
+            Text=""/>
+
+        <Label 
+            x:Name="ThisMonth"
+            Text=""/>
+
+        <Label 
+            x:Name="ThisYear"
+            Text=""/>
+
     </VerticalStackLayout>
 </ContentPage>

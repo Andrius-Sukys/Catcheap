@@ -44,9 +44,9 @@ public class Vehicle
         DecreaseBatteryLevel(journeyDistance);
     }
 
-    public double CalculateExpectedRange()
+    public double CalculateExpectedRange(double BatteryCapacity, double BatteryLevel, double consumption)
     {
-        expectedRange = Math.Round(batteryCapacity * batteryLevel / consumption , 2);
+        expectedRange = Math.Round(BatteryCapacity * BatteryLevel / consumption, 2);
         if (expectedRange > 0)
             return expectedRange;
         else

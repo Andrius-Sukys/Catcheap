@@ -1,18 +1,4 @@
-﻿
-/* Unmerged change from project 'Catcheap (net6.0-maccatalyst)'
-Before:
-using System.Runtime.CompilerServices;
-
-namespace Catcheap.Models.Vehicles.Other;
-After:
-using System.Runtime.CompilerServices;
-using Catcheap;
-using Catcheap;
-using Catcheap.Models;
-using Catcheap.Models.Vehicles;
-using Catcheap.Models.Vehicles.Other;
-*/
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 
 namespace Catcheap.Models.Vehicles_Classes.Other_Classes;
 
@@ -41,7 +27,8 @@ public class VehicleScooter : Vehicle
         weightRider = Double.Parse(RidersWeight);
         averageSpeed = Double.Parse(AverageSpeed);
         topSpeed = Double.Parse(TopSpeed);
-        expectedRange = CalculateExpectedRange().AdjustExpectedRange(topSpeed, weight, weightCapacity, weightRider, averageSpeed = topSpeed);
+
+        expectedRange = CalculateExpectedRange(batteryCapacity, batteryLevel, consumption);//.AdjustExpectedRange(topSpeed, weight, weightCapacity, weightRider, averageSpeed);
     }
 
 }

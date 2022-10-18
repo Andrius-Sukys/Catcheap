@@ -17,17 +17,19 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
             BatteryCapacity,
             Consumption,
             BatteryLevel,
-            ExpectedRange,
             Weight,
             WeightCapacity,
             WeightRider,
             AverageSpeed,
-            TopSpeed
+            TopSpeed,
+            ExpectedRange
         }
 
         public void Load(VehicleScooter scooter, string fileName = "scooterinfo.txt")
         {
             string temp = file.ReadTextFile(fileName);
+
+            System.Diagnostics.Debug.WriteLine(temp);
 
             if (temp != null) 
             {
@@ -43,18 +45,14 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                         case (int)Pattern.Model:
                             scooter.model = Regex.Replace(match.Value, @"^\b\d ", "");
                             break;
-
                         case (int)Pattern.BatteryCapacity:
-                            scooter.batteryCapacity = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
+                            scooter.batteryCapacity = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
                         case (int)Pattern.Consumption:
-                            scooter.consumption = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
+                            scooter.consumption = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
                         case (int)Pattern.BatteryLevel:
                             scooter.batteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
-                            break;
-                        case (int)Pattern.ExpectedRange:
-                            scooter.expectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                             break;
                         case (int)Pattern.Weight:
                             scooter.weight = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
@@ -70,6 +68,9 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                             break;
                         case (int)Pattern.TopSpeed:
                             scooter.topSpeed = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
+                            break;
+                        case (int)Pattern.ExpectedRange:
+                            scooter.expectedRange = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                             break;
                         default: break;
                     }
@@ -88,12 +89,12 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                                  (int)Pattern.BatteryCapacity + " " + scooter.batteryCapacity + '\n' +
                                  (int)Pattern.Consumption + " " + scooter.consumption + '\n' +
                                  (int)Pattern.BatteryLevel + " " + scooter.batteryLevel + '\n' +
-                                 (int)Pattern.ExpectedRange + " " + scooter.expectedRange + '\n' +
                                  (int)Pattern.Weight + " " + scooter.weight + '\n' +
-                                 (int)Pattern.WeightCapacity + " " + scooter.batteryLevel + '\n' +
+                                 (int)Pattern.WeightCapacity + " " + scooter.weightCapacity + '\n' +
                                  (int)Pattern.WeightRider + " " + scooter.weightRider + '\n' +
                                  (int)Pattern.AverageSpeed + " " + scooter.averageSpeed + '\n' +
-                                 (int)Pattern.TopSpeed + " " + scooter.topSpeed + '\n', "scooterinfo.txt");
+                                 (int)Pattern.TopSpeed + " " + scooter.topSpeed + '\n' +
+                                 (int)Pattern.ExpectedRange + " " + scooter.expectedRange + '\n', fileName);
         }
 
     }

@@ -5,7 +5,7 @@ namespace Catcheap
 
     public class Journeys
     {
-        private List<Journey> distanceList = new List<Journey>();
+        private static List<Journey> distanceList = new List<Journey>();
 
         public void ClearList() { distanceList.Clear(); }
 
@@ -14,7 +14,7 @@ namespace Catcheap
             distanceList.Add(journey);
         }
 
-        public List<Journey> GetDayJourneyList()
+        public static List<Journey> GetDayJourneyList()
         {
            List<Journey> DayJourneyList = new List<Journey>();
 
@@ -46,29 +46,114 @@ namespace Catcheap
            return DayJourneyList;
         }
 
-        public String Test(List<Journey> DayJourneyList)
-        {
-            string temp = "";
-
-            foreach (Journey journey in DayJourneyList)
-            {
-                temp += "Distance: " + journey.Dist + " Date: " + journey.Date + Environment.NewLine;
-            }
-
-            return temp;
-        }
-
         public List<Journey> GetWeekDayJourneyList(DayOfWeek dayOfWeek)
         {
             List<Journey> WeekDayJourneyList = 
                 (from weekDay in GetDayJourneyList()
-                where (DateTime.ParseExact(weekDay.Date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).DayOfWeek) == dayOfWeek
+                where weekDay.Date.DayOfWeek == dayOfWeek
                 select weekDay).ToList();
 
             return WeekDayJourneyList;
         }
 
-        public static float AverageDistance(List<Journey> journeyList)
+        public static List<Journey> GetJourneysInRange(DateOnly endDate, DateOnly startDate)
+        {
+            List<Journey> JourneysThisWeek =
+                (from journey in GetDayJourneyList()
+                where journey.Date <= endDate &&
+                      journey.Date >= startDate
+                select journey).ToList();
+
+            return JourneysThisWeek;
+        }
+
+        public static double DistancePastWeek()
+        {
+            double weeklyDistance = 0;
+            foreach(Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyWeekBefore()))
+            {
+                weeklyDistance = weeklyDistance + journey.Dist;
+            }
+
+            return weeklyDistance;
+        }
+
+        public static double DistancePastMonth()
+        {
+            double monthlyDistance = 0;
+            foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyMonthBefore()))
+            {
+                monthlyDistance = monthlyDistance + journey.Dist;
+            }
+
+            return monthlyDistance;
+        }
+
+        public static double DistanceThisMonth()
+        {
+            double monthlyDistance = 0;
+            foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyThisMonth()))
+            {
+                monthlyDistance = monthlyDistance + journey.Dist;
+            }
+
+            return monthlyDistance;
+        }
+        public static double DistancePastYear()
+        {
+            double yearlyDistance = 0;
+            foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyPastYear()))
+            {
+                yearlyDistance = yearlyDistance + journey.Dist;
+            }
+
+            return yearlyDistance;
+        }
+
+        public static double DistanceThisYear()
+        {
+            double yearlyDistance = 0;
+            foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyThisYear()))
+            {
+                yearlyDistance = yearlyDistance + journey.Dist;
+            }
+
+            return yearlyDistance;
+        }
+
+
+
+        public static DateOnly GetDateOnlyToday()
+        {
+            return new DateOnly(DateTime.Now.Date.Year, DateTime.Now.Date.Month, DateTime.Now.Date.Day);
+        }
+
+        public static DateOnly GetDateOnlyWeekBefore()
+        {
+            return DateOnly.FromDateTime(DateTime.Now.Date.AddDays(-7));
+        }
+
+        public static DateOnly GetDateOnlyMonthBefore()
+        {
+            return DateOnly.FromDateTime(DateTime.Now.Date.AddMonths(-1));
+        }
+
+        public static DateOnly GetDateOnlyThisMonth()
+        {
+            return new DateOnly(DateTime.Now.Date.Year, DateTime.Now.Date.Month, 1);
+        }
+
+        public static DateOnly GetDateOnlyPastYear()
+        {
+            return DateOnly.FromDateTime(DateTime.Now.Date.AddYears(-1));
+        }
+
+        public static DateOnly GetDateOnlyThisYear()
+        {
+            return new DateOnly(DateTime.Now.Date.Year, 1, 1);
+        }
+
+        public static double AverageDistance(List<Journey> journeyList)
         {
             float temp = 0;
             int count = 0;
@@ -84,7 +169,7 @@ namespace Catcheap
                 count++;
             }
 
-            return temp / count;
+            return Math.Round(temp / count, 2);
         }
 
         public override string ToString()

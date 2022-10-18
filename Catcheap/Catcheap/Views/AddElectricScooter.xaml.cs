@@ -31,10 +31,10 @@ public partial class AddElectricScooter : ContentPage
         {
             Placeholder.Text = "Input successful!";
 
-            scooter.SetAll(Manufacturer: ManufacturerEntry.Text, Model: ModelEntry.Text, BatteryCapacity: BatteryCapacityEntry.Text,
-                           Consumption: ConsumptionEntry.Text, BatteryLevel: BatteryLevelEntry.Text, Weight: WeightEntry.Text,
-                           WeightCapacity: WeightCapacityEntry.Text, RidersWeight: RidersWeightEntry.Text, AverageSpeed: AverageSpeedEntry.Text,
-                           TopSpeed: TopSpeedEntry.Text);
+            scooter.SetAll(ManufacturerEntry.Text, ModelEntry.Text, BatteryCapacityEntry.Text,
+                           ConsumptionEntry.Text, BatteryLevelEntry.Text, WeightEntry.Text,
+                           WeightCapacityEntry.Text, RidersWeightEntry.Text, AverageSpeedEntry.Text,
+                           TopSpeedEntry.Text);
 
             scooterLS.Save(scooter);
 

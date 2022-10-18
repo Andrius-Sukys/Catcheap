@@ -20,6 +20,7 @@ public partial class DisplayVehiclePage : ContentPage
 	{
 		InitializeComponent();
         vehicleList.Add(car);
+        vehicleList.Add(car);
         vehicleList.Add(scooter);
     }
 
@@ -29,10 +30,10 @@ public partial class DisplayVehiclePage : ContentPage
 
         foreach (Vehicle vehicle in vehicleList)
         {
-            if(vehicle is Car car1)
+            if(vehicle is Car)
             {
-                carLoaderSaver.Load(car1);
-                Placeholder.Text += carString.ToString(car1);
+                carLoaderSaver.Load((Car)vehicle);
+                Placeholder.Text += carString.ToString(vehicle) + '\n';
             }
         }
 	}
@@ -43,10 +44,10 @@ public partial class DisplayVehiclePage : ContentPage
 
         foreach (Vehicle vehicle in vehicleList)
         {
-            if (vehicle is VehicleScooter scooter1)
+            if (vehicle is VehicleScooter)
             {
-                scooterLoaderSaver.Load(scooter1);
-                Placeholder.Text += scooterString.ToString(scooter1);
+                scooterLoaderSaver.Load((VehicleScooter)vehicle);
+                Placeholder.Text += scooterString.ToString(vehicle) + '\n'; 
             }
         }
     }
@@ -57,14 +58,14 @@ public partial class DisplayVehiclePage : ContentPage
 
         foreach (Vehicle vehicle in vehicleList)
         {
-            if (vehicle is Car car1)
+            if (vehicle is Car)
             {
-                carLoaderSaver.Load(car1);
-                Placeholder.Text += carString.ToString(car1) + "\n------------------------------\n";
-            }else if (vehicle is VehicleScooter scooter1)
+                carLoaderSaver.Load((Car)vehicle);
+                Placeholder.Text += carString.ToString((Car)vehicle) + '\n';
+            }else if (vehicle is VehicleScooter)
             {
-                scooterLoaderSaver.Load(scooter1);
-                Placeholder.Text += scooterString.ToString(scooter1) + "\n------------------------------\n";
+                scooterLoaderSaver.Load((VehicleScooter)vehicle);
+                Placeholder.Text += scooterString.ToString(vehicle) + '\n';
             }
         }
     }
