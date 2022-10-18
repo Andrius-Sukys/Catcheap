@@ -23,5 +23,10 @@ internal class Calculator
             return Math.Round(consumption / 100 * distance * electricityPrice, 2);
         }
     }
+
+    public double calculateFullChargePrice(double batteryCapacity, double batteryLevel, double price)
+    {
+        return Math.Round((batteryCapacity / 100 * (100 - batteryLevel) * price), 2);
+    }
 }
 

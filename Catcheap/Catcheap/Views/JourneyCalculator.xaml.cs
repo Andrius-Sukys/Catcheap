@@ -3,6 +3,7 @@
 using Catcheap.Models.Calculator_Classes;
 using Catcheap.Models.FileIO_Classes;
 using Catcheap.Models.Validation_Classes;
+using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 
 public partial class JourneyCalculator : ContentPage
 {
@@ -93,6 +94,16 @@ public partial class JourneyCalculator : ContentPage
         }
         else
             CalcedValue.Text = "Invalid input!";
+    }
+
+    private void CalculateFullChargePriceButtonClicked(object sender, EventArgs e)
+    {
+        Car car = new Car();
+        CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
+
+        carLoaderSaver.Load(car);
+
+        FullChargePrice.Text = calc.calculateFullChargePrice(car.batteryCapacity, car.batteryLevel, 0.4).ToString() + "€";
     }
 }
 
