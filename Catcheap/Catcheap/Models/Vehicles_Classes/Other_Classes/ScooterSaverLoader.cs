@@ -14,7 +14,7 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
         {
             string temp = file.ReadTextFile(fileName);
 
-            if (temp != null) 
+            if (temp != null)
             {
                 foreach (Match match in Regex.Matches(temp, @"^\b\d .*", RegexOptions.Multiline))
                 {
@@ -28,8 +28,8 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                         case (int)ScooterPattern.Model:
                             scooter.model = Regex.Replace(match.Value, @"^\b\d ", "");
                             break;
+                        case (int)Pattern.BatteryCapacity:
 
-                        case (int)ScooterPattern.BatteryCapacity:
                             scooter.batteryCapacity = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                             break;
                         case (int)ScooterPattern.Consumption:
@@ -68,17 +68,17 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
 
         public void Save(VehicleScooter scooter, string fileName = "scooterinfo.txt")
         {
-            file.WriteTextToFile((int)ScooterPattern.Manufacturer + " " + scooter.manufacturer + '\n' +
-                                 (int)ScooterPattern.Model + " " + scooter.model + '\n' +
-                                 (int)ScooterPattern.BatteryCapacity + " " + scooter.batteryCapacity + '\n' +
-                                 (int)ScooterPattern.Consumption + " " + scooter.consumption + '\n' +
-                                 (int)ScooterPattern.BatteryLevel + " " + scooter.batteryLevel + '\n' +
-                                 (int)ScooterPattern.ExpectedRange + " " + scooter.expectedRange + '\n' +
-                                 (int)ScooterPattern.Weight + " " + scooter.weight + '\n' +
-                                 (int)ScooterPattern.WeightCapacity + " " + scooter.batteryLevel + '\n' +
-                                 (int)ScooterPattern.WeightRider + " " + scooter.weightRider + '\n' +
-                                 (int)ScooterPattern.AverageSpeed + " " + scooter.averageSpeed + '\n' +
-                                 (int)ScooterPattern.TopSpeed + " " + scooter.topSpeed + '\n', "scooterinfo.txt");
+            file.WriteTextToFile((int)Pattern.Manufacturer + " " + scooter.manufacturer + '\n' +
+                                 (int)Pattern.Model + " " + scooter.model + '\n' +
+                                 (int)Pattern.BatteryCapacity + " " + scooter.batteryCapacity + '\n' +
+                                 (int)Pattern.Consumption + " " + scooter.consumption + '\n' +
+                                 (int)Pattern.BatteryLevel + " " + scooter.batteryLevel + '\n' +
+                                 (int)Pattern.ExpectedRange + " " + scooter.expectedRange + '\n' +
+                                 (int)Pattern.Weight + " " + scooter.weight + '\n' +
+                                 (int)Pattern.WeightCapacity + " " + scooter.weightCapacity + '\n' +
+                                 (int)Pattern.WeightRider + " " + scooter.weightRider + '\n' +
+                                 (int)Pattern.AverageSpeed + " " + scooter.averageSpeed + '\n' +
+                                 (int)Pattern.TopSpeed + " " + scooter.topSpeed + '\n', "scooterinfo.txt");
         }
 
     }

@@ -22,8 +22,8 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="175"></ColumnDefinition>
-                    <ColumnDefinition Width="185"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Label
@@ -48,7 +48,8 @@
                         Margin="10, 0, 20, 0"
                         Placeholder="Enter the distance"
                         ClearButtonVisibility="WhileEditing"
-                        TextChanged="EntryDistanceTextChanged">
+                        TextChanged="EntryDistanceTextChanged"
+                        Keyboard="Numeric">
                     </Entry>
 
                 </Frame>
@@ -91,7 +92,8 @@
                         Margin="10, 0, 20, 0"
                         Placeholder="Enter the consumption rate"
                         ClearButtonVisibility="WhileEditing"
-                        TextChanged="EntryConsumptionTextChanged">
+                        TextChanged="EntryConsumptionTextChanged"
+                        Keyboard="Numeric">
                     </Entry>
 
                 </Frame>
@@ -134,7 +136,8 @@
                         Margin="10, 0, 20, 0"
                         Placeholder="Enter the electricity price"
                         ClearButtonVisibility="WhileEditing"
-                        TextChanged="EntryElectricityPriceTextChanged">
+                        TextChanged="EntryElectricityPriceTextChanged"
+                        Keyboard="Numeric">
                     </Entry>
 
                 </Frame>

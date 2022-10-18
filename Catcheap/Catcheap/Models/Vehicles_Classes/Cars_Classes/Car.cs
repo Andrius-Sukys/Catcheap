@@ -22,7 +22,7 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
         public void UpdateCarFieldsAfterJourney(double journeyDistance)
         {
             DecreaseExpectedRange(journeyDistance);
-            DecreaseBatteryLevel(journeyDistance);
+            DecreaseBatteryLevel(journeyDistance, consumption, batteryCapacity);
             IncreaseMileage(journeyDistance);
         }
 

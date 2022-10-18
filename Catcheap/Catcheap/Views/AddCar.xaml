@@ -40,8 +40,8 @@
                 <Frame
                     HeightRequest="50"
                     Padding="5"
-                    WidthRequest="360"
-                    HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="CenterAndExpand"
                     Grid.Row="1">
 
                     <Entry
@@ -49,7 +49,8 @@
                         MaxLength="24"
                         Margin="10, 0, 10, 0"
                         Placeholder="Manufacturer"
-                        ClearButtonVisibility="WhileEditing">
+                        ClearButtonVisibility="WhileEditing"
+                        HorizontalOptions="Fill">
                     </Entry>
 
                 </Frame>
@@ -65,8 +66,7 @@
                 <Frame
                     HeightRequest="50"
                     Padding="5"
-                    WidthRequest="360"
-                    HorizontalOptions="Start"
+                    HorizontalOptions="Fill"
                     VerticalOptions="CenterAndExpand"
                     Grid.Row="3">
 
@@ -75,6 +75,7 @@
                         MaxLength="24"
                         Margin="10, 0, 10, 0"
                         Placeholder="Model"
+                        HorizontalOptions="Fill"
                         ClearButtonVisibility="WhileEditing">
                     </Entry>
 
@@ -91,8 +92,7 @@
                 <Frame
                     HeightRequest="50"
                     Padding="5"
-                    WidthRequest="360"
-                    HorizontalOptions="Start"
+                    HorizontalOptions="Fill"
                     VerticalOptions="CenterAndExpand"
                     Grid.Row="5">
 
@@ -101,7 +101,9 @@
                         MaxLength="24"
                         Margin="10, 0, 10, 0"
                         Placeholder="Mileage"
-                        ClearButtonVisibility="WhileEditing">
+                        HorizontalOptions="Fill"
+                        ClearButtonVisibility="WhileEditing"
+                        Keyboard="Numeric">
                     </Entry>
 
                 </Frame>
@@ -117,8 +119,7 @@
                 <Frame
                     HeightRequest="50"
                     Padding="5"
-                    WidthRequest="360"
-                    HorizontalOptions="Start"
+                    HorizontalOptions="Fill"
                     VerticalOptions="CenterAndExpand"
                     Grid.Row="7">
 
@@ -127,7 +128,9 @@
                         MaxLength="24"
                         Margin="10, 0, 10, 0"
                         Placeholder="Battery capacity"
-                        ClearButtonVisibility="WhileEditing">
+                        HorizontalOptions="Fill"
+                        ClearButtonVisibility="WhileEditing"
+                        Keyboard="Numeric">
                     </Entry>
 
                 </Frame>
@@ -143,8 +146,7 @@
                 <Frame
                     HeightRequest="50"
                     Padding="5"
-                    WidthRequest="360"
-                    HorizontalOptions="Start"
+                    HorizontalOptions="Fill"
                     VerticalOptions="CenterAndExpand"
                     Grid.Row="9">
 
@@ -153,7 +155,9 @@
                         MaxLength="24"
                         Margin="10, 0, 10, 0"
                         Placeholder="Consumption"
-                        ClearButtonVisibility="WhileEditing">
+                        HorizontalOptions="Fill"
+                        ClearButtonVisibility="WhileEditing"
+                        Keyboard="Numeric">
                     </Entry>
 
                 </Frame>
@@ -169,8 +173,7 @@
                 <Frame
                     HeightRequest="50"
                     Padding="5"
-                    WidthRequest="360"
-                    HorizontalOptions="Start"
+                    HorizontalOptions="Fill"
                     VerticalOptions="CenterAndExpand"
                     Grid.Row="11">
 
@@ -179,7 +182,9 @@
                         MaxLength="24"
                         Margin="10, 0, 10, 0"
                         Placeholder="Battery level"
-                        ClearButtonVisibility="WhileEditing">
+                        HorizontalOptions="Fill"
+                        ClearButtonVisibility="WhileEditing"
+                        Keyboard="Numeric">
                     </Entry>
 
                 </Frame>

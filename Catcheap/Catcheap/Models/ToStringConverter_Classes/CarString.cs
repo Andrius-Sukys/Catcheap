@@ -2,7 +2,7 @@
 
 namespace Catcheap.Models.ToStringConverter_Classes;
 
-public class CarString : VehicleString  
+public class CarString : VehicleString
 {
     public string MileagePattern = "Mileage: ";
     public string ToString(Car car)

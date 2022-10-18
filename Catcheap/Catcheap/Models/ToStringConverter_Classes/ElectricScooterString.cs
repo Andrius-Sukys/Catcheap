@@ -1,9 +1,4 @@
 ﻿using Catcheap.Models.Vehicles_Classes.Other_Classes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Catcheap.Models.ToStringConverter_Classes;
 
@@ -30,4 +25,3 @@ public class ElectricScooterString : VehicleString
                TopSpeed + scooter.topSpeed + " km/h\n";
     }
 }
-

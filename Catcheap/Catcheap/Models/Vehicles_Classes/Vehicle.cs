@@ -23,34 +23,32 @@ public class Vehicle
         return journeys;
     }
 
-    public void DecreaseExpectedRange(double journeyDistance)
+    public void DecreaseExpectedRange(double JourneyDistance)
     {
-        if (expectedRange > journeyDistance)
-            expectedRange -= journeyDistance;
-        else
+        expectedRange -= JourneyDistance;
+        if(expectedRange < 0)
             expectedRange = 0;
     }
 
-    public void DecreaseBatteryLevel(double journeyDistance)
+    public void DecreaseBatteryLevel(double JourneyDistance, double Consumption, double BatteryCapacity)
     {
-        batteryLevel -= journeyDistance / 100 * consumption / batteryCapacity * 100;
+        batteryLevel -= JourneyDistance / 100 * Consumption / BatteryCapacity * 100;
         if (batteryLevel < 0)
             batteryLevel = 0;
     }
 
-    public void UpdateFieldsAfterJourney(double journeyDistance)
+    public void UpdateFieldsAfterJourney(double JourneyDistance)
     {
-        DecreaseExpectedRange(journeyDistance);
-        DecreaseBatteryLevel(journeyDistance);
+        DecreaseExpectedRange(JourneyDistance);
+        DecreaseBatteryLevel(JourneyDistance, consumption, batteryCapacity);
     }
 
     public double CalculateExpectedRange()
     {
-        expectedRange = Math.Round(batteryCapacity * batteryLevel / consumption , 2);
+        expectedRange = Math.Round(batteryCapacity * batteryLevel / consumption, 2);
         if (expectedRange > 0)
             return expectedRange;
         else
             return 0;
     }
 }
-

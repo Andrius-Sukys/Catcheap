@@ -21,4 +21,3 @@ public class VehicleString
                BatteryLevelPattern + vehicle.batteryLevel + " %\n";
     }
 }
-

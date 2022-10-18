@@ -24,8 +24,8 @@ namespace Catcheap
                     string tempDate = Regex.Replace(Regex.Match(match.Value, @"\bDate: \S+").Value, @"\bDate: ", "");
                     string tempDist = Regex.Replace(Regex.Match(match.Value, @"\bDistance: \S+").Value, @"\bDistance: ", "");
 
-                    newDistance.Date = tempDate;
-                    newDistance.Dist = Int16.Parse(tempDist);
+                    newDistance.Date = DateOnly.Parse(tempDate);
+                    newDistance.Dist = int.Parse(tempDist);
 
                     journeys.AddJourney(newDistance);
 

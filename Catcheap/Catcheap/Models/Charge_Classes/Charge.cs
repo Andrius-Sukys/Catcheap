@@ -18,15 +18,15 @@ public class Charge : INotifyPropertyChanged
         get { return chargingPrice; }
         set { chargingPrice = value; OnPropertyChanged(nameof(ChargingPrice)); }
     }
-    DateTime startOfCharge { get; set; }
-    public DateTime StartOfCharge
+    TimeOnly startOfCharge { get; set; }
+    public TimeOnly StartOfCharge
     {
         get { return startOfCharge; }
         set { startOfCharge = value; OnPropertyChanged(nameof(StartOfCharge)); }
     }
-    DateTime endOfCharge { get; set; }
+    TimeOnly endOfCharge { get; set; }
 
-    public DateTime EndOfCharge
+    public TimeOnly EndOfCharge
     {
         get { return EndOfCharge; }
         set { EndOfCharge = value; OnPropertyChanged(nameof(EndOfCharge)); }
