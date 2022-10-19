@@ -4,17 +4,17 @@ namespace Catcheap.Models.Vehicles_Classes;
 
 public class Vehicle
 {
-    public string manufacturer { get; set; }
+    public string Manufacturer { get; set; }
 
-    public string model { get; set; }
+    public string Model { get; set; }
 
-    public double expectedRange { get; set; }
+    public double ExpectedRange { get; set; }
 
-    public double batteryCapacity { get; set; }
+    public double BatteryCapacity { get; set; }
 
-    public double consumption { get; set; }
+    public double Consumption { get; set; }
 
-    public double batteryLevel { get; set; }
+    public double BatteryLevel { get; set; }
 
     Journeys journeys = new Journeys();
 
@@ -25,29 +25,32 @@ public class Vehicle
 
     public void DecreaseExpectedRange(double JourneyDistance)
     {
-        expectedRange -= JourneyDistance;
-        if(expectedRange < 0)
-            expectedRange = 0;
+        ExpectedRange -= JourneyDistance;
+        if(ExpectedRange < 0)
+            ExpectedRange = 0;
     }
 
-    public void DecreaseBatteryLevel(double JourneyDistance, double Consumption, double BatteryCapacity)
+    public void DecreaseBatteryLevel(double JourneyDistance, double Consumption, double BatteryCapacity, double AdditionalConsumption = 1)
     {
-        batteryLevel -= JourneyDistance / 100 * Consumption / BatteryCapacity * 100;
-        if (batteryLevel < 0)
-            batteryLevel = 0;
+        BatteryLevel -= JourneyDistance / 100 * (Consumption * AdditionalConsumption) / BatteryCapacity * 100;
+        if (BatteryLevel < 0)
+            BatteryLevel = 0;
     }
 
-    public void UpdateFieldsAfterJourney(double JourneyDistance)
+    public void UpdateFieldsAfterJourney(double JourneyDistance, double AdditionalConsumption = 1)
     {
         DecreaseExpectedRange(JourneyDistance);
-        DecreaseBatteryLevel(JourneyDistance, consumption, batteryCapacity);
+        DecreaseBatteryLevel(JourneyDistance, Consumption, BatteryCapacity, AdditionalConsumption);
     }
 
     public double CalculateExpectedRange()
     {
-        expectedRange = Math.Round(batteryCapacity * batteryLevel / consumption, 2);
-        if (expectedRange > 0)
-            return expectedRange;
+        if (Consumption != 0)
+            ExpectedRange = Math.Round(BatteryCapacity * BatteryLevel * 0.01 / Consumption * 100, 2);
+        else
+            return 0;
+        if (ExpectedRange > 0)
+            return ExpectedRange;
         else
             return 0;
     }

@@ -9,19 +9,18 @@ public partial class PricePage : ContentPage
 		InitializeComponent();
 	}
 
-    private void LoadButtonClicked(object sender, EventArgs e)
-	{
-
-		Price price = new Price();
-
-		PriceLabel.Text = price.getPriceString();
-
-    }
-
     private void LoadCurrentPriceButtonClicked(object sender, EventArgs e)
 	{
         Price price = new Price();
 
-        CurrentPriceLabel.Text = price.getCurrentPrice().ToString();
+        Placeholder.Text = price.getCurrentPrice().ToString() + "€/kWh";
     }
+
+    private void LoadCheapestPriceButtonClicked(object sender, EventArgs e)
+    {
+        Price price = new Price();
+
+        Placeholder.Text = price.GetCheapestPriceAndHourString();
+    }
+
 }

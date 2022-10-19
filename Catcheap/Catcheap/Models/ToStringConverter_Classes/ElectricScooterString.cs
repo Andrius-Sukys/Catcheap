@@ -1,4 +1,5 @@
-﻿using Catcheap.Models.Vehicles_Classes.Other_Classes;
+﻿using Catcheap.Models.Vehicles_Classes.Cars_Classes;
+using Catcheap.Models.Vehicles_Classes.Other_Classes;
 
 namespace Catcheap.Models.ToStringConverter_Classes;
 
@@ -12,16 +13,14 @@ public class ElectricScooterString : VehicleString
 
     public string ToString(VehicleScooter scooter)
     {
-        return ManufacturerPattern + scooter.manufacturer + '\n' +
-               ModelPattern + scooter.model + '\n' +
-               ExpectedRangePattern + scooter.expectedRange + " km\n" +
-               BatteryCapacityPattern + scooter.batteryCapacity + " kWh\n" +
-               ConsumptionPattern + scooter.consumption + " kWh/100 km\n" +
-               BatteryLevelPattern + scooter.batteryLevel + " %\n" +
-               WeightPattern + scooter.weight + " kg\n" +
-               WeightCapacityPattern + scooter.weightCapacity + " kg\n" +
-               WeightRider + scooter.weightRider + " kg\n" +
-               AverageSpeed + scooter.averageSpeed + " km/h\n" +
-               TopSpeed + scooter.topSpeed + " km/h\n";
+        return ManufacturerPattern + scooter.Manufacturer + '\n' +
+               ModelPattern + scooter.Model + '\n' +
+               ExpectedRangePattern + scooter.ExpectedRange + " km\n" +
+               BatteryCapacityPattern + scooter.BatteryCapacity + " kWh\n" +
+               ConsumptionPattern + scooter.Consumption + " kWh/100 km\n" +
+               BatteryLevelPattern + scooter.BatteryLevel + " %\n" +
+               WeightPattern + scooter.Weight + " kg\n" +
+               WeightCapacityPattern + scooter.WeightCapacity + " kg\n" +
+               WeightRider + scooter.WeightRider + " kg\n";
     }
 }

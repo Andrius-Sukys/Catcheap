@@ -4,31 +4,31 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
 {
     public class Car : Vehicle
     {
-        public double mileage { get; set; }
+        public double Mileage { get; set; }
 
-        public void SetAll(string Manufacturer, string Model, string Mileage,
-                           string BatteryCapacity, string Consumption, string BatteryLevel)
+        public void SetAll(string manufacturer, string model, string mileage,
+                           string batteryCapacity, string consumption, string batteryLevel)
         {
-            manufacturer = Manufacturer;
-            model = Model;
-            mileage = double.Parse(Mileage);
-            batteryCapacity = double.Parse(BatteryCapacity);
-            consumption = double.Parse(Consumption);
-            batteryLevel = double.Parse(BatteryLevel);
-            expectedRange = CalculateExpectedRange();
+            Manufacturer = manufacturer;
+            Model = model;
+            Mileage = double.Parse(mileage);
+            BatteryCapacity = double.Parse(batteryCapacity);
+            Consumption = double.Parse(consumption);
+            BatteryLevel = double.Parse(batteryLevel);
+            ExpectedRange = CalculateExpectedRange();
         }
 
 
         public void UpdateCarFieldsAfterJourney(double journeyDistance)
         {
             DecreaseExpectedRange(journeyDistance);
-            DecreaseBatteryLevel(journeyDistance, consumption, batteryCapacity);
+            DecreaseBatteryLevel(journeyDistance, Consumption, BatteryCapacity);
             IncreaseMileage(journeyDistance);
         }
 
         public void IncreaseMileage(double journeyDistance)
         {
-            mileage += journeyDistance;
+            Mileage += journeyDistance;
         }
 
     }

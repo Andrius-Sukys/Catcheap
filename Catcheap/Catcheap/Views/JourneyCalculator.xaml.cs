@@ -105,7 +105,7 @@ public partial class JourneyCalculator : ContentPage
 
         carLoaderSaver.Load(car);
 
-        FullChargePrice.Text = calc.calculateFullChargePrice(car.batteryCapacity, car.batteryLevel, price.getCurrentPrice()).ToString() + "€";
+        FullChargePrice.Text = calc.calculateFullChargePrice(car.BatteryCapacity, car.BatteryLevel, price.getCurrentPrice()).ToString() + "€";
     }
 }
 

@@ -20,7 +20,7 @@ public class Price
 
 		foreach(DayPrice dayPrice in dayPrices)
 		{
-			rez += dayPrice.ToString() + "\n\n";
+			rez += dayPrice.ToString() + "\n";
 		}
 
 		return rez;
@@ -36,12 +36,29 @@ public class Price
 		foreach(DayPrice dayPrice in dayPrices)
 		{
 			if(dayPrice.date == DateOnly.FromDateTime(currentDateTime)){
-				return dayPrice.getHourePrice(currentDateTime.Hour);
+				return dayPrice.getHourPrice(currentDateTime.Hour);
 			}
 		}
 
 		return 0;
     }
 
+    public string GetCheapestPriceAndHourString()
+    {
+        DateTime currentDateTime = DateTime.Now;
 
+        reader.readPrices(dayPrices);
+
+		string cheapest = null;
+
+        for (int i = 0; i < dayPrices.Count; i++)
+        {
+            if (dayPrices[i].date == DateOnly.FromDateTime(currentDateTime))
+            {
+				cheapest = dayPrices[i].getDaysCheapestPriceAndHourString(DateTime.Now.Hour);
+            }
+        }
+
+        return cheapest;
+    }
 }

@@ -1,3 +1,5 @@
+using Catcheap.Models.Price_Classes;
+
 namespace Catcheap.Views;
 
 public partial class TrendsPage : ContentPage
@@ -6,4 +8,13 @@ public partial class TrendsPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void LoadButtonClicked(object sender, EventArgs e)
+    {
+
+        Price price = new Price();
+
+        Placeholder.Text = price.getPriceString();
+
+    }
 }

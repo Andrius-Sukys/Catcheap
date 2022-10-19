@@ -13,11 +13,11 @@ public class VehicleString
 
     public string ToString(Vehicle vehicle)
     {
-        return ManufacturerPattern + vehicle.manufacturer + '\n' +
-               ModelPattern + vehicle.model + '\n' +
-               ExpectedRangePattern + vehicle.expectedRange + " km\n" +
-               BatteryCapacityPattern + vehicle.batteryCapacity + " kWh\n" +
-               ConsumptionPattern + vehicle.consumption + " kWh/100 km\n" +
-               BatteryLevelPattern + vehicle.batteryLevel + " %\n";
+        return ManufacturerPattern + vehicle.Manufacturer + '\n' +
+               ModelPattern + vehicle.Model + '\n' +
+               ExpectedRangePattern + vehicle.ExpectedRange + " km\n" +
+               BatteryCapacityPattern + vehicle.BatteryCapacity + " kWh\n" +
+               ConsumptionPattern + vehicle.Consumption + " kWh/100 km\n" +
+               BatteryLevelPattern + vehicle.BatteryLevel + " %\n";
     }
 }

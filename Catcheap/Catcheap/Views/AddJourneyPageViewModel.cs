@@ -26,7 +26,7 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
     {
         FileIO fileIO = new FileIO();
 
-        if (JourneyField.JourneyDistance != null)
+        if (JourneyField.JourneyDistance != null && JourneyField.JourneyDistance >= 0)
         {
             fileIO.UpdateTextFile("Distance: " + JourneyField.JourneyDistance + " Date: " + JourneyField.JourneyDate + '\n', "journeys.txt");
 
@@ -39,7 +39,7 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
 
                 carLoaderSaver.Load(car);
 
-                car.UpdateCarFieldsAfterJourney((double)JourneyField.JourneyDistance);
+                car.UpdateCarFieldsAfterJourney(journeyDistance: (double)JourneyField.JourneyDistance);
 
                 carLoaderSaver.Save(car);
             }
@@ -51,7 +51,7 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
                 VehicleScooter scooter = new VehicleScooter();
                 scooterLS.Load(scooter);
 
-                scooter.UpdateFieldsAfterJourney((double)JourneyField.JourneyDistance);
+                scooter.UpdateFieldsAfterJourney(JourneyDistance: (double)JourneyField.JourneyDistance, AdditionalConsumption: (scooter.Consumption / scooter.BatteryCapacity * 100)/scooter.ExpectedRange);
 
                 scooterLS.Save(scooter);
             }

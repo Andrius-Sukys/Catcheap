@@ -44,7 +44,7 @@
             ContentTemplate="{DataTemplate views:AddElectricScooter}"/>
 
         <ShellContent
-            Title="Add a Charge"
+            Title="Add a Charge [Not Implemented]"
             Icon="icon_charging"
             ContentTemplate="{DataTemplate views:Charges}"/>
 
