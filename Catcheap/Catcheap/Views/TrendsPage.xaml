@@ -3,8 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Catcheap.Views.TrendsPage"
              Title="Price Trends">
-    <VerticalStackLayout>
-        <Label 
-            Text="TRENDS PLACEHOLDER" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="15">
+            <Button
+                Text="Logs"
+                HorizontalOptions="Fill"
+                Clicked="LoadButtonClicked"/>
+
+            <Label x:Name="Placeholder" Text=""/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

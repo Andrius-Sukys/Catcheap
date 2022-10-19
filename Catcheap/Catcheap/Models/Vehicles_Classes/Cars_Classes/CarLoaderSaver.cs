@@ -21,25 +21,25 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                 switch (en)
                 {
                     case (int)CarPattern.Manufacturer:
-                        car.manufacturer = Regex.Replace(match.Value, @"^\b\d ", "");
+                        car.Manufacturer = Regex.Replace(match.Value, @"^\b\d ", "");
                         break;
                     case (int)CarPattern.Model:
-                        car.model = Regex.Replace(match.Value, @"^\b\d ", "");
+                        car.Model = Regex.Replace(match.Value, @"^\b\d ", "");
                         break;
                     case (int)CarPattern.Mileage:
-                        car.mileage = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
+                        car.Mileage = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                         break;
                     case (int)CarPattern.ExpectedRange:
-                        car.expectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
+                        car.ExpectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                         break;
                     case (int)CarPattern.BatteryCapacity:
-                        car.batteryCapacity = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
+                        car.BatteryCapacity = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                         break;
                     case (int)CarPattern.Consumption:
-                        car.consumption = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
+                        car.Consumption = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
                         break;
                     case (int)CarPattern.BatteryLevel:
-                        car.batteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
+                        car.BatteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
                         break;
                     default: break;
                 }
@@ -52,13 +52,13 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
 
         public void Save(Car car, string fileName = "carinfo.txt")
         {
-            file.WriteTextToFile((int)CarPattern.Manufacturer + " " + car.manufacturer + '\n' +
-                                 (int)CarPattern.Model + " " + car.model + '\n' +
-                                 (int)CarPattern.Mileage + " " + car.mileage + '\n' +
-                                 (int)CarPattern.ExpectedRange + " " + car.expectedRange + '\n' +
-                                 (int)CarPattern.BatteryCapacity + " " + car.batteryCapacity + '\n' +
-                                 (int)CarPattern.Consumption + " " + car.consumption + '\n' +
-                                 (int)CarPattern.BatteryLevel + " " + car.batteryLevel + '\n', "carinfo.txt");
+            file.WriteTextToFile((int)CarPattern.Manufacturer + " " + car.Manufacturer + '\n' +
+                                 (int)CarPattern.Model + " " + car.Model + '\n' +
+                                 (int)CarPattern.Mileage + " " + car.Mileage + '\n' +
+                                 (int)CarPattern.ExpectedRange + " " + car.ExpectedRange + '\n' +
+                                 (int)CarPattern.BatteryCapacity + " " + car.BatteryCapacity + '\n' +
+                                 (int)CarPattern.Consumption + " " + car.Consumption + '\n' +
+                                 (int)CarPattern.BatteryLevel + " " + car.BatteryLevel + '\n', "carinfo.txt");
         }
 
     }

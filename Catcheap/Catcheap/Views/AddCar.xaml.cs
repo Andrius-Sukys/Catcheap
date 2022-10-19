@@ -7,10 +7,10 @@ namespace Catcheap.Views;
 
 public partial class AddCar : ContentPage
 {
-	public AddCar()
-	{
-		InitializeComponent();
-	}
+    public AddCar()
+    {
+        InitializeComponent();
+    }
 
     FileIO fileIO = new FileIO();
 
@@ -22,17 +22,12 @@ public partial class AddCar : ContentPage
 
     private void SaveClicked(object sender, EventArgs e)
     {
-        if(!String.IsNullOrEmpty(ManufacturerEntry.Text) &&
-           !String.IsNullOrEmpty(ModelEntry.Text) &&
-           !String.IsNullOrEmpty(MileageEntry.Text) && validateInput.ValidateInputAsAPositiveNumber(MileageEntry.Text) &&
-           !String.IsNullOrEmpty(BatteryCapacityEntry.Text) && validateInput.ValidateInputAsAPositiveNumber(BatteryCapacityEntry.Text) &&
-           !String.IsNullOrEmpty(ConsumptionEntry.Text) && validateInput.ValidateInputAsAPositiveNumber(ConsumptionEntry.Text) && 
-           !String.IsNullOrEmpty(BatteryLevelEntry.Text) && validateInput.ValidateInputAsAPositiveNumber(BatteryLevelEntry.Text))
+        if (checkTextFields())
         {
             Placeholder.Text = "Input successful!";
 
-            car.SetAll(Manufacturer: ManufacturerEntry.Text, Model: ModelEntry.Text, Mileage: MileageEntry.Text,
-                       BatteryCapacity: BatteryCapacityEntry.Text, Consumption: ConsumptionEntry.Text, BatteryLevel: BatteryLevelEntry.Text);
+            car.SetAll(manufacturer: ManufacturerEntry.Text, model: ModelEntry.Text, mileage: MileageEntry.Text,
+                       batteryCapacity: BatteryCapacityEntry.Text, consumption: ConsumptionEntry.Text, batteryLevel: BatteryLevelEntry.Text);
 
             carLoaderSaver.Save(car);
 
@@ -47,4 +42,13 @@ public partial class AddCar : ContentPage
 
     }
 
+    public bool checkTextFields()
+    {
+        return !String.IsNullOrEmpty(ManufacturerEntry.Text) &&
+               !String.IsNullOrEmpty(ModelEntry.Text) &&
+               !String.IsNullOrEmpty(MileageEntry.Text) && (Double.Parse(MileageEntry.Text) >= 0) &&
+               !String.IsNullOrEmpty(BatteryCapacityEntry.Text) && (Double.Parse(BatteryCapacityEntry.Text) >= 0) &&
+               !String.IsNullOrEmpty(ConsumptionEntry.Text) && (Double.Parse(ConsumptionEntry.Text) >= 0) &&
+               !String.IsNullOrEmpty(BatteryLevelEntry.Text) && (Double.Parse(BatteryLevelEntry.Text) >= 0) && (Double.Parse(BatteryLevelEntry.Text) <= 100);
+    }
 }

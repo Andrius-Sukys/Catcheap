@@ -6,7 +6,21 @@
 
 <VerticalStackLayout Spacing="10" Padding="15" MaximumWidthRequest="900">
 
-    <Grid>
+        <Picker
+            x:Name="picker"
+            Title="Select a vehicle"
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Car</x:String>
+                    <x:String>Scooter</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+    
+        
+
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -56,8 +70,8 @@
         </Grid>
 
         <StackLayout Grid.Row="3" Orientation="Horizontal">
-            <Button Text="Submit" Command=""/>
-            <Button Margin="10, 0, 0, 0" Text="Cancel" Command=""/>
+            <Button Text="Submit"/>
+            <Button Margin="10, 0, 0, 0" Text="Cancel"/>
         </StackLayout>
 
     </Grid>

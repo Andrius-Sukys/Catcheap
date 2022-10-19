@@ -1,17 +1,12 @@
-﻿using System;
-using Catcheap.Models.ChargingStations_Classes;
-using Catcheap.Models.FileIO_Classes;
-using Catcheap.Views;
+﻿using Catcheap.Models.FileIO_Classes;
 
 namespace Catcheap.Models.Price_Classes;
 public class PriceReader
 {
 	public PriceReader()
-	{
-	}
-
-	FileIO file = new FileIO();
-
+    {
+    }
+    FileIO file = new FileIO();
     public async void readPrices(List<DayPrice> dayPrices)
     {
 

@@ -4,43 +4,30 @@ namespace Catcheap.Models.Vehicles_Classes.Other_Classes;
 
 public class VehicleScooter : Vehicle
 {
-    public double weight { get; set; }
+    public double Weight { get; set; }
 
-    public double weightCapacity { get; set; }
+    public double WeightCapacity { get; set; }
 
-    public double weightRider { get; set; }
+    public double WeightRider { get; set; }
 
-    public double averageSpeed { get; set; }
+    public double AverageSpeed { get; set; }
 
-    public double topSpeed { get; set; }
+    public double TopSpeed { get; set; }
 
-    public void SetAll(string Manufacturer, string Model, string BatteryCapacity, string Consumption, string BatteryLevel,
-                       string Weight, string WeightCapacity, string RidersWeight, string AverageSpeed, string TopSpeed)
+    public void SetAll(string manufacturer, string model, string batteryCapacity, string consumption, string batteryLevel,
+                       string weight, string weightCapacity, string ridersWeight, string averageSpeed, string topSpeed)
     {
-        manufacturer = Manufacturer;
-        model = Model;
-        batteryCapacity = double.Parse(BatteryCapacity);
-        consumption = double.Parse(Consumption);
-        batteryLevel = double.Parse(BatteryLevel);
-        weight = Double.Parse(Weight);
-        weightCapacity = Double.Parse(WeightCapacity);
-        weightRider = Double.Parse(RidersWeight);
-        averageSpeed = Double.Parse(AverageSpeed);
-        topSpeed = Double.Parse(TopSpeed);
-        expectedRange = CalculateExpectedRange();//.AdjustExpectedRange(topSpeed, weight, weightCapacity, weightRider, averageSpeed);
+        Manufacturer = manufacturer;
+        Model = model;
+        BatteryCapacity = double.Parse(batteryCapacity);
+        Consumption = double.Parse(consumption);
+        BatteryLevel = double.Parse(batteryLevel);
+        Weight = Double.Parse(weight);
+        WeightCapacity = Double.Parse(weightCapacity);
+        WeightRider = Double.Parse(ridersWeight);
+        AverageSpeed = Double.Parse(averageSpeed);
+        TopSpeed = Double.Parse(topSpeed);
+        ExpectedRange = CalculateExpectedRange().AdjustExpectedRange(TopSpeed, Weight, WeightCapacity, WeightRider, AverageSpeed);
     }
 
-}
-
-public static class ExtensionMethod
-{
-    public static double AdjustExpectedRange(this double range, double topSpeed, double weight,
-                                                                 double weightCapacity, double weightRider, double averageSpeed)
-    {
-        if (topSpeed * 0.9 >= averageSpeed)
-            range = range * 0.6;
-        if ((weight + weightRider) * 0.9 > weightCapacity)
-            range = range * 0.7;
-        return range;
-    }
 }

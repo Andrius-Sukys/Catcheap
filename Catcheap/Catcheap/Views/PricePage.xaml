@@ -3,22 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Catcheap.Views.PricePage"
              Title="Nord Pool Price">
-    <VerticalStackLayout>
-        <Label 
-            x:Name="PriceLabel"
-            Text=""/>
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="15">
 
-        <Button
-            Text="Load"
-            Clicked="LoadButtonClicked"/>
+            <HorizontalStackLayout Spacing="15">
+                <Button
+                    Text="Current Price"
+                    WidthRequest="170"
+                    Clicked="LoadCurrentPriceButtonClicked"/>
+                
+                <Button
+                    Text="Cheapest Price Today"
+                    WidthRequest="170"
+                    Clicked="LoadCheapestPriceButtonClicked"/>
 
-        <Label 
-            x:Name="CurrentPriceLabel"
-            Text=""/>
+                
+            </HorizontalStackLayout>
 
-        <Button
-            Text="LoadCurrentPrice"
-            Clicked="LoadCurrentPriceButtonClicked"/>
-
-    </VerticalStackLayout>
+            <Label
+                Margin="0, 10, 0, 0"
+                x:Name="Placeholder"
+                HorizontalOptions="CenterAndExpand"
+                FontSize="40"
+                Text=""/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
