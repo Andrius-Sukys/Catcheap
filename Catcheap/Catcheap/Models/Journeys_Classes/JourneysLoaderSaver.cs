@@ -35,6 +35,8 @@ namespace Catcheap
 
         public void Save(Journeys journeys, String fileName = "journeys.txt")
         {
+            journeys.SortList();
+
             file.WriteTextToFile(journeys.ToString(), fileName);
         }
     }

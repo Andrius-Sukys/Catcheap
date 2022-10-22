@@ -79,6 +79,10 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                                  (int)ScooterPattern.WeightRider + " " + scooter.WeightRider + '\n' +
                                  (int)ScooterPattern.AverageSpeed + " " + scooter.AverageSpeed + '\n' +
                                  (int)ScooterPattern.TopSpeed + " " + scooter.TopSpeed + '\n', fileName);
+
+            JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
+
+            journeysLoaderSaver.Save(journeys: scooter.GetJourneys());
         }
 
     }

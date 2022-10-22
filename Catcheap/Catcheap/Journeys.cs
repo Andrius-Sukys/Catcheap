@@ -14,6 +14,11 @@ namespace Catcheap
             distanceList.Add(journey);
         }
 
+        public void SortList()
+        {
+            distanceList.Sort();
+        }
+
         public static List<Journey> GetDayJourneyList()
         {
            List<Journey> DayJourneyList = new List<Journey>();
@@ -178,7 +183,7 @@ namespace Catcheap
 
             foreach (Journey journey in distanceList)
             {
-                temp += "Distance: " + journey.Dist + "Date: " + journey.Date + Environment.NewLine;
+                temp += "Distance: " + journey.Dist + " Date: " + journey.Date + '\n';
             }
 
             return temp;
