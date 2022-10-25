@@ -59,6 +59,10 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                                  (int)CarPattern.BatteryCapacity + " " + car.BatteryCapacity + '\n' +
                                  (int)CarPattern.Consumption + " " + car.Consumption + '\n' +
                                  (int)CarPattern.BatteryLevel + " " + car.BatteryLevel + '\n', "carinfo.txt");
+
+            JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
+
+            journeysLoaderSaver.Save(journeys: car.GetJourneys());
         }
 
     }
