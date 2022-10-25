@@ -59,10 +59,6 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                     }
                 }
             }
-
-            JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
-
-            journeysLoaderSaver.Load(journeys: scooter.GetJourneys());
         }
 
         public void Save(VehicleScooter scooter, string fileName = "scooterinfo.txt")
@@ -79,10 +75,6 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                                  (int)ScooterPattern.WeightRider + " " + scooter.WeightRider + '\n' +
                                  (int)ScooterPattern.AverageSpeed + " " + scooter.AverageSpeed + '\n' +
                                  (int)ScooterPattern.TopSpeed + " " + scooter.TopSpeed + '\n', fileName);
-
-            JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
-
-            journeysLoaderSaver.Save(journeys: scooter.GetJourneys());
         }
 
     }

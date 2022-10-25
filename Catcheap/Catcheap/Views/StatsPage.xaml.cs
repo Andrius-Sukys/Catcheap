@@ -7,7 +7,7 @@ public partial class StatsPage : ContentPage
 {
 
     Car car = new Car();
-    CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
+    JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
 
     public StatsPage()
 	{
@@ -17,7 +17,7 @@ public partial class StatsPage : ContentPage
     private void LoadButtonClicked(object sender, EventArgs e)
     {
 
-        carLoaderSaver.Load(car);
+        journeysLoaderSaver.Load(car.GetJourneys());
         Monday.Text = "Monday: " + Journeys.AverageDistance(car.GetJourneys().GetWeekDayJourneyList(DayOfWeek.Monday)).ToString();
         Tuesday.Text = "Tuesday: " + Journeys.AverageDistance(car.GetJourneys().GetWeekDayJourneyList(DayOfWeek.Tuesday)).ToString();
         Wednesday.Text = "Wednesday: " + Journeys.AverageDistance(car.GetJourneys().GetWeekDayJourneyList(DayOfWeek.Wednesday)).ToString();

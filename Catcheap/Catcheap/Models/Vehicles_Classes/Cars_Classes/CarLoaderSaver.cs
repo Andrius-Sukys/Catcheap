@@ -44,10 +44,6 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                     default: break;
                 }
             }
-
-            JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
-
-            journeysLoaderSaver.Load(journeys: car.GetJourneys());
         }
 
         public void Save(Car car, string fileName = "carinfo.txt")
@@ -59,10 +55,6 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                                  (int)CarPattern.BatteryCapacity + " " + car.BatteryCapacity + '\n' +
                                  (int)CarPattern.Consumption + " " + car.Consumption + '\n' +
                                  (int)CarPattern.BatteryLevel + " " + car.BatteryLevel + '\n', "carinfo.txt");
-
-            JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
-
-            journeysLoaderSaver.Save(journeys: car.GetJourneys());
         }
 
     }
