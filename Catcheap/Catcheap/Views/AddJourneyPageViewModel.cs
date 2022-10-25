@@ -35,25 +35,32 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
                 
 
                 CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
+                JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
                 Car car = new Car();
 
                 carLoaderSaver.Load(car);
+                journeysLoaderSaver.Load(car.GetJourneys());
 
                 car.UpdateCarFieldsAfterJourney(journeyDistance: (double)JourneyField.JourneyDistance);
 
                 carLoaderSaver.Save(car);
+                journeysLoaderSaver.Save(car.GetJourneys());
             }
 
             if (JourneyField.SelectedItem == "Scooter")
             {
 
                 ScooterLoaderSaver scooterLS = new ScooterLoaderSaver();
+                JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
                 VehicleScooter scooter = new VehicleScooter();
+
                 scooterLS.Load(scooter);
+                journeysLoaderSaver.Load(scooter.GetJourneys());
 
                 scooter.UpdateFieldsAfterJourney(JourneyDistance: (double)JourneyField.JourneyDistance, AdditionalConsumption: (scooter.Consumption / scooter.BatteryCapacity * 100)/scooter.ExpectedRange);
 
                 scooterLS.Save(scooter);
+                journeysLoaderSaver.Save(scooter.GetJourneys());
             }
 
             else

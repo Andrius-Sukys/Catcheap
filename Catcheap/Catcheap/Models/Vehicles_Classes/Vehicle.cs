@@ -16,11 +16,11 @@ public class Vehicle
 
     public double BatteryLevel { get; set; }
 
-    Journeys journeys = new Journeys();
+    Lazy<Journeys> journeys = new Lazy<Journeys>();
 
     public Journeys GetJourneys()
     {
-        return journeys;
+        return journeys.Value;
     }
 
     public void DecreaseExpectedRange(double JourneyDistance)
