@@ -73,9 +73,6 @@
 	  <MauiXaml Update="Views\AddElectricScooter.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\AddChargePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\Charges.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -116,6 +113,10 @@
 
 	<ItemGroup>
 	  <MauiImage Include="Resources\Files\price.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
 	</ItemGroup>
 
 </Project>
