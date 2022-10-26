@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Catcheap.Views.Charges"
+             xmlns:viewmodel="clr-namespace:Catcheap.ViewModel"
+             x:DataType="viewmodel:ChargeViewModel"
              Title="Add a Charge">
 
 <VerticalStackLayout Spacing="10" Padding="15" MaximumWidthRequest="900">
@@ -9,7 +11,7 @@
         <Picker
             x:Name="picker"
             Title="Select a vehicle"
-            SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            SelectedItem="{Binding SelectedVehicle}">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>Car</x:String>
@@ -17,66 +19,66 @@
                 </x:Array>
             </Picker.ItemsSource>
         </Picker>
-    
-        
 
         <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Text="Charging Speed"/>
-            <Entry Grid.Row="1" Keyboard="Numeric" Margin="0, 5, 0, 0" Text=""/>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Text="Charging Power (W)"/>
+                <Entry Grid.Row="1" Keyboard="Numeric" Margin="0, 5, 0, 0" Text="{Binding ChargingPower}"/>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="Start Time"/>
+                <TimePicker Grid.Row="1" Grid.Column="0" Time="{Binding StartOfCharge}"/>
+
+                <Label Grid.Row="0" Grid.Column="1" Margin="10, 0, 0, 0" Text="End Time"/>
+                <TimePicker Grid.Row="1" Grid.Column="1" x:Name="EndTimePicker" Margin="10, 0, 0, 0" Time="{Binding EndOfCharge}"/>
+
+            </Grid>
+
+            <StackLayout Grid.Row="2" Orientation="Horizontal">
+                <Button Text="Submit" Command="{Binding AddCommand}"/>
+            </StackLayout>
 
         </Grid>
+    
+    
 
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
+        <CollectionView ItemsSource="{Binding Charges}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Label Text="{Binding SelectedVehicle}"/>
+                        <Label Text="{Binding ChargingPower}"/>
+                        <Label Text="{Binding StartOfCharge}"/>
+                        <Label Text="{Binding EndOfCharge}"/>
+                        <Label Text="{Binding DurationCharge}"/>
+                        <Label Text="{Binding ChargedKWh}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
-            <Label Grid.Row="0" Text="Charging Price"/>
-            <Entry Grid.Row="1" Keyboard="Numeric" Margin="0, 5, 0, 0" Text=""/>
-
-        </Grid>
-
-        <Grid Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Row="0" Grid.Column="0" Text="Start Time"/>
-            <TimePicker Grid.Row="1" Grid.Column="0"/>
-
-            <Label Grid.Row="0" Grid.Column="1" Margin="10, 0, 0, 0" Text="End Time"/>
-            <TimePicker Grid.Row="1" Grid.Column="1" x:Name="EndTimePicker" Margin="10, 0, 0, 0"/>
-
-        </Grid>
-
-        <StackLayout Grid.Row="3" Orientation="Horizontal">
-            <Button Text="Submit"/>
-            <Button Margin="10, 0, 0, 0" Text="Cancel"/>
-        </StackLayout>
-
-    </Grid>
-
-
-
-</VerticalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>
