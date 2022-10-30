@@ -5,6 +5,7 @@ using Catcheap.Models.FileIO_Classes;
 using Catcheap.Models.Validation_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Models.Price_Classes;
+using System.Net.Http.Headers;
 
 public partial class JourneyCalculator : ContentPage
 {
@@ -97,7 +98,7 @@ public partial class JourneyCalculator : ContentPage
             CalcedValue.Text = "Invalid input!";
     }
 
-    private void CalculateFullChargePriceButtonClicked(object sender, EventArgs e)
+    private async void CalculateFullChargePriceButtonClicked(object sender, EventArgs e)
     {
         Car car = new Car();
         CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
@@ -105,7 +106,26 @@ public partial class JourneyCalculator : ContentPage
 
         carLoaderSaver.Load(car);
 
-        FullChargePrice.Text = calc.calculateFullChargePrice(car.BatteryCapacity, car.BatteryLevel, price.getCurrentPrice()).ToString() + "€";
+        //FullChargePrice.Text = calc.calculateFullChargePrice(car.BatteryCapacity, car.BatteryLevel, price.getCurrentPrice()).ToString() + "€";
+
+        using (var client = new HttpClient())
+        {
+            client.BaseAddress = new Uri("http://10.0.2.2:7172/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = await client.PutAsJsonAsync("api/Calculator", car);
+            if (response.IsSuccessStatusCode)
+            {
+                FullChargePrice.Text = (await response.Content.ReadAsAsync<Double>()).ToString();
+            }
+            else
+            {
+                FullChargePrice.Text = response.ToString();
+            }
+
+        }
     }
 }
 
