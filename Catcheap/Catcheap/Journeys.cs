@@ -5,7 +5,14 @@ namespace Catcheap
 
     public class Journeys
     {
-        private static List<Journey> distanceList = new List<Journey>();
+        private static List<Journey> distanceList;
+        private static List<Journey> helperList;
+
+        public Journeys(List<Journey> journeyList, List<Journey> helpList)
+        {
+            distanceList = journeyList;
+            helperList = helpList;
+        }
 
         public void ClearList() { distanceList.Clear(); }
 
@@ -21,7 +28,8 @@ namespace Catcheap
 
         public static List<Journey> GetDayJourneyList()
         {
-           List<Journey> DayJourneyList = new List<Journey>();
+           helperList.Clear();
+           List<Journey> DayJourneyList = helperList;
 
            foreach(Journey journey in distanceList)
            {

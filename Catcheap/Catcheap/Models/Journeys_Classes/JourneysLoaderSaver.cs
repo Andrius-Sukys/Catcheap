@@ -5,10 +5,15 @@ using Catcheap.Models.Journeys_Classes;
 
 namespace Catcheap
 {
-    internal class JourneysLoaderSaver : ILoader<Journeys>, ISaver<Journeys>
+    public class JourneysLoaderSaver : ILoader<Journeys>, ISaver<Journeys>
     {
 
-        private FileIO file = new FileIO();
+        private FileIO file;
+
+        public JourneysLoaderSaver(FileIO fileIO)
+        {
+            this.file = fileIO;
+        }
 
         public void Load(Journeys journeys, String fileName = "journeys.txt")
         {

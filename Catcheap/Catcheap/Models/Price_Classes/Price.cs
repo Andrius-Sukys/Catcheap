@@ -3,13 +3,15 @@
 namespace Catcheap.Models.Price_Classes;
 public class Price
 {
-	public Price()
+	public Price(List<DayPrice> dayPrices, PriceReader priceReader)
 	{
+		this.dayPrices = dayPrices;
+		this.reader = priceReader;
 	}
 
-	PriceReader reader = new PriceReader();
+	PriceReader reader;
 
-	List<DayPrice> dayPrices = new List<DayPrice>();
+	List<DayPrice> dayPrices;
 
 	public string getPriceString()
 	{

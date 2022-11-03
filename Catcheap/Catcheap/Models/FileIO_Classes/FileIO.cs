@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Catcheap.Models.FileIO_Classes
 {
-    internal class FileIO
+    public class FileIO
     {
         public void WriteTextToFile(string text, string targetFileName)
         {

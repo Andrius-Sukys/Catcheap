@@ -6,9 +6,14 @@ using System.Text.RegularExpressions;
 
 namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
 {
-    internal class ScooterLoaderSaver : ILoader<VehicleScooter>, ISaver<VehicleScooter>
+    public class ScooterLoaderSaver : ILoader<VehicleScooter>, ISaver<VehicleScooter>
     {
-        private FileIO file = new FileIO();
+        private FileIO file;
+
+        public ScooterLoaderSaver(FileIO fileIO)
+        {
+            this.file = fileIO;
+        }
 
         public void Load(VehicleScooter scooter, string fileName = "scooterinfo.txt")
         {

@@ -5,6 +5,12 @@ namespace Catcheap.Views;
 
 public class JourneyField : INotifyPropertyChanged
 {
+    FileIO fileIO;
+
+    public JourneyField(FileIO fileIO)
+    {
+        this.fileIO = fileIO;
+    }
 
     string journeyDate = DateOnly.FromDateTime(DateTime.Now).ToString();
     public string JourneyDate
@@ -38,7 +44,6 @@ public class JourneyField : INotifyPropertyChanged
 
     public void ClearJourneys()
     {
-        FileIO fileIO = new FileIO();
         if ("journeys.txt" != null)
             fileIO.ClearTextFile("journeys.txt");
     }

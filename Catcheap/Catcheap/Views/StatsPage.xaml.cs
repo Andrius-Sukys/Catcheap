@@ -7,11 +7,12 @@ public partial class StatsPage : ContentPage
 {
 
     Car car;
-    JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
+    JourneysLoaderSaver journeysLoaderSaver;
 
-    public StatsPage(Car car)
+    public StatsPage(Car car, JourneysLoaderSaver journeysLoaderSaver)
 	{
         this.car = car;
+        this.journeysLoaderSaver = journeysLoaderSaver;
 		InitializeComponent();
 	}
 

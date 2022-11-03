@@ -11,14 +11,14 @@ public partial class PricePage : ContentPage
 
     private void LoadCurrentPriceButtonClicked(object sender, EventArgs e)
 	{
-        Price price = new Price();
+        Price price = this.Handler.MauiContext.Services.GetService<Price>();
 
         Placeholder.Text = price.getCurrentPrice().ToString() + "€/kWh";
     }
 
     private void LoadCheapestPriceButtonClicked(object sender, EventArgs e)
     {
-        Price price = new Price();
+        Price price = this.Handler.MauiContext.Services.GetService<Price>();
 
         Placeholder.Text = price.GetCheapestPriceAndHourString();
     }

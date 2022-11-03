@@ -5,6 +5,12 @@ namespace Catcheap.Models.Charge_Classes;
 
 public class Charge : INotifyPropertyChanged
 {
+    FileIO fileIO;
+
+    public Charge(FileIO fileIO)
+    {
+        this.fileIO = fileIO;
+    }
     double chargingSpeed { get; set; }
     public double ChargingSpeed
     {
@@ -44,7 +50,6 @@ public class Charge : INotifyPropertyChanged
 
     public void ClearCharges()
     {
-        FileIO fileIO = new FileIO();
         if ("charges.txt" != null)
             fileIO.ClearTextFile("charges.txt");
     }

@@ -9,18 +9,25 @@ namespace Catcheap.Views;
 public partial class DisplayVehiclePage : ContentPage
 {
     Car car;
-	CarString carString = new CarString();
-	CarLoaderSaver carLoaderSaver= new CarLoaderSaver();
+	CarString carString;
+	CarLoaderSaver carLoaderSaver;
 
-    VehicleScooter scooter = new VehicleScooter();
-    ElectricScooterString scooterString = new ElectricScooterString();
-    ScooterLoaderSaver scooterLoaderSaver = new ScooterLoaderSaver();
+    VehicleScooter scooter;
+    ElectricScooterString scooterString;
+    ScooterLoaderSaver scooterLoaderSaver;
    
 
-    List<Vehicle> vehicleList = new List<Vehicle>();
-    public DisplayVehiclePage(Car car)
+    List<Vehicle> vehicleList;
+    public DisplayVehiclePage(Car car, CarLoaderSaver carLoaderSaver, ScooterLoaderSaver scooterLoaderSaver, VehicleScooter scooter, List<Vehicle> vehiclesList, CarString carString,
+                              ElectricScooterString scooterString)
 	{
         this.car = car;
+        this.carLoaderSaver = carLoaderSaver;
+        this.scooterLoaderSaver = scooterLoaderSaver;
+        this.scooter = scooter;
+        this.vehicleList = vehiclesList;
+        this.carString = carString;
+        this.scooterString = scooterString;
 
         InitializeComponent();
         vehicleList.Add(car);

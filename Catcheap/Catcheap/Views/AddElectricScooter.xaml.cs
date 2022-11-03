@@ -7,14 +7,17 @@ namespace Catcheap.Views;
 
 public partial class AddElectricScooter : ContentPage
 {
-	public AddElectricScooter()
+
+    ScooterLoaderSaver scooterLS;
+    VehicleScooter scooter;
+
+    public AddElectricScooter(ScooterLoaderSaver scooterLoaderSaver, VehicleScooter scooter)
 	{
+        this.scooterLS = scooterLoaderSaver;
+        this.scooter = scooter;
+
 		InitializeComponent(); 
 	}
-
-    ValidateInput validateInput = new ValidateInput();
-    VehicleScooter scooter = new VehicleScooter();
-    ScooterLoaderSaver scooterLS = new ScooterLoaderSaver();
 
     private void SaveClicked(object sender, EventArgs e)
 	{
