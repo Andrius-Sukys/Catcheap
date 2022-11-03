@@ -1,4 +1,4 @@
-﻿using Catcheap.Models.Calculator_Classes;
+using Catcheap.Models.Calculator_Classes;
 using Catcheap.Models.ChargingStations_Classes;
 using Catcheap.Models.FileIO_Classes;
 using Catcheap.Models.Journeys_Classes;
@@ -11,6 +11,7 @@ using Catcheap.Models.Vehicles_Classes.Other_Classes;
 using Catcheap.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
+using Catcheap.ViewModel;
 
 namespace Catcheap;
 
@@ -32,6 +33,8 @@ public static class MauiProgram
         builder.Services.AddTransient<AddJourneyPageViewModel>();
         builder.Services.AddTransient<JourneyField>();
         builder = RegisterModels(builder);
+        builder.Services.AddSingleton<Charges>();
+        builder.Services.AddSingleton<ChargeViewModel>();
 
         return builder.Build();
     }
@@ -42,7 +45,6 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<AddChargePage>();
         mauiAppBuilder.Services.AddTransient<AddElectricScooter>();
         mauiAppBuilder.Services.AddTransient<AddJourneyPage>();
-        mauiAppBuilder.Services.AddTransient<Charges>();
         mauiAppBuilder.Services.AddTransient<ChargingStations>();
         mauiAppBuilder.Services.AddTransient<DashboardPage>();
         mauiAppBuilder.Services.AddTransient<DisplayVehiclePage>();

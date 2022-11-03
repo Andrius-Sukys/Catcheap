@@ -3,54 +3,40 @@ using Catcheap.Models.FileIO_Classes;
 
 namespace Catcheap.Models.Charge_Classes;
 
-public class Charge : INotifyPropertyChanged
+public class Charge
 {
-    FileIO fileIO;
+    public Charge(double ChargingPower, TimeSpan StartOfCharge, TimeSpan EndOfCharge)
 
-    public Charge(FileIO fileIO)
     {
-        this.fileIO = fileIO;
+        chargingPower = ChargingPower;
+        startOfCharge = StartOfCharge;
+        endOfCharge = EndOfCharge;
+        durationCharge = calculateDurationOfCharge(EndOfCharge, StartOfCharge);
+        chargedKWh = calculateChargedKWh(chargingPower, durationCharge);
     }
-    double chargingSpeed { get; set; }
-    public double ChargingSpeed
-    {
-        get { return chargingSpeed; }
-        set { chargingSpeed = value; OnPropertyChanged(nameof(ChargingSpeed)); }
-    }
+    public double chargingPower { get; set; }
 
-    double chargingPrice { get; set; }
-    public double ChargingPrice
-    {
-        get { return chargingPrice; }
-        set { chargingPrice = value; OnPropertyChanged(nameof(ChargingPrice)); }
-    }
-    TimeOnly startOfCharge { get; set; }
-    public TimeOnly StartOfCharge
-    {
-        get { return startOfCharge; }
-        set { startOfCharge = value; OnPropertyChanged(nameof(StartOfCharge)); }
-    }
-    TimeOnly endOfCharge { get; set; }
+    public TimeSpan startOfCharge { get; set; }
 
-    public TimeOnly EndOfCharge
-    {
-        get { return EndOfCharge; }
-        set { EndOfCharge = value; OnPropertyChanged(nameof(EndOfCharge)); }
-    }
-    void OnPropertyChanged(string name) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    public TimeSpan endOfCharge { get; set; }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    public TimeSpan durationCharge { get; set; }
 
-    public void ClearFields()
+    public double chargedKWh { get; set; }
+
+    TimeSpan calculateDurationOfCharge(TimeSpan EndOfCharge, TimeSpan StartOfCharge)
     {
-        ChargingSpeed = 0;
-        ChargingPrice = 0;
+        if (EndOfCharge > StartOfCharge)
+            return EndOfCharge - StartOfCharge;
+        else if (EndOfCharge < StartOfCharge)
+            return new TimeSpan(24, 0, 0) - StartOfCharge + EndOfCharge;
+        else
+            return new TimeSpan(0, 0, 0);
     }
 
-    public void ClearCharges()
+    double calculateChargedKWh(double ChargingPower, TimeSpan durationCharge)
     {
-        if ("charges.txt" != null)
-            fileIO.ClearTextFile("charges.txt");
+        return (ChargingPower * durationCharge.Hours + durationCharge.Minutes / 60 + durationCharge.Seconds / 3600) / 1000;
     }
+
 }

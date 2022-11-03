@@ -37,10 +37,23 @@ public class Vehicle
             BatteryLevel = 0;
     }
 
+    public void IncreaseBatteryLevel(double ChargedKWh)
+    {
+        BatteryLevel += BatteryLevel + ChargedKWh / BatteryCapacity * 100;
+        if (BatteryLevel > 100)
+            BatteryLevel = 100;
+    }
+
     public void UpdateFieldsAfterJourney(double JourneyDistance, double AdditionalConsumption = 1)
     {
         DecreaseExpectedRange(JourneyDistance);
         DecreaseBatteryLevel(JourneyDistance, Consumption, BatteryCapacity, AdditionalConsumption);
+    }
+
+    public void UpdateFieldsAfterCharging(double ChargedKWh)
+    {
+        IncreaseBatteryLevel(ChargedKWh);
+        CalculateExpectedRange();
     }
 
     public double CalculateExpectedRange()
