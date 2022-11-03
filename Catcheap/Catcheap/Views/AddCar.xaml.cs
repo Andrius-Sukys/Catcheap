@@ -7,14 +7,17 @@ namespace Catcheap.Views;
 
 public partial class AddCar : ContentPage
 {
-    public AddCar()
+
+    Car car;
+
+    public AddCar(Car car)
     {
         InitializeComponent();
+
+        this.car = car;
     }
 
     FileIO fileIO = new FileIO();
-
-    Car car = new Car();
 
     CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
 

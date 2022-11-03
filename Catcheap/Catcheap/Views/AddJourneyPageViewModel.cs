@@ -4,15 +4,21 @@ using Catcheap.Models.FileIO_Classes;
 using Catcheap.Models.Vehicles_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Models.Vehicles_Classes.Other_Classes;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Catcheap.Views;
 
 public class AddJourneyPageViewModel : INotifyPropertyChanged
 {
     public JourneyField JourneyField { get; } = new JourneyField();
-    public AddJourneyPageViewModel()
+
+    Car car;
+
+    public AddJourneyPageViewModel(Car car)
     {
         PostJourneys = new Command(AddJourney);
+
+        this.car = car;
     }
 
     public ICommand PostJourneys { get; }
@@ -36,7 +42,7 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
 
                 CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
                 JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
-                Car car = new Car();
+                
 
                 carLoaderSaver.Load(car);
                 journeysLoaderSaver.Load(car.GetJourneys());

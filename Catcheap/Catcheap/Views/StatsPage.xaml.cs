@@ -6,11 +6,12 @@ namespace Catcheap.Views;
 public partial class StatsPage : ContentPage
 {
 
-    Car car = new Car();
+    Car car;
     JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
 
-    public StatsPage()
+    public StatsPage(Car car)
 	{
+        this.car = car;
 		InitializeComponent();
 	}
 

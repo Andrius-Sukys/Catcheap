@@ -2,10 +2,10 @@ namespace Catcheap.Views
 {
 	public partial class AddJourneyPage : ContentPage
 	{
-		public AddJourneyPage()
+		public AddJourneyPage(AddJourneyPageViewModel addJourneyPageViewModel)
 		{
 			InitializeComponent();
-			BindingContext = new AddJourneyPageViewModel();
+			BindingContext = addJourneyPageViewModel;
 		}
 	}
 }

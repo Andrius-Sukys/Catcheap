@@ -99,7 +99,7 @@ public partial class JourneyCalculator : ContentPage
 
     private void CalculateFullChargePriceButtonClicked(object sender, EventArgs e)
     {
-        Car car = new Car();
+        Car car = this.Handler.MauiContext.Services.GetService<Car>();
         CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
         Price price = new Price();
 
