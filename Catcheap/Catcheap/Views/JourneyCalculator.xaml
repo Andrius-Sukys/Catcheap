@@ -230,7 +230,7 @@
                 <Label
                     x:Name="FullChargePrice"
                     Text=""
-                    FontSize="40"
+                    FontSize="20"
                     FontAttributes="Bold"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand"
