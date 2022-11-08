@@ -6,6 +6,7 @@ namespace Catcheap.Models.Charge_Classes;
 public class Charge
 {
     public Charge(double ChargingPower, TimeSpan StartOfCharge, TimeSpan EndOfCharge)
+
     {
         chargingPower = ChargingPower;
         startOfCharge = StartOfCharge;

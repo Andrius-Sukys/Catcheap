@@ -10,14 +10,14 @@ public partial class JourneyCalculator : ContentPage
 {
     private const string ENTER_A_POS_NUMBER = "Enter a positive number!";
 
-    ValidateInput validateInput = new ValidateInput();
+    ValidateInput validateInput;
 
-    Calculator calc = new Calculator();
+    Calculator calc;
 
-    FileIO fileIO = new FileIO();
-
-    public JourneyCalculator()
+    public JourneyCalculator(Calculator calculator, ValidateInput validateInput)
 	{
+        calc = calculator;
+        this.validateInput = validateInput;
 		InitializeComponent();
     }
 
@@ -99,9 +99,9 @@ public partial class JourneyCalculator : ContentPage
 
     private void CalculateFullChargePriceButtonClicked(object sender, EventArgs e)
     {
-        Car car = new Car();
-        CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
-        Price price = new Price();
+        Car car = this.Handler.MauiContext.Services.GetService<Car>();
+        CarLoaderSaver carLoaderSaver = this.Handler.MauiContext.Services.GetService<CarLoaderSaver>();
+        Price price = this.Handler.MauiContext.Services.GetService<Price>();
 
         carLoaderSaver.Load(car);
 

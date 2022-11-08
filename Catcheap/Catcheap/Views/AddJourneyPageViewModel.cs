@@ -4,15 +4,33 @@ using Catcheap.Models.FileIO_Classes;
 using Catcheap.Models.Vehicles_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Models.Vehicles_Classes.Other_Classes;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Catcheap.Views;
 
 public class AddJourneyPageViewModel : INotifyPropertyChanged
 {
-    public JourneyField JourneyField { get; } = new JourneyField();
-    public AddJourneyPageViewModel()
+    public JourneyField JourneyField { get; }
+
+    Car car;
+    CarLoaderSaver carLoaderSaver;
+    ScooterLoaderSaver scooterLS;
+    VehicleScooter scooter;
+    FileIO fileIO;
+    JourneysLoaderSaver journeysLoaderSaver;
+
+    public AddJourneyPageViewModel(Car car, CarLoaderSaver carLoaderSaver, ScooterLoaderSaver scooterLoaderSaver, VehicleScooter scooter, FileIO fileIO, JourneyField journeyField,
+                                   JourneysLoaderSaver journeysLoaderSaver)
     {
         PostJourneys = new Command(AddJourney);
+
+        this.car = car;
+        this.carLoaderSaver = carLoaderSaver;
+        this.scooterLS = scooterLoaderSaver;
+        this.scooter = scooter;
+        this.fileIO = fileIO;
+        this.JourneyField = journeyField;
+        this.journeysLoaderSaver = journeysLoaderSaver;
     }
 
     public ICommand PostJourneys { get; }
@@ -24,20 +42,13 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
 
     public void AddJourney()
     {
-        FileIO fileIO = new FileIO();
 
         if (JourneyField.JourneyDistance != null && JourneyField.JourneyDistance >= 0)
         {
             fileIO.UpdateTextFile("Distance: " + JourneyField.JourneyDistance + " Date: " + JourneyField.JourneyDate + '\n', "journeys.txt");
 
             if (JourneyField.SelectedItem == "Car")
-            {
-                
-
-                CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
-                JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
-                Car car = new Car();
-
+            {   
                 carLoaderSaver.Load(car);
                 journeysLoaderSaver.Load(car.GetJourneys());
 
@@ -49,11 +60,6 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
 
             if (JourneyField.SelectedItem == "Scooter")
             {
-
-                ScooterLoaderSaver scooterLS = new ScooterLoaderSaver();
-                JourneysLoaderSaver journeysLoaderSaver = new JourneysLoaderSaver();
-                VehicleScooter scooter = new VehicleScooter();
-
                 scooterLS.Load(scooter);
                 journeysLoaderSaver.Load(scooter.GetJourneys());
 

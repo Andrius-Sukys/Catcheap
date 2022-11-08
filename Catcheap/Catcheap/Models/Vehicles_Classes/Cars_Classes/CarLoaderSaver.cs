@@ -6,9 +6,14 @@ using Catcheap.Models.Journeys_Classes;
 
 namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
 {
-    internal class CarLoaderSaver : ILoader<Car>, ISaver<Car>
+    public class CarLoaderSaver : ILoader<Car>, ISaver<Car>
     {
-        private FileIO file = new FileIO();
+        private FileIO file;
+
+        public CarLoaderSaver(FileIO fileIO)
+        {
+            this.file = fileIO;
+        }
 
         public void Load(Car car, string fileName = "carinfo.txt")
         {

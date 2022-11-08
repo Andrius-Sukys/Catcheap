@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Catcheap.Models.Calculator_Classes;
 
-internal class Calculator
+public class Calculator
 {
     public double distance { get; set; }
     public double consumption { get; set; }

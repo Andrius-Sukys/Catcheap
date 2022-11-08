@@ -4,6 +4,12 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
 {
     public class Car : Vehicle
     {
+
+        public Car(Lazy<Journeys> journeys)
+        {
+            this.journeys = journeys;
+        }
+
         public double Mileage { get; set; }
 
         public void SetAll(string manufacturer, string model, string mileage,

@@ -7,18 +7,17 @@ namespace Catcheap.Views;
 
 public partial class AddCar : ContentPage
 {
-    public AddCar()
+
+    Car car;
+    CarLoaderSaver carLoaderSaver;
+    
+    public AddCar(Car car, CarLoaderSaver carLoaderSaver)
     {
         InitializeComponent();
+
+        this.car = car;
+        this.carLoaderSaver = carLoaderSaver;
     }
-
-    FileIO fileIO = new FileIO();
-
-    Car car = new Car();
-
-    CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
-
-    ValidateInput validateInput = new ValidateInput();
 
     private void SaveClicked(object sender, EventArgs e)
     {

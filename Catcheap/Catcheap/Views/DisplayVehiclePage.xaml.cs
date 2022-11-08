@@ -2,24 +2,33 @@ using Catcheap.Models.ToStringConverter_Classes;
 using Catcheap.Models.Vehicles_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Models.Vehicles_Classes.Other_Classes;
+using Microsoft.Maui.Platform;
 
 namespace Catcheap.Views;
 
 public partial class DisplayVehiclePage : ContentPage
 {
-	Car car = new Car();
-	CarString carString = new CarString();
-	CarLoaderSaver carLoaderSaver= new CarLoaderSaver();
+    Car car;
+	CarString carString;
+	CarLoaderSaver carLoaderSaver;
 
-    VehicleScooter scooter = new VehicleScooter();
-    ElectricScooterString scooterString = new ElectricScooterString();
-    ScooterLoaderSaver scooterLoaderSaver = new ScooterLoaderSaver();
-
+    VehicleScooter scooter;
+    ElectricScooterString scooterString;
+    ScooterLoaderSaver scooterLoaderSaver;
    
 
-    List<Vehicle> vehicleList = new List<Vehicle>();
-    public DisplayVehiclePage()
+    List<Vehicle> vehicleList;
+    public DisplayVehiclePage(Car car, CarLoaderSaver carLoaderSaver, ScooterLoaderSaver scooterLoaderSaver, VehicleScooter scooter, List<Vehicle> vehiclesList, CarString carString,
+                              ElectricScooterString scooterString)
 	{
+        this.car = car;
+        this.carLoaderSaver = carLoaderSaver;
+        this.scooterLoaderSaver = scooterLoaderSaver;
+        this.scooter = scooter;
+        this.vehicleList = vehiclesList;
+        this.carString = carString;
+        this.scooterString = scooterString;
+
         InitializeComponent();
         vehicleList.Add(car);
         vehicleList.Add(scooter);

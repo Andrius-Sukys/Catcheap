@@ -6,7 +6,6 @@ public class PriceReader
 	public PriceReader()
     {
     }
-    FileIO file = new FileIO();
     public async void readPrices(List<DayPrice> dayPrices)
     {
 

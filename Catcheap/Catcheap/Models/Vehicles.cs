@@ -4,9 +4,9 @@ public class Vehicles
 {
     public List<Vehicle> vehicles;
 
-    public Vehicles()
+    public Vehicles(List<Vehicle> vehicleList)
     {
-        vehicles = new List<Vehicle>();
+        vehicles = vehicleList;
     }
 
     public IEnumerable<Vehicle> GetCharges()

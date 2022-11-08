@@ -16,7 +16,7 @@ public class Vehicle
 
     public double BatteryLevel { get; set; }
 
-    Lazy<Journeys> journeys = new Lazy<Journeys>();
+    public Lazy<Journeys> journeys { get; set; }
 
     public Journeys GetJourneys()
     {

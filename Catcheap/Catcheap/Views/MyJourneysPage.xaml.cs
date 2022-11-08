@@ -4,9 +4,11 @@ namespace Catcheap.Views;
 
 public partial class MyJourneysPage : ContentPage
 {
-    FileIO fileIO = new FileIO();
-    public MyJourneysPage()
+    FileIO fileIO;
+    public MyJourneysPage(FileIO fileIO)
 	{
+        this.fileIO = fileIO;
+
 		InitializeComponent();
 
         ReloadHistory();
