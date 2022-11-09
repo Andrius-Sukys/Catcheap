@@ -4,12 +4,15 @@
                                                                  double WeightCapacity, double WeightRider, double AverageSpeed)
     {
         double temp = Range;
-        if (TopSpeed > 0)
+        try
         {
             if (AverageSpeed / TopSpeed > 1)
                 Range += Range - (Range * AverageSpeed / TopSpeed);
         }
-        else return 0;
+        catch (DivideByZeroException ex)
+        {
+            System.Diagnostics.Debug.WriteLine(ex.ToString());
+        }
 
         if (WeightCapacity > 0)
         {

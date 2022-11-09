@@ -10,6 +10,10 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
     {
         private FileIO file;
 
+        public CarLoaderSaver()
+        {
+        }
+
         public CarLoaderSaver(FileIO fileIO)
         {
             this.file = fileIO;

@@ -1,41 +1,39 @@
-﻿using System.Text.RegularExpressions;
+﻿namespace Catcheap.Models.Vehicles_Classes.Cars_Classes;
 
-namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
+public class Car : Vehicle
 {
-    public class Car : Vehicle
+    public Car()
+    { }
+
+    public Car(Lazy<Journeys> journeys)
     {
-
-        public Car(Lazy<Journeys> journeys)
-        {
-            this.journeys = journeys;
-        }
-
-        public double Mileage { get; set; }
-
-        public void SetAll(string manufacturer, string model, string mileage,
-                           string batteryCapacity, string consumption, string batteryLevel)
-        {
-            Manufacturer = manufacturer;
-            Model = model;
-            Mileage = double.Parse(mileage);
-            BatteryCapacity = double.Parse(batteryCapacity);
-            Consumption = double.Parse(consumption);
-            BatteryLevel = double.Parse(batteryLevel);
-            ExpectedRange = CalculateExpectedRange();
-        }
-
-
-        public void UpdateCarFieldsAfterJourney(double journeyDistance)
-        {
-            DecreaseExpectedRange(journeyDistance);
-            DecreaseBatteryLevel(journeyDistance, Consumption, BatteryCapacity);
-            IncreaseMileage(journeyDistance);
-        }
-
-        public void IncreaseMileage(double journeyDistance)
-        {
-            Mileage += journeyDistance;
-        }
-
+        this.journeys = journeys;
     }
+
+    public double Mileage { get; set; }
+
+    public void SetAll(string manufacturer, string model, string mileage,
+                       string batteryCapacity, string consumption, string batteryLevel)
+    {
+        Manufacturer = manufacturer;
+        Model = model;
+        Mileage = double.Parse(mileage);
+        BatteryCapacity = double.Parse(batteryCapacity);
+        Consumption = double.Parse(consumption);
+        BatteryLevel = double.Parse(batteryLevel);
+        ExpectedRange = CalculateExpectedRange();
+    }
+
+    public void UpdateCarFieldsAfterJourney(double journeyDistance)
+    {
+        DecreaseExpectedRange(journeyDistance);
+        DecreaseBatteryLevel(journeyDistance, Consumption, BatteryCapacity);
+        IncreaseMileage(journeyDistance);
+    }
+
+    public void IncreaseMileage(double journeyDistance)
+    {
+        Mileage += journeyDistance;
+    }
+
 }
