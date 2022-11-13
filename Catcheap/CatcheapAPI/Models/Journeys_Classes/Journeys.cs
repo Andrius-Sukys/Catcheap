@@ -1,8 +1,14 @@
-﻿namespace CatcheapAPI.Models.Journeys_Classes
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CatcheapAPI.Models.Journeys_Classes
 {
     public class Journeys
     {
-        private static List<Journey> distanceList = new List<Journey>();
+        [Key]
+        public int JourneysId { get; set; }
+        public List<Journey> distanceList { get; set; }
+        public int CarVehicleId { get; set; }
 
         public void ClearList() { distanceList.Clear(); }
 
@@ -16,7 +22,7 @@
             distanceList.Sort();
         }
 
-        public static List<Journey> GetDayJourneyList()
+        public List<Journey> GetDayJourneyList()
         {
             List<Journey> DayJourneyList = new List<Journey>();
 
@@ -58,18 +64,18 @@
             return WeekDayJourneyList;
         }
 
-        public static List<Journey> GetJourneysInRange(DateOnly endDate, DateOnly startDate)
+        public List<Journey> GetJourneysInRange(DateOnly endDate, DateOnly startDate)
         {
             List<Journey> JourneysThisWeek =
                 (from journey in GetDayJourneyList()
-                 where journey.Date <= endDate &&
-                       journey.Date >= startDate
+                 where journey.Date <= endDate.ToDateTime(TimeOnly.MaxValue) &&
+                       journey.Date >= startDate.ToDateTime(TimeOnly.MaxValue)
                  select journey).ToList();
 
             return JourneysThisWeek;
         }
 
-        public static double DistancePastWeek()
+        public double DistancePastWeek()
         {
             double weeklyDistance = 0;
             foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyWeekBefore()))
@@ -80,7 +86,7 @@
             return weeklyDistance;
         }
 
-        public static double DistancePastMonth()
+        public double DistancePastMonth()
         {
             double monthlyDistance = 0;
             foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyMonthBefore()))
@@ -91,7 +97,7 @@
             return monthlyDistance;
         }
 
-        public static double DistanceThisMonth()
+        public double DistanceThisMonth()
         {
             double monthlyDistance = 0;
             foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyThisMonth()))
@@ -101,7 +107,7 @@
 
             return monthlyDistance;
         }
-        public static double DistancePastYear()
+        public double DistancePastYear()
         {
             double yearlyDistance = 0;
             foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyPastYear()))
@@ -112,7 +118,7 @@
             return yearlyDistance;
         }
 
-        public static double DistanceThisYear()
+        public double DistanceThisYear()
         {
             double yearlyDistance = 0;
             foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyThisYear()))
