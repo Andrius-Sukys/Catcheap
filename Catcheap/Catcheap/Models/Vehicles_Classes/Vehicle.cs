@@ -1,9 +1,15 @@
-﻿using Catcheap.Models.Journeys_Classes;
+﻿using Catcheap.Models.EventArgs_Classes;
+using Catcheap.Models.Journeys_Classes;
+using Catcheap.Models.Notification_Classes;
 
 namespace Catcheap.Models.Vehicles_Classes;
 
+public delegate void LowOnBatteryEventHandler(object sender, LowOnBatteryEventArgs e);
+
 public class Vehicle
 {
+    public event LowOnBatteryEventHandler LowOnBattery;
+
     public string Manufacturer { get; set; }
 
     public string Model { get; set; }
@@ -35,6 +41,12 @@ public class Vehicle
         BatteryLevel -= JourneyDistance / 100 * (Consumption * AdditionalConsumption) / BatteryCapacity * 100;
         if (BatteryLevel < 0)
             BatteryLevel = 0;
+        if (BatteryLevel <= 20)
+        {
+            PushNotification notification = new PushNotification(this);
+            OnLowOnBattery(new LowOnBatteryEventArgs(Math.Round(BatteryLevel, 2)));
+        }
+            
     }
 
     public void IncreaseBatteryLevel(double ChargedKWh)
@@ -66,5 +78,10 @@ public class Vehicle
             return ExpectedRange;
         else
             return 0;
+    }
+
+    protected virtual void OnLowOnBattery(LowOnBatteryEventArgs args)
+    {
+        LowOnBattery?.Invoke(this, args);
     }
 }

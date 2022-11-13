@@ -12,6 +12,7 @@ using Catcheap.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using Catcheap.ViewModel;
+using Plugin.LocalNotification;
 
 namespace Catcheap;
 
@@ -22,6 +23,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseLocalNotification()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -42,7 +44,6 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddTransient<AddCar>();
-        mauiAppBuilder.Services.AddTransient<AddChargePage>();
         mauiAppBuilder.Services.AddTransient<AddElectricScooter>();
         mauiAppBuilder.Services.AddTransient<AddJourneyPage>();
         mauiAppBuilder.Services.AddTransient<ChargingStations>();

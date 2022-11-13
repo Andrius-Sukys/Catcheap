@@ -13,7 +13,7 @@ public partial class PricePage : ContentPage
 	{
         Price price = this.Handler.MauiContext.Services.GetService<Price>();
 
-        Placeholder.Text = price.getCurrentPrice().ToString() + "€/kWh";
+        Placeholder.Text = price.getCurrentPrice().ToString() + " €/kWh";
     }
 
     private void LoadCheapestPriceButtonClicked(object sender, EventArgs e)

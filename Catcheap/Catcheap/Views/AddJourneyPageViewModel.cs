@@ -5,6 +5,7 @@ using Catcheap.Models.Vehicles_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Models.Vehicles_Classes.Other_Classes;
 using Microsoft.Extensions.DependencyInjection;
+using Plugin.LocalNotification;
 
 namespace Catcheap.Views;
 
