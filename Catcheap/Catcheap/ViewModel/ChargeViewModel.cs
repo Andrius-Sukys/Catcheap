@@ -10,9 +10,18 @@ namespace Catcheap.ViewModel;
 
 public partial class ChargeViewModel : ObservableObject
 {
-    public ChargeViewModel()
+
+    CarLoaderSaver carLoaderSaver;
+    Car car;
+    ScooterLoaderSaver scooterLoaderSaver;
+    VehicleScooter scooter;
+    public ChargeViewModel(CarLoaderSaver carLoaderSaver, Car car, VehicleScooter scooter, ScooterLoaderSaver scooterLoaderSaver)
     {
+        this.carLoaderSaver = carLoaderSaver;
+        this.car = car;
         Charges = new ObservableCollection<Charge>();
+        this.scooter = scooter;
+        this.scooterLoaderSaver = scooterLoaderSaver;
     }
 
     [ObservableProperty]
@@ -46,8 +55,6 @@ public partial class ChargeViewModel : ObservableObject
 
             if(SelectedVehicle == "Car")
             {
-                CarLoaderSaver carLoaderSaver = new CarLoaderSaver();
-                Car car = new Car();
 
                 carLoaderSaver.Load(car);
 
@@ -58,8 +65,7 @@ public partial class ChargeViewModel : ObservableObject
 
             if (SelectedVehicle == "Scooter")
             {
-                ScooterLoaderSaver scooterLoaderSaver = new ScooterLoaderSaver();
-                VehicleScooter scooter = new VehicleScooter();
+                
 
                 scooterLoaderSaver.Load(scooter);
 

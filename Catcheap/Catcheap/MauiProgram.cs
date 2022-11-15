@@ -61,6 +61,7 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterModels(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddTransient<Car>();
+        mauiAppBuilder.Services.AddTransient<Charges>();
         mauiAppBuilder.Services.AddSingleton<CarLoaderSaver>();
         mauiAppBuilder.Services.AddSingleton<ScooterLoaderSaver>();
         mauiAppBuilder.Services.AddTransient<VehicleScooter>();
