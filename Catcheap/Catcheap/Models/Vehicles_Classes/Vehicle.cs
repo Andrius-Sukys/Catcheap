@@ -51,7 +51,7 @@ public class Vehicle
 
     public void IncreaseBatteryLevel(double ChargedKWh)
     {
-        BatteryLevel += BatteryLevel + ChargedKWh / BatteryCapacity * 100;
+        BatteryLevel += ChargedKWh / BatteryCapacity * 100;
         if (BatteryLevel > 100)
             BatteryLevel = 100;
     }

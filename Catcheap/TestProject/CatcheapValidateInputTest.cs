@@ -2,7 +2,7 @@
 
 namespace TestProject
 {
-    public class ValidateInputTest
+    public class CatcheapValidateInputTest
     {
 
         ValidateInput validate = new ValidateInput();
