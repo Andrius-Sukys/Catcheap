@@ -19,7 +19,7 @@ public partial class AddCar : ContentPage
         this.carLoaderSaver = carLoaderSaver;
     }
 
-    private void SaveClicked(object sender, EventArgs e)
+    private async void SaveClicked(object sender, EventArgs e)
     {
         if (checkTextFields())
         {
@@ -28,9 +28,9 @@ public partial class AddCar : ContentPage
             car.SetAll(manufacturer: ManufacturerEntry.Text, model: ModelEntry.Text, mileage: MileageEntry.Text,
                        batteryCapacity: BatteryCapacityEntry.Text, consumption: ConsumptionEntry.Text, batteryLevel: BatteryLevelEntry.Text);
 
-            carLoaderSaver.Save(car);
+            await carLoaderSaver.Save(car);
 
-            carLoaderSaver.Load(car);
+            await carLoaderSaver.Load(car);
 
         }
 

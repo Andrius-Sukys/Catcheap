@@ -30,7 +30,7 @@ namespace CatcheapAPI.Controllers
 
             foreach (Car car in cars)
             {
-                Journeys journeys = _context.Journeys.Where(j => j.CarVehicleId == car.VehicleId).Single();
+                Journeys journeys = _context.Journeys.Where(j => j.CarVehicleId == car.VehicleId).SingleOrDefault();
                 List<Journey> journeyList = _context.Journey.Where(j => j.JourneysJourneysId == journeys.JourneysId).ToList<Journey>();
                 journeys.distanceList = journeyList;
                 car.journeys = journeys;

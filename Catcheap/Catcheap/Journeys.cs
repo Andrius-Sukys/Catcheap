@@ -1,37 +1,42 @@
 ﻿using Catcheap.Models.Journeys_Classes;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Catcheap
 {
 
     public class Journeys
     {
-        private static List<Journey> distanceList;
-        private static List<Journey> helperList;
+        public int JourneysId { get; set; }
+        public  List<Journey> DistanceList { get; set; }
+        private  List<Journey> HelperList { get; set; }
+
+        public int CarVehicleId { get; set; }
 
         public Journeys(List<Journey> journeyList, List<Journey> helpList)
         {
-            distanceList = journeyList;
-            helperList = helpList;
+            DistanceList = journeyList;
+            HelperList = helpList;
         }
 
-        public void ClearList() { distanceList.Clear(); }
+        public void ClearList() { DistanceList.Clear(); }
 
         public void AddJourney(Journey journey)
         {
-            distanceList.Add(journey);
+            DistanceList.Add(journey);
         }
 
         public void SortList()
         {
-            distanceList.Sort();
+            DistanceList.Sort();
         }
 
-        public static List<Journey> GetDayJourneyList()
+        public  List<Journey> GetDayJourneyList()
         {
-           helperList.Clear();
-           List<Journey> DayJourneyList = helperList;
+           HelperList.Clear();
+           List<Journey> DayJourneyList = HelperList;
 
-           foreach(Journey journey in distanceList)
+           foreach(Journey journey in DistanceList)
            {
                 bool inDayJourney = false;
 
@@ -69,7 +74,7 @@ namespace Catcheap
             return WeekDayJourneyList;
         }
 
-        public static List<Journey> GetJourneysInRange(DateOnly endDate, DateOnly startDate)
+        public List<Journey> GetJourneysInRange(DateOnly endDate, DateOnly startDate)
         {
             List<Journey> JourneysThisWeek =
                 (from journey in GetDayJourneyList()
@@ -80,7 +85,7 @@ namespace Catcheap
             return JourneysThisWeek;
         }
 
-        public static double DistancePastWeek()
+        public double DistancePastWeek()
         {
             double weeklyDistance = 0;
             foreach(Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyWeekBefore()))
@@ -91,7 +96,7 @@ namespace Catcheap
             return weeklyDistance;
         }
 
-        public static double DistancePastMonth()
+        public double DistancePastMonth()
         {
             double monthlyDistance = 0;
             foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyMonthBefore()))
@@ -102,7 +107,7 @@ namespace Catcheap
             return monthlyDistance;
         }
 
-        public static double DistanceThisMonth()
+        public  double DistanceThisMonth()
         {
             double monthlyDistance = 0;
             foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyThisMonth()))
@@ -112,7 +117,7 @@ namespace Catcheap
 
             return monthlyDistance;
         }
-        public static double DistancePastYear()
+        public double DistancePastYear()
         {
             double yearlyDistance = 0;
             foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyPastYear()))
@@ -123,7 +128,7 @@ namespace Catcheap
             return yearlyDistance;
         }
 
-        public static double DistanceThisYear()
+        public double DistanceThisYear()
         {
             double yearlyDistance = 0;
             foreach (Journey journey in GetJourneysInRange(GetDateOnlyToday(), GetDateOnlyThisYear()))
@@ -189,7 +194,7 @@ namespace Catcheap
         {
             string temp = "";
 
-            foreach (Journey journey in distanceList)
+            foreach (Journey journey in DistanceList)
             {
                 temp += "Distance: " + journey.Dist + " Date: " + journey.Date + '\n';
             }

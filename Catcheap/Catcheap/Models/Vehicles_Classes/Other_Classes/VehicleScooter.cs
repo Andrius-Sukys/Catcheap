@@ -8,7 +8,7 @@ public class VehicleScooter : Vehicle
     {
     }
 
-    public VehicleScooter(Lazy<Journeys> journeys)
+    public VehicleScooter(Journeys journeys)
     {
         this.journeys = journeys;
     }

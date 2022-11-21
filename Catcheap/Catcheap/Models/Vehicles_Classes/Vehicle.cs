@@ -1,6 +1,8 @@
 ﻿using Catcheap.Models.EventArgs_Classes;
 using Catcheap.Models.Journeys_Classes;
 using Catcheap.Models.Notification_Classes;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Catcheap.Models.Vehicles_Classes;
 
@@ -10,6 +12,8 @@ public class Vehicle
 {
     public event LowOnBatteryEventHandler LowOnBattery;
 
+    [Key]
+    public int VehicleId { get; set; }
     public string Manufacturer { get; set; }
 
     public string Model { get; set; }
@@ -22,11 +26,11 @@ public class Vehicle
 
     public double BatteryLevel { get; set; }
 
-    public Lazy<Journeys> journeys { get; set; }
+    public Journeys journeys { get; set; }
 
     public Journeys GetJourneys()
     {
-        return journeys.Value;
+        return journeys;
     }
 
     public void DecreaseExpectedRange(double JourneyDistance)

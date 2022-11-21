@@ -28,11 +28,11 @@ public partial class StatsPage : ContentPage
         Saturday.Text = "Saturday: " + Journeys.AverageDistance(car.GetJourneys().GetWeekDayJourneyList(DayOfWeek.Saturday)).ToString();
         Sunday.Text = "Sunday: " + Journeys.AverageDistance(car.GetJourneys().GetWeekDayJourneyList(DayOfWeek.Sunday)).ToString();
 
-        PastWeek.Text = "Past week: " + Journeys.DistancePastWeek().ToString();
-        PastMonth.Text = "Past month: " + Journeys.DistancePastMonth().ToString();
-        PastYear.Text = "Past year: " + Journeys.DistancePastYear().ToString();
+        PastWeek.Text = "Past week: " + car.journeys.DistancePastWeek().ToString();
+        PastMonth.Text = "Past month: " + car.journeys.DistancePastMonth().ToString();
+        PastYear.Text = "Past year: " + car.journeys.DistancePastYear().ToString();
 
-        ThisMonth.Text = "This month (" + (DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture)) + "): " + Journeys.DistanceThisMonth().ToString();
-        ThisYear.Text = "This year (" + (DateTime.Now.Year.ToString()) + "): "  + Journeys.DistanceThisYear().ToString();
+        ThisMonth.Text = "This month (" + (DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture)) + "): " + car.journeys.DistanceThisMonth().ToString();
+        ThisYear.Text = "This year (" + (DateTime.Now.Year.ToString()) + "): "  + car.journeys.DistanceThisYear().ToString();
     }
 }
