@@ -16,11 +16,11 @@ namespace CatcheapAPI.Models.Vehicles_Classes
 
         public double BatteryLevel { get; set; }
 
-        Lazy<Journeys> journeys = new Lazy<Journeys>();
+        public Journeys? journeys { get; set; }
 
         public Journeys GetJourneys()
         {
-            return journeys.Value;
+            return journeys;
         }
 
         public void DecreaseExpectedRange(double JourneyDistance)
