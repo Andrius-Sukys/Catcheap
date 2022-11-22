@@ -1,4 +1,4 @@
-﻿using Catcheap.AppInfo;
+﻿//using Catcheap.AppInfo;
 using Microsoft.UI.Xaml;
 
 // To learn more about WinUI, the WinUI project structure,

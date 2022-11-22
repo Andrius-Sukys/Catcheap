@@ -1,4 +1,4 @@
-﻿using Catcheap.AppInfo;
+﻿//using Catcheap.AppInfo;
 using Foundation;
 
 namespace Catcheap;
