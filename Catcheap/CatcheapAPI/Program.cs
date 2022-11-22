@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CatcheapAPI.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<CatcheapAPIContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CatcheapAPIContext") ?? throw new InvalidOperationException("Connection string 'CatcheapAPIContext' not found.")));
 
 // Add services to the container.
 

@@ -34,7 +34,7 @@ public partial class DisplayVehiclePage : ContentPage
         vehicleList.Add(scooter);
     }
 
-    private void CarButtonClicked(object sender, EventArgs e)
+    private async void CarButtonClicked(object sender, EventArgs e)
 	{
         Placeholder.Text = "";
 
@@ -42,7 +42,7 @@ public partial class DisplayVehiclePage : ContentPage
         {
             if(vehicle is Car)
             {
-                carLoaderSaver.Load((Car)vehicle);
+                await carLoaderSaver.Load((Car)vehicle);
                 Placeholder.Text += carString.ToString((Car)vehicle) + '\n';
             }
         }
@@ -63,7 +63,7 @@ public partial class DisplayVehiclePage : ContentPage
         }
     }
 
-    private void AllButtonClicked(object sender, EventArgs e)
+    private async void AllButtonClicked(object sender, EventArgs e)
     {
         Placeholder.Text = "";
 
@@ -71,7 +71,7 @@ public partial class DisplayVehiclePage : ContentPage
         {
             if (vehicle is Car)
             {
-                carLoaderSaver.Load((Car)vehicle);
+                await carLoaderSaver.Load((Car)vehicle);
                 Placeholder.Text += carString.ToString((Car)vehicle) + '\n';
             }else if (vehicle is VehicleScooter)
             {

@@ -33,9 +33,9 @@ public partial class AddCar : ContentPage
             car.SetAll(manufacturer: ManufacturerEntry.Text, model: ModelEntry.Text, mileage: MileageEntry.Text,
                        batteryCapacity: BatteryCapacityEntry.Text, consumption: ConsumptionEntry.Text, batteryLevel: BatteryLevelEntry.Text);
 
-            carLoaderSaver.Save(car);
+            await carLoaderSaver.Save(car);
 
-            carLoaderSaver.Load(car);
+            await carLoaderSaver.Load(car);
 
         }
 

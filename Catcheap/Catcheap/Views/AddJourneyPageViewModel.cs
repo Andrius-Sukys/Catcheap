@@ -41,7 +41,7 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
     void OnPropertyChanged(string name) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
-    public void AddJourney()
+    public async void AddJourney()
     {
 
         if (JourneyField.JourneyDistance != null && JourneyField.JourneyDistance >= 0)
@@ -50,13 +50,13 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
 
             if (JourneyField.SelectedItem == "Car")
             {   
-                carLoaderSaver.Load(car);
+                await carLoaderSaver.Load(car);
                 journeysLoaderSaver.Load(car.GetJourneys());
 
                 car.UpdateCarFieldsAfterJourney(journeyDistance: (double)JourneyField.JourneyDistance);
 
-                carLoaderSaver.Save(car);
-                journeysLoaderSaver.Save(car.GetJourneys());
+                await carLoaderSaver.Save(car);
+                //journeysLoaderSaver.Save(car.GetJourneys());
             }
 
             if (JourneyField.SelectedItem == "Scooter")

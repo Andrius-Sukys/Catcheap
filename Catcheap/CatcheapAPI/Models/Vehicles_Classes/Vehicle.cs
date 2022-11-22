@@ -1,12 +1,15 @@
 ﻿using CatcheapAPI.Models.Journeys_Classes;
+using System.ComponentModel.DataAnnotations;
 
 namespace CatcheapAPI.Models.Vehicles_Classes
 {
     public class Vehicle
     {
-        public string Manufacturer { get; set; }
+        [Key]
+        public int VehicleId { get; set; }
+        public string? Manufacturer { get; set; }
 
-        public string Model { get; set; }
+        public string? Model { get; set; }
 
         public double ExpectedRange { get; set; }
 
@@ -16,11 +19,11 @@ namespace CatcheapAPI.Models.Vehicles_Classes
 
         public double BatteryLevel { get; set; }
 
-        Lazy<Journeys> journeys = new Lazy<Journeys>();
+        public Journeys? journeys { get; set; }
 
         public Journeys GetJourneys()
         {
-            return journeys.Value;
+            return journeys;
         }
 
         public void DecreaseExpectedRange(double JourneyDistance)
