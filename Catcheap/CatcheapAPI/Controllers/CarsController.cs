@@ -26,17 +26,8 @@ namespace CatcheapAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Car>>> GetCar()
         {
-            List<Car> cars = _context.Car.ToList();
 
-            foreach (Car car in cars)
-            {
-                Journeys journeys = _context.Journeys.Where(j => j.CarVehicleId == car.VehicleId).SingleOrDefault();
-                List<Journey> journeyList = _context.Journey.Where(j => j.JourneysJourneysId == journeys.JourneysId).ToList<Journey>();
-                journeys.distanceList = journeyList;
-                car.journeys = journeys;
-            }
-
-            return await _context.Car.ToListAsync();
+            return _context.Car.Include(x => x.journeys).Include(x => x.journeys.distanceList).ToList();
         }
 
         // GET: api/Cars/5
