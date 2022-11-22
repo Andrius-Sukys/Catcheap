@@ -5,9 +5,6 @@ namespace Catcheap.Models.Vehicles_Classes.Other_Classes;
 
 public class VehicleScooter : Vehicle
 {
-    public VehicleScooter()
-    {
-    }
 
     public VehicleScooter(Lazy<Journeys> journeys)
     {

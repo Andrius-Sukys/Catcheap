@@ -18,11 +18,7 @@ public partial class ChargeViewModel : ObservableObject
 
     public ChargeViewModel(CarLoaderSaver carLoaderSaver, Car car, VehicleScooter scooter, ScooterLoaderSaver scooterLoaderSaver)
     {
-        this.carLoaderSaver = carLoaderSaver;
-        this.car = car;
         Charges = new ObservableCollection<Charge>();
-        this.scooter = scooter;
-        this.scooterLoaderSaver = scooterLoaderSaver;
     }
 
     [ObservableProperty]

@@ -2,8 +2,6 @@
 
 public class Car : Vehicle
 {
-    public Car()
-    { }
 
     public Car(Lazy<Journeys> journeys)
     {
