@@ -9,7 +9,7 @@ namespace TestProject
         [Fact]
         public void SetAllTest()
         {
-            Car car = new Car(new Lazy<Catcheap.Journeys>());
+            Car car = new Car(new Catcheap.Journeys(new List<Journey>(), new List<Journey>()));
 
             car.SetAll("A", "B", "500", "82", "10,1", "69");
 
@@ -29,7 +29,7 @@ namespace TestProject
         [InlineData(0, 0, 0)]
         public void IncreaseMileageTest(double mileage, double journeyDistance, double expectedResult)
         {
-            var car = new Car(new Lazy<Catcheap.Journeys>());
+            var car = new Car(new Catcheap.Journeys(new List<Journey>(), new List<Journey>()));
 
             car.Mileage = mileage;
 
@@ -44,7 +44,7 @@ namespace TestProject
         public void UpdateCarFieldsAfterJourneyTest(double mileage, double consumtion, double batteryCapacity, double batteryLevel, double expectedRange, double journeyDistance,
             double expectedMileage, double expectedBatteryLevel, double expectedExpectedRange)
         {
-            var car = new Car(new Lazy<Catcheap.Journeys>());
+            var car = new Car(new Catcheap.Journeys(new List<Journey>(), new List<Journey>()));
 
             car.Mileage = mileage; car.Consumption = consumtion; car.BatteryCapacity = batteryCapacity; car.BatteryLevel = batteryLevel; car.ExpectedRange = expectedRange;
 

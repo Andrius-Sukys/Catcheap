@@ -1,4 +1,5 @@
-﻿using Catcheap.Models.Vehicles_Classes.Other_Classes;
+﻿using Catcheap.Models.Journeys_Classes;
+using Catcheap.Models.Vehicles_Classes.Other_Classes;
 
 namespace TestProject
 {
@@ -8,7 +9,7 @@ namespace TestProject
         [Fact]
         public void SetAllTest()
         {
-            var vehicleScooter = new VehicleScooter(new Lazy<Catcheap.Journeys>());
+            var vehicleScooter = new VehicleScooter(new Catcheap.Journeys(new List<Journey>(), new List<Journey>()));
 
             vehicleScooter.SetAll("A", "B", "100", "10", "50", "0", "0", "0", "1", "1");
 

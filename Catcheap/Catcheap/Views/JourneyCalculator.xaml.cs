@@ -6,7 +6,7 @@ using Catcheap.Models.Validation_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Models.Price_Classes;
 using System.Net.Http.Headers;
-using Android.Gms.Common.Apis;
+//using Android.Gms.Common.Apis;
 using Catcheap.Client;
 
 public partial class JourneyCalculator : ContentPage
@@ -106,7 +106,7 @@ public partial class JourneyCalculator : ContentPage
         CarLoaderSaver carLoaderSaver = this.Handler.MauiContext.Services.GetService<CarLoaderSaver>();
         Price price = this.Handler.MauiContext.Services.GetService<Price>();
 
-        carLoaderSaver.Load(car);
+        await carLoaderSaver.Load(car);
 
         //FullChargePrice.Text = calc.calculateFullChargePrice(car.BatteryCapacity, car.BatteryLevel, price.getCurrentPrice()).ToString() + "€";
 
