@@ -6,16 +6,18 @@ using Catcheap.Models.Validation_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Models.Price_Classes;
 using System.Net.Http.Headers;
+using Android.Gms.Common.Apis;
+using Catcheap.Client;
 
 public partial class JourneyCalculator : ContentPage
 {
     private const string ENTER_A_POS_NUMBER = "Enter a positive number!";
 
-    ValidateInput validateInput;
+    ValidateInput<string> validateInput;
 
     Calculator calc;
 
-    public JourneyCalculator(Calculator calculator, ValidateInput validateInput)
+    public JourneyCalculator(Calculator calculator, ValidateInput<string> validateInput)
 	{
         calc = calculator;
         this.validateInput = validateInput;
@@ -26,7 +28,7 @@ public partial class JourneyCalculator : ContentPage
     {
         string distanceText = DistanceEntry.Text;
 
-        if (!validateInput.ValidateInputAsAPositiveNumber(distanceText))
+        if (validateInput.ValidateInputNumber(distanceText) is not null)
         {
             DistanceEntry.Text = ENTER_A_POS_NUMBER;
             calc.distance = -1;
@@ -39,7 +41,7 @@ public partial class JourneyCalculator : ContentPage
     {
         string consumptionText = ConsumptionEntry.Text;
 
-        if (!validateInput.ValidateInputAsAPositiveNumber(consumptionText))
+        if (!validateInput.ValidateInputPositiveNumber(consumptionText))
         {
             ConsumptionEntry.Text = ENTER_A_POS_NUMBER;
             calc.consumption = -1;
@@ -52,7 +54,7 @@ public partial class JourneyCalculator : ContentPage
     {
         string electricityPriceText = ElectricityPriceEntry.Text;
 
-        if (!validateInput.ValidateInputAsAPositiveNumber(electricityPriceText))
+        if (!validateInput.ValidateInputPositiveNumber(electricityPriceText))
         {
             ElectricityPriceEntry.Text = ENTER_A_POS_NUMBER;
             calc.electricityPrice = -1;
@@ -63,7 +65,7 @@ public partial class JourneyCalculator : ContentPage
 
     private void EntryDistanceTextChanged(object sender, TextChangedEventArgs e)
     {
-        if (validateInput.ValidateInputAsNull(DistanceEntry.Text))
+        if (validateInput.ValidateInputNull(DistanceEntry.Text))
             AddDistanceButton.IsEnabled = false;
         else
             AddDistanceButton.IsEnabled = true;
@@ -71,7 +73,7 @@ public partial class JourneyCalculator : ContentPage
 
     private void EntryConsumptionTextChanged(object sender, TextChangedEventArgs e)
     {
-        if (validateInput.ValidateInputAsNull(ConsumptionEntry.Text))
+        if (validateInput.ValidateInputNull(ConsumptionEntry.Text))
             AddConsumptionButton.IsEnabled = false;
         else
             AddConsumptionButton.IsEnabled = true;
@@ -79,7 +81,7 @@ public partial class JourneyCalculator : ContentPage
 
     private void EntryElectricityPriceTextChanged(object sender, TextChangedEventArgs e)
     {
-        if (validateInput.ValidateInputAsNull(ElectricityPriceEntry.Text))
+        if (validateInput.ValidateInputNull(ElectricityPriceEntry.Text))
             AddElectricityPriceButton.IsEnabled = false;
         else
             AddElectricityPriceButton.IsEnabled = true;
@@ -108,14 +110,9 @@ public partial class JourneyCalculator : ContentPage
 
         //FullChargePrice.Text = calc.calculateFullChargePrice(car.BatteryCapacity, car.BatteryLevel, price.getCurrentPrice()).ToString() + "€";
 
-        using (var client = new HttpClient())
-        {
-            client.BaseAddress = new Uri("http://10.0.2.2:7172/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
+        
 
-            HttpResponseMessage response = await client.PutAsJsonAsync("api/Calculator", car);
+            HttpResponseMessage response = await ApiClient.client.PutAsJsonAsync("api/Calculator", car);
             if (response.IsSuccessStatusCode)
             {
                 FullChargePrice.Text = (await response.Content.ReadAsAsync<Double>()).ToString();
@@ -125,7 +122,6 @@ public partial class JourneyCalculator : ContentPage
                 FullChargePrice.Text = response.ToString();
             }
 
-        }
     }
 }
 

@@ -2,10 +2,8 @@
 
 public class Car : Vehicle
 {
-    public Car()
-    { }
 
-    public Car(Lazy<Journeys> journeys)
+    public Car(Journeys journeys)
     {
         this.journeys = journeys;
     }

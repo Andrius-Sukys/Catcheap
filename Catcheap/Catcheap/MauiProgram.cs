@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using Catcheap.ViewModel;
 using Plugin.LocalNotification;
+using Catcheap.Models.Notification_Classes;
+using Catcheap.Client;
 
 namespace Catcheap;
 
@@ -55,12 +57,15 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<StatsPage>();
         mauiAppBuilder.Services.AddTransient<TrendsPage>();
 
+        ApiClient.Init();
+
         return mauiAppBuilder;
     }
 
     public static MauiAppBuilder RegisterModels(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddTransient<Car>();
+        mauiAppBuilder.Services.AddTransient<Charges>();
         mauiAppBuilder.Services.AddSingleton<CarLoaderSaver>();
         mauiAppBuilder.Services.AddSingleton<ScooterLoaderSaver>();
         mauiAppBuilder.Services.AddTransient<VehicleScooter>();
@@ -77,7 +82,8 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<PriceReader>();
         mauiAppBuilder.Services.AddSingleton<CarString>();
         mauiAppBuilder.Services.AddSingleton<ElectricScooterString>();
-        mauiAppBuilder.Services.AddTransient<ValidateInput>();
+        mauiAppBuilder.Services.AddTransient<ValidateInput<string>>();
+        mauiAppBuilder.Services.AddTransient<PushNotification>();
 
         return mauiAppBuilder;
     }

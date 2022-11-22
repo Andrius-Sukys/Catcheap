@@ -1,12 +1,15 @@
 ﻿using CatcheapAPI.Models.Journeys_Classes;
+using System.ComponentModel.DataAnnotations;
 
 namespace CatcheapAPI.Models.Vehicles_Classes
 {
     public class Vehicle
     {
-        public string Manufacturer { get; set; }
+        [Key]
+        public int VehicleId { get; set; }
+        public string? Manufacturer { get; set; }
 
-        public string Model { get; set; }
+        public string? Model { get; set; }
 
         public double ExpectedRange { get; set; }
 
