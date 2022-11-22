@@ -8,10 +8,9 @@ namespace Catcheap.Models.Notification_Classes;
 
 public class PushNotification
 {
-    Vehicle vehicle;
     public PushNotification(Vehicle v)
     {
-        vehicle = v;
+        Vehicle vehicle = v;
 
         v.LowOnBattery += LowOnBatteryHandler;
 
@@ -21,16 +20,16 @@ public class PushNotification
     {
         if (sender is Car)
         {
-            getNotification("car", args.BatteryLevel);
+            GetNotification("car", args.BatteryLevel);
         }
         if (sender is VehicleScooter)
         {
-            getNotification("scooter", args.BatteryLevel);
+            GetNotification("scooter", args.BatteryLevel);
         }
         
     }
 
-    private static void getNotification(string vehicle, double batteryLevel)
+    private static void GetNotification(string vehicle, double batteryLevel)
     {
         var request = new NotificationRequest
         {

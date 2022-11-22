@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Catcheap.Models.Notification_Classes;
+using System.Runtime.CompilerServices;
 
 namespace Catcheap.Models.Vehicles_Classes.Other_Classes;
 
