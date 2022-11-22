@@ -1,6 +1,7 @@
 ﻿using System.IO.Enumeration;
 using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
+using Catcheap.Client;
 using Catcheap.Models.FileIO_Classes;
 using Catcheap.Models.FileIO_Classes.Interfaces;
 using Catcheap.Models.Journeys_Classes;
@@ -55,14 +56,14 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
             //    }
             //}
 
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://10.0.2.2:7172/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                    new MediaTypeWithQualityHeaderValue("application/json"));
+            //using (var client = new HttpClient())
+            //{
+            //    client.BaseAddress = new Uri("http://10.0.2.2:7172/");
+            //    client.DefaultRequestHeaders.Accept.Clear();
+            //    client.DefaultRequestHeaders.Accept.Add(
+            //        new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("api/Cars");
+                HttpResponseMessage response = await ApiClient.client.GetAsync("api/Cars");
                 if (response.IsSuccessStatusCode)
                 {
                     List<Car> list = await response.Content.ReadAsAsync<List<Car>>();
@@ -84,7 +85,6 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                 {
                     throw new Exception("Bad get");
                 }
-            }
         }
 
         public async Task Save(Car car, string fileName = "carinfo.txt")
@@ -96,14 +96,14 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
             //                     (int)CarPattern.BatteryCapacity + " " + car.BatteryCapacity + '\n' +
             //                     (int)CarPattern.Consumption + " " + car.Consumption + '\n' +
             //                     (int)CarPattern.BatteryLevel + " " + car.BatteryLevel + '\n', "carinfo.txt");
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://10.0.2.2:7172/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                    new MediaTypeWithQualityHeaderValue("application/json"));
+            //using (var client = new HttpClient())
+            //{
+            //    client.BaseAddress = new Uri("http://10.0.2.2:7172/");
+            //    client.DefaultRequestHeaders.Accept.Clear();
+            //    client.DefaultRequestHeaders.Accept.Add(
+            //        new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("api/Cars");
+                HttpResponseMessage response = await ApiClient.client.GetAsync("api/Cars");
                 if (response.IsSuccessStatusCode)
                 {
                     List<Car> list = await response.Content.ReadAsAsync<List<Car>>();
@@ -116,7 +116,7 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                         car.journeys.CarVehicleId = list[0].VehicleId;
                         car.journeys.DistanceList = new List<Journey>();
 
-                        HttpResponseMessage resp = await client.PutAsJsonAsync($"api/Cars/{car.VehicleId}", car);
+                        HttpResponseMessage resp = await ApiClient.client.PutAsJsonAsync($"api/Cars/{car.VehicleId}", car);
                         if (resp.IsSuccessStatusCode) { }
                         else
                         {
@@ -126,7 +126,7 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                     }
                     else
                     {
-                        HttpResponseMessage resp = await client.PostAsJsonAsync("api/Cars", car);
+                        HttpResponseMessage resp = await ApiClient.client.PostAsJsonAsync("api/Cars", car);
                         if (resp.IsSuccessStatusCode) { }
                         else
                         {
@@ -138,7 +138,7 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
                 {
                     throw new Exception("Bad get");
                 }
-            }
+            
 
         }
 
