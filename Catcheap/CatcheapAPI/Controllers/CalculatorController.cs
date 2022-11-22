@@ -12,12 +12,7 @@ namespace CatcheapAPI.Controllers
         [HttpPut]
         public async Task<ActionResult<double>> CalculateFullChargePrice(Car car)
         {
-
-            Calculator calculator = new Calculator();
-
-            return calculator.calculateFullChargePrice(car.BatteryCapacity, car.BatteryLevel, 0.2);
-            
-
+            return Calculator.calculateFullChargePrice(car.BatteryCapacity, car.BatteryLevel, 0.2);
         }
     }
 }
