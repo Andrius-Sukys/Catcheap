@@ -10,11 +10,11 @@ namespace TestProject
         public void ClearListTest()
         {
 
-            Journeys.distanceList.Add(new Journey());
+            journeys.DistanceList.Add(new Journey());
 
             journeys.ClearList();
 
-            Assert.True(Journeys.distanceList.Count == 0);
+            Assert.True(journeys.DistanceList.Count == 0);
         }
 
         [Fact]

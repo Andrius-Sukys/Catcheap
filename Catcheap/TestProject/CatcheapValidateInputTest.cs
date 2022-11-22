@@ -5,27 +5,27 @@ namespace TestProject
     public class CatcheapValidateInputTest
     {
 
-        ValidateInput validate = new ValidateInput();
+        ValidateInput<string> validate = new ValidateInput<string>();
+
+        [Theory]
+        [InlineData("10", 10)]
+        [InlineData("-1", -1)]
+        [InlineData("sada", null)]
+        public void ValidateInputNumberTest(string par, double? expectedResult)
+        {
+
+            Assert.True(validate.ValidateInputNumber(par) == expectedResult);
+
+        }
 
         [Theory]
         [InlineData("10", true)]
         [InlineData("-1", false)]
         [InlineData("sada", false)]
-        public void ValidateInputAsAPositiveNumberTest(string par, bool expectedResult)
+        public void ValidateInputPositiveNumberTest(string par, bool expectedResult)
         {
 
-            Assert.True(validate.ValidateInputAsAPositiveNumber(par) == expectedResult);
-
-        }
-
-        [Theory]
-        [InlineData("", true)]
-        [InlineData(null, true)]
-        [InlineData("sada", false)]
-        public void ValidateInputAsNull(string par, bool expectedResult)
-        {
-
-            Assert.True(validate.ValidateInputAsNull(par) == expectedResult);
+            Assert.True(validate.ValidateInputPositiveNumber(par) == expectedResult);
 
         }
     }

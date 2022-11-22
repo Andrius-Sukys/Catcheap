@@ -2,6 +2,7 @@
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Models.Vehicles_Classes.Other_Classes;
 using Catcheap.Models.Vehicles_Classes;
+using Catcheap.Models.Journeys_Classes;
 
 namespace TestProject
 {
@@ -12,7 +13,7 @@ namespace TestProject
         public void CarStringTest()
         {
             var carString = new CarString();
-            var car = new Car(new Lazy<Catcheap.Journeys>());
+            var car = new Car(new Catcheap.Journeys(new List<Journey>(), new List<Journey>()));
 
             car.SetAll("A", "B", "500", "100", "10", "50");
 
@@ -33,7 +34,7 @@ namespace TestProject
         public void ElectricScooterStringTest()
         {
             var electricScooterString = new ElectricScooterString();
-            var vehicleScooter = new VehicleScooter(new Lazy<Catcheap.Journeys>());
+            var vehicleScooter = new VehicleScooter(new Catcheap.Journeys(new List<Journey>(), new List<Journey>()));
 
             vehicleScooter.SetAll("A", "B", "100", "10", "50", "0", "0", "0", "1", "1");
 
