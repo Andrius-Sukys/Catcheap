@@ -26,8 +26,8 @@ namespace CatcheapAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Car>>> GetCar()
         {
-
             return _context.Car.Include(x => x.journeys).Include(x => x.journeys.distanceList).ToList();
+
         }
 
         // GET: api/Cars/5

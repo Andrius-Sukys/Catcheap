@@ -7,9 +7,8 @@ namespace Catcheap.Views;
 
 public partial class AddElectricScooter : ContentPage
 {
-
-    ScooterLoaderSaver scooterLS;
-    VehicleScooter scooter;
+    readonly ScooterLoaderSaver scooterLS;
+    readonly VehicleScooter scooter;
 
     public AddElectricScooter(ScooterLoaderSaver scooterLoaderSaver, VehicleScooter scooter)
 	{
@@ -21,7 +20,7 @@ public partial class AddElectricScooter : ContentPage
 
     private void SaveClicked(object sender, EventArgs e)
 	{
-        if (checkTextFields())
+        if (CheckTextFields())
         {
             Placeholder.Text = "Input successful!";
 
@@ -41,7 +40,7 @@ public partial class AddElectricScooter : ContentPage
         }
     }
 
-    public bool checkTextFields()
+    public bool CheckTextFields()
     {
         return !String.IsNullOrEmpty(ManufacturerEntry.Text) &&
                 !String.IsNullOrEmpty(ModelEntry.Text) &&

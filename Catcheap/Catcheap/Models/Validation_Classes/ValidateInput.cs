@@ -1,7 +1,4 @@
 ﻿using Catcheap.Models.Notification_Classes;
-//using Java.Nio.Channels;
-using System.Runtime.CompilerServices;
-using Catcheap.Views;
 
 namespace Catcheap.Models.Validation_Classes;
 
@@ -9,7 +6,7 @@ public delegate void InvalidInputEventHandler<T, U>(T sender, U eventArgs);
 
 public class ValidateInput<T>
 {
-    public class InvalidInputEventArgs : System.EventArgs { }
+    public class InvalidInputEventArgs : EventArgs { }
 
     public event InvalidInputEventHandler<ValidateInput<T>, InvalidInputEventArgs> InvalidInput;
 
@@ -58,9 +55,9 @@ public class ValidateInput<T>
         }
         else
         {
-            ValidateInput<string> vi = new ValidateInput<string>();
-            NotificationWindow nw = new NotificationWindow();
-            vi.InvalidInput += nw.InvalidInputEventHandler;
+            ValidateInput<string> vi = new();
+            NotificationWindow nw = new();
+            vi.InvalidInput += NotificationWindow.InvalidInputEventHandler;
             OnInvalidInput(null);
             return false;
         }

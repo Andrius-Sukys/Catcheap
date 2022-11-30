@@ -78,8 +78,10 @@ namespace CatcheapAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Journeys>> PostJourneys(Journeys journeys)
         {
+
             _context.Journeys.Add(journeys);
             await _context.SaveChangesAsync();
+
 
             return CreatedAtAction("GetJourneys", new { id = journeys.JourneysId }, journeys);
         }
@@ -94,8 +96,10 @@ namespace CatcheapAPI.Controllers
                 return NotFound();
             }
 
+
             _context.Journeys.Remove(journeys);
             await _context.SaveChangesAsync();
+
 
             return NoContent();
         }

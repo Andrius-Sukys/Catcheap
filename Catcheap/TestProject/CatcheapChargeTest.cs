@@ -18,7 +18,7 @@ namespace TestProject
         {
             Charge charge = new Charge(0, new TimeSpan(Start, 0, 0), new TimeSpan(End, 0, 0));
 
-            Assert.True(charge.durationCharge == new TimeSpan(ExpectedResult, 0, 0));
+            Assert.True(charge.DurationCharge == new TimeSpan(ExpectedResult, 0, 0));
         }
 
         [Theory]
@@ -28,7 +28,7 @@ namespace TestProject
         {
             Charge charge = new Charge(ChargingPower, new TimeSpan(Start, 0, 0), new TimeSpan(End, 0, 0));
 
-            Assert.True(charge.chargedKWh == ExpectedResult);
+            Assert.True(charge.ChargedKWh == ExpectedResult);
         }
 
     }

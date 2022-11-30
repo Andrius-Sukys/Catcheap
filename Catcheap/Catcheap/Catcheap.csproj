@@ -89,6 +89,9 @@
 	  <MauiXaml Update="Views\DisplayVehiclePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ExceptionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\MyJourneysPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -42,10 +42,10 @@ public class JourneyField : INotifyPropertyChanged
         JourneyDistance = null;
     }
 
-    public void ClearJourneys()
+    public static void ClearJourneys()
     {
         if ("journeys.txt" != null)
-            fileIO.ClearTextFile("journeys.txt");
+            FileIO.ClearTextFile("journeys.txt");
     }
 
 }

@@ -23,7 +23,7 @@ namespace TestProject
 
             var dayPrice = new DayPrice(new DateOnly(2002,2,6), price);
 
-            Assert.True(dayPrice.getHourPrice(i) == (i+1));
+            Assert.True(dayPrice.GetHourPrice(i) == (i+1));
 
         }
 
@@ -46,7 +46,7 @@ namespace TestProject
             var dayPrice = new DayPrice(new DateOnly(2002, 2, 6), price);
 
             Assert.Equal((currentHour + 1).ToString() + " €/kWh\n" + currentHour.ToString() + ":00 - " + (currentHour + 1) % 24 + ":00",
-                dayPrice.getDaysCheapestPriceAndHourString(currentHour));
+                dayPrice.GetDaysCheapestPriceAndHourString(currentHour));
 
         }
 

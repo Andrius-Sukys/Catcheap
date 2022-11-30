@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catcheap.Views.ExceptionPage"
+             Title="Oops!">
+    <VerticalStackLayout VerticalOptions="CenterAndExpand">
+        <Grid>
+            <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Label 
+                Grid.Row="0"
+                Margin="0, 20, 0, 15"
+                Text="An error has occured!"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="35"
+                FontAttributes="Bold"/>
+            <Label 
+                Grid.Row="1"
+                Text="Please report the bug to support@catcheap.com"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="15"/>
+            <Button
+                Grid.Row="2"
+                Margin="0, 20, 0, 15"
+                Text="EXIT"
+                WidthRequest="300"
+                Clicked="ExitButtonClicked"></Button>
+        </Grid>
+    </VerticalStackLayout>
+        
+</ContentPage>

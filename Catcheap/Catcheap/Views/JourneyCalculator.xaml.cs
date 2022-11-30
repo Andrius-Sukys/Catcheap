@@ -8,14 +8,13 @@ using Catcheap.Models.Price_Classes;
 using System.Net.Http.Headers;
 //using Android.Gms.Common.Apis;
 using Catcheap.Client;
+using Catcheap.Models.Exception_Classes;
 
 public partial class JourneyCalculator : ContentPage
 {
     private const string ENTER_A_POS_NUMBER = "Enter a positive number!";
-
-    ValidateInput<string> validateInput;
-
-    Calculator calc;
+    readonly ValidateInput<string> validateInput;
+    readonly Calculator calc;
 
     public JourneyCalculator(Calculator calculator, ValidateInput<string> validateInput)
 	{
@@ -31,10 +30,21 @@ public partial class JourneyCalculator : ContentPage
         if (validateInput.ValidateInputNumber(distanceText) is not null)
         {
             DistanceEntry.Text = ENTER_A_POS_NUMBER;
-            calc.distance = -1;
+            calc.Distance = -1;
         }
         else
-            calc.distance = Convert.ToDouble(DistanceEntry.Text);
+        {
+            try
+            {
+                calc.Distance = Convert.ToDouble(DistanceEntry.Text);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.LogException(ex);
+                Navigation.PushAsync(new ExceptionPage());
+            }
+        }
+            
     }
 
     private void AddConsumptionButtonClicked(object sender, EventArgs e)
@@ -44,10 +54,21 @@ public partial class JourneyCalculator : ContentPage
         if (!validateInput.ValidateInputPositiveNumber(consumptionText))
         {
             ConsumptionEntry.Text = ENTER_A_POS_NUMBER;
-            calc.consumption = -1;
+            calc.Consumption = -1;
         }
         else
-            calc.consumption = Convert.ToDouble(ConsumptionEntry.Text);
+        {
+            try
+            {
+                calc.Consumption = Convert.ToDouble(ConsumptionEntry.Text);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.LogException(ex);
+                Navigation.PushAsync(new ExceptionPage());
+            }
+        }
+            
     }
 
     private void AddElectricityButtonClicked(object sender, EventArgs e)
@@ -57,10 +78,21 @@ public partial class JourneyCalculator : ContentPage
         if (!validateInput.ValidateInputPositiveNumber(electricityPriceText))
         {
             ElectricityPriceEntry.Text = ENTER_A_POS_NUMBER;
-            calc.electricityPrice = -1;
+            calc.ElectricityPrice = -1;
         }
         else
-            calc.electricityPrice = Convert.ToDouble(ElectricityPriceEntry.Text);
+        {
+            try
+            {
+                calc.ElectricityPrice = Convert.ToDouble(ElectricityPriceEntry.Text);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.LogException(ex);
+                Navigation.PushAsync(new ExceptionPage());
+            }
+        }
+            
     }
 
     private void EntryDistanceTextChanged(object sender, TextChangedEventArgs e)
@@ -89,10 +121,10 @@ public partial class JourneyCalculator : ContentPage
 
     private void CalculateTotalPriceButtonClicked(object sender, EventArgs e)
     {
-        double totalPrice = calc.calculatePrice();
-        if (totalPrice != -1 && !String.IsNullOrEmpty(DistanceEntry.Text)
-                             && !String.IsNullOrEmpty(ConsumptionEntry.Text)
-                             && !String.IsNullOrEmpty(ElectricityPriceEntry.Text))
+        double totalPrice = calc.CalculatePrice();
+        if (totalPrice != -1 && !string.IsNullOrEmpty(DistanceEntry.Text)
+                             && !string.IsNullOrEmpty(ConsumptionEntry.Text)
+                             && !string.IsNullOrEmpty(ElectricityPriceEntry.Text))
         { 
             CalcedValue.Text = totalPrice.ToString() + "€";
         }
@@ -102,11 +134,11 @@ public partial class JourneyCalculator : ContentPage
 
     private async void CalculateFullChargePriceButtonClicked(object sender, EventArgs e)
     {
-        Car car = this.Handler.MauiContext.Services.GetService<Car>();
-        CarLoaderSaver carLoaderSaver = this.Handler.MauiContext.Services.GetService<CarLoaderSaver>();
-        Price price = this.Handler.MauiContext.Services.GetService<Price>();
+        Car car = Handler.MauiContext.Services.GetService<Car>();
+        CarLoaderSaver carLoaderSaver = Handler.MauiContext.Services.GetService<CarLoaderSaver>();
+        Price price = Handler.MauiContext.Services.GetService<Price>();
 
-        await carLoaderSaver.Load(car);
+        await CarLoaderSaver.Load(car);
 
         //FullChargePrice.Text = calc.calculateFullChargePrice(car.BatteryCapacity, car.BatteryLevel, price.getCurrentPrice()).ToString() + "€";
 

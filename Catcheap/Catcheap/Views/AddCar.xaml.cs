@@ -8,10 +8,9 @@ namespace Catcheap.Views;
 
 public partial class AddCar : ContentPage
 {
-
-    Car car;
-    CarLoaderSaver carLoaderSaver;
-    ValidateInput<string> validateInput;
+    readonly Car car;
+    readonly CarLoaderSaver carLoaderSaver;
+    readonly ValidateInput<string> validateInput;
     
     public AddCar(Car car, CarLoaderSaver carLoaderSaver, ValidateInput<string> validateInput)
     {
@@ -25,7 +24,6 @@ public partial class AddCar : ContentPage
 
     private async void SaveClicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Alert", "Invalid input!", "OK");
         if (CheckTextFields())
         {
             Placeholder.Text = "Input successful!";
@@ -33,17 +31,16 @@ public partial class AddCar : ContentPage
             car.SetAll(manufacturer: ManufacturerEntry.Text, model: ModelEntry.Text, mileage: MileageEntry.Text,
                        batteryCapacity: BatteryCapacityEntry.Text, consumption: ConsumptionEntry.Text, batteryLevel: BatteryLevelEntry.Text);
 
-            await carLoaderSaver.Save(car);
+            await CarLoaderSaver.Save(car);
 
-            await carLoaderSaver.Load(car);
+            await CarLoaderSaver.Load(car);
 
         }
 
         else
         {
-            Placeholder.Text = "Invalid input!";
+            await DisplayAlert("Invalid input!", "Please check input values.", "OK");
         }
-
     }
 
     public bool CheckTextFields()

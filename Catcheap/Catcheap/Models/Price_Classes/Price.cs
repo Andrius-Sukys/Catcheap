@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Catcheap.Models.Price_Classes;
+﻿namespace Catcheap.Models.Price_Classes;
 public class Price
 {
 	public Price(List<DayPrice> dayPrices, PriceReader priceReader)
@@ -9,14 +7,13 @@ public class Price
 		this.reader = priceReader;
 	}
 
-	PriceReader reader;
+	readonly PriceReader reader;
+	readonly List<DayPrice> dayPrices;
 
-	List<DayPrice> dayPrices;
-
-	public string getPriceString()
+	public string GetPriceString()
 	{
 
-		reader.readPrices(dayPrices);
+		PriceReader.ReadPrices(dayPrices);
 
 		string rez = "";
 
@@ -28,17 +25,17 @@ public class Price
 		return rez;
 	}
 
-	public double getCurrentPrice()
+	public double GetCurrentPrice()
 	{
 
 		DateTime currentDateTime = DateTime.Now;
 
-        reader.readPrices(dayPrices);
+		PriceReader.ReadPrices(dayPrices);
 
 		foreach(DayPrice dayPrice in dayPrices)
 		{
-			if(dayPrice.date == DateOnly.FromDateTime(currentDateTime)){
-				return dayPrice.getHourPrice(currentDateTime.Hour);
+			if(dayPrice.Date == DateOnly.FromDateTime(currentDateTime)){
+				return dayPrice.GetHourPrice(currentDateTime.Hour);
 			}
 		}
 
@@ -49,15 +46,15 @@ public class Price
     {
         DateTime currentDateTime = DateTime.Now;
 
-        reader.readPrices(dayPrices);
+		PriceReader.ReadPrices(dayPrices);
 
 		string cheapest = null;
 
         for (int i = 0; i < dayPrices.Count; i++)
         {
-            if (dayPrices[i].date == DateOnly.FromDateTime(currentDateTime))
+            if (dayPrices[i].Date == DateOnly.FromDateTime(currentDateTime))
             {
-				cheapest = dayPrices[i].getDaysCheapestPriceAndHourString(DateTime.Now.Hour);
+				cheapest = dayPrices[i].GetDaysCheapestPriceAndHourString(DateTime.Now.Hour);
             }
         }
 

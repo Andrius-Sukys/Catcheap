@@ -12,11 +12,11 @@ namespace TestProject
         [InlineData(10)]
         public void calculatePriceTest(double value)
         {
-            calc.distance = value;
-            calc.consumption = value;
-            calc.electricityPrice = value;
+            calc.Distance = value;
+            calc.Consumption = value;
+            calc.ElectricityPrice = value;
 
-            Double ActualResult = calc.calculatePrice();
+            Double ActualResult = calc.CalculatePrice();
 
             Assert.True(ActualResult == value, "Bad");
         }
@@ -25,7 +25,7 @@ namespace TestProject
         public void calculateFullChargePriceTest()
         {
 
-            double ActualResult = calc.calculateFullChargePrice(100, 50, 0.1);
+            double ActualResult = Calculator.CalculateFullChargePrice(100, 50, 0.1);
 
             Assert.True(ActualResult == 5, "Bad");
         }

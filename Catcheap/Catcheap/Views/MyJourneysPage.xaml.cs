@@ -16,13 +16,13 @@ public partial class MyJourneysPage : ContentPage
 
     public void ReloadHistory()
     {
-        Placeholder.Text = fileIO.ReadTextFile("journeys.txt");
+        Placeholder.Text = FileIO.ReadTextFile("journeys.txt");
     }
 
     public void ClearHistory()
     {
         Placeholder.Text = "";
-        fileIO.ClearTextFile("journeys.txt");
+        FileIO.ClearTextFile("journeys.txt");
     }
 
     private void ClickedReloadHistory(object sender, EventArgs e)

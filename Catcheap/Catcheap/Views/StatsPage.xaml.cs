@@ -5,9 +5,8 @@ namespace Catcheap.Views;
 
 public partial class StatsPage : ContentPage
 {
-
-    Car car;
-    JourneysLoaderSaver journeysLoaderSaver;
+    readonly Car car;
+    readonly JourneysLoaderSaver journeysLoaderSaver;
 
     public StatsPage(Car car, JourneysLoaderSaver journeysLoaderSaver)
 	{
@@ -28,11 +27,11 @@ public partial class StatsPage : ContentPage
         Saturday.Text = "Saturday: " + Journeys.AverageDistance(car.GetJourneys().GetWeekDayJourneyList(DayOfWeek.Saturday)).ToString();
         Sunday.Text = "Sunday: " + Journeys.AverageDistance(car.GetJourneys().GetWeekDayJourneyList(DayOfWeek.Sunday)).ToString();
 
-        PastWeek.Text = "Past week: " + car.journeys.DistancePastWeek().ToString();
-        PastMonth.Text = "Past month: " + car.journeys.DistancePastMonth().ToString();
-        PastYear.Text = "Past year: " + car.journeys.DistancePastYear().ToString();
+        PastWeek.Text = "Past week: " + car.Journeys.DistancePastWeek().ToString();
+        PastMonth.Text = "Past month: " + car.Journeys.DistancePastMonth().ToString();
+        PastYear.Text = "Past year: " + car.Journeys.DistancePastYear().ToString();
 
-        ThisMonth.Text = "This month (" + (DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture)) + "): " + car.journeys.DistanceThisMonth().ToString();
-        ThisYear.Text = "This year (" + (DateTime.Now.Year.ToString()) + "): "  + car.journeys.DistanceThisYear().ToString();
+        ThisMonth.Text = "This month (" + (DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture)) + "): " + car.Journeys.DistanceThisMonth().ToString();
+        ThisYear.Text = "This year (" + (DateTime.Now.Year.ToString()) + "): "  + car.Journeys.DistanceThisYear().ToString();
     }
 }

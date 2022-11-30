@@ -1,40 +1,37 @@
-﻿using System.ComponentModel;
-using Catcheap.Models.FileIO_Classes;
-
-namespace Catcheap.Models.Charge_Classes;
+﻿namespace Catcheap.Models.Charge_Classes;
 
 public class Charge
 {
     public Charge(double ChargingPower, TimeSpan StartOfCharge, TimeSpan EndOfCharge)
 
     {
-        chargingPower = ChargingPower;
-        startOfCharge = StartOfCharge;
-        endOfCharge = EndOfCharge;
-        durationCharge = calculateDurationOfCharge(EndOfCharge, StartOfCharge);
-        chargedKWh = calculateChargedKWh(chargingPower, durationCharge);
+        this.ChargingPower = ChargingPower;
+        this.StartOfCharge = StartOfCharge;
+        this.EndOfCharge = EndOfCharge;
+        DurationCharge = Charge.CalculateDurationOfCharge(EndOfCharge, StartOfCharge);
+        ChargedKWh = Charge.CalculateChargedKWh(this.ChargingPower, DurationCharge);
     }
-    public double chargingPower { get; set; }
+    public double ChargingPower { get; set; }
 
-    public TimeSpan startOfCharge { get; set; }
+    public TimeSpan StartOfCharge { get; set; }
 
-    public TimeSpan endOfCharge { get; set; }
+    public TimeSpan EndOfCharge { get; set; }
 
-    public TimeSpan durationCharge { get; set; }
+    public TimeSpan DurationCharge { get; set; }
 
-    public double chargedKWh { get; set; }
+    public double ChargedKWh { get; set; }
 
-    TimeSpan calculateDurationOfCharge(TimeSpan EndOfCharge, TimeSpan StartOfCharge)
+    static TimeSpan CalculateDurationOfCharge(TimeSpan EndOfCharge, TimeSpan StartOfCharge)
     {
         if (EndOfCharge > StartOfCharge)
             return EndOfCharge - StartOfCharge;
         else if (EndOfCharge < StartOfCharge)
-            return new TimeSpan(24, 0, 0) - StartOfCharge + EndOfCharge;
+            return TimeSpan.FromHours(24) - StartOfCharge + EndOfCharge;
         else
-            return new TimeSpan(0, 0, 0);
+            return TimeSpan.FromHours(0);
     }
 
-    double calculateChargedKWh(double ChargingPower, TimeSpan durationCharge)
+    static double CalculateChargedKWh(double ChargingPower, TimeSpan durationCharge)
     {
         return (ChargingPower * durationCharge.Hours + durationCharge.Minutes / 60 + durationCharge.Seconds / 3600) / 1000;
     }

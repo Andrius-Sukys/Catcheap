@@ -1,13 +1,10 @@
-﻿using System;
-using System.Globalization;
-
-namespace Catcheap.Models.Price_Classes;
+﻿namespace Catcheap.Models.Price_Classes;
 
 public class DayPrice
 {
 	public DayPrice(DateOnly date, String[] price)
 	{
-		this.date = date;
+		Date = date;
 
 		for(int i = 0; i < (price.Length - 1); i++)
 		{
@@ -16,16 +13,16 @@ public class DayPrice
 
 	}
 
-	public DateOnly date { get; set; }
+	public DateOnly Date { get; set; }
 
-	Double[] hourPrice = new double[24];
+	readonly double[] hourPrice = new double[24];
 
-	public double getHourPrice(int i)
+	public double GetHourPrice(int i)
 	{
 		return hourPrice[i];
 	}
 
-	public string getDaysCheapestPriceAndHourString(int currentHour)
+	public string GetDaysCheapestPriceAndHourString(int currentHour)
 	{
 		double cheapestPrice = hourPrice[currentHour];
 		double cheapestHour = currentHour;
@@ -36,8 +33,6 @@ public class DayPrice
                 cheapestPrice = hourPrice[i];
 				cheapestHour = i;
             }
-				
-
 		}
 
         return cheapestPrice.ToString() + " €/kWh\n" + cheapestHour.ToString() + ":00 - " + (cheapestHour+1)%24 + ":00";
@@ -47,7 +42,7 @@ public class DayPrice
 	{
 		string rez = "";
 
-		rez += date.ToString() + '\n';
+		rez += Date.ToString() + '\n';
 
         for (int i = 0; i < hourPrice.Length; i++)
         {

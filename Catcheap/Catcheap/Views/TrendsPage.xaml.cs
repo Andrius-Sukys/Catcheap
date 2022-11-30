@@ -12,9 +12,9 @@ public partial class TrendsPage : ContentPage
     private void LoadButtonClicked(object sender, EventArgs e)
     {
 
-        Price price = this.Handler.MauiContext.Services.GetService<Price>();
+        Price price = Handler.MauiContext.Services.GetService<Price>();
 
-        Placeholder.Text = price.getPriceString();
+        Placeholder.Text = price.GetPriceString();
 
     }
 }

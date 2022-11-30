@@ -5,7 +5,7 @@ public class Car : Vehicle
 
     public Car(Journeys journeys)
     {
-        this.journeys = journeys;
+        this.Journeys = journeys;
     }
 
     public double Mileage { get; set; }

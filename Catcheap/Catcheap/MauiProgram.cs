@@ -1,5 +1,4 @@
 using Catcheap.Models.Calculator_Classes;
-using Catcheap.Models.ChargingStations_Classes;
 using Catcheap.Models.FileIO_Classes;
 using Catcheap.Models.Journeys_Classes;
 using Catcheap.Models.Price_Classes;
@@ -8,11 +7,9 @@ using Catcheap.Models.Validation_Classes;
 using Catcheap.Models.Vehicles_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Models.Vehicles_Classes.Other_Classes;
+using Catcheap.Models.Exception_Classes;
 using Catcheap.Views;
-using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 using Catcheap.ViewModel;
-using Plugin.LocalNotification;
 using Catcheap.Models.Notification_Classes;
 using Catcheap.Client;
 
@@ -25,7 +22,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-            .UseLocalNotification()
+            //.UseLocalNotification()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -39,6 +36,10 @@ public static class MauiProgram
         builder = RegisterModels(builder);
         builder.Services.AddSingleton<Charges>();
         builder.Services.AddSingleton<ChargeViewModel>();
+
+        ApiClient.Init();
+
+        StoragePermissions.Init();
 
         return builder.Build();
     }
@@ -56,8 +57,6 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<PricePage>();
         mauiAppBuilder.Services.AddTransient<StatsPage>();
         mauiAppBuilder.Services.AddTransient<TrendsPage>();
-
-        ApiClient.Init();
 
         return mauiAppBuilder;
     }

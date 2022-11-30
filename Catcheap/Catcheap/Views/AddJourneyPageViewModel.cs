@@ -9,16 +9,16 @@ using Plugin.LocalNotification;
 
 namespace Catcheap.Views;
 
-public class AddJourneyPageViewModel : INotifyPropertyChanged
+public class AddJourneyPageViewModel
 {
     public JourneyField JourneyField { get; }
 
-    Car car;
-    CarLoaderSaver carLoaderSaver;
-    ScooterLoaderSaver scooterLS;
-    VehicleScooter scooter;
-    FileIO fileIO;
-    JourneysLoaderSaver journeysLoaderSaver;
+    readonly Car car;
+    readonly CarLoaderSaver carLoaderSaver;
+    readonly ScooterLoaderSaver scooterLS;
+    readonly VehicleScooter scooter;
+    readonly FileIO fileIO;
+    readonly JourneysLoaderSaver journeysLoaderSaver;
 
     public AddJourneyPageViewModel(Car car, CarLoaderSaver carLoaderSaver, ScooterLoaderSaver scooterLoaderSaver, VehicleScooter scooter, FileIO fileIO, JourneyField journeyField,
                                    JourneysLoaderSaver journeysLoaderSaver)
@@ -36,26 +36,21 @@ public class AddJourneyPageViewModel : INotifyPropertyChanged
 
     public ICommand PostJourneys { get; }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    void OnPropertyChanged(string name) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-
     public async void AddJourney()
     {
 
         if (JourneyField.JourneyDistance != null && JourneyField.JourneyDistance >= 0)
         {
-            fileIO.UpdateTextFile("Distance: " + JourneyField.JourneyDistance + " Date: " + JourneyField.JourneyDate + '\n', "journeys.txt");
+            FileIO.UpdateTextFile("Distance: " + JourneyField.JourneyDistance + " Date: " + JourneyField.JourneyDate + '\n', "journeys.txt");
 
             if (JourneyField.SelectedItem == "Car")
             {   
-                await carLoaderSaver.Load(car);
+                await CarLoaderSaver.Load(car);
                 journeysLoaderSaver.Load(car.GetJourneys());
 
                 car.UpdateCarFieldsAfterJourney(journeyDistance: (double)JourneyField.JourneyDistance);
 
-                await carLoaderSaver.Save(car);
+                await CarLoaderSaver.Save(car);
                 //journeysLoaderSaver.Save(car.GetJourneys());
             }
 

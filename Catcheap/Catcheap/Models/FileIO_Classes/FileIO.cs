@@ -1,53 +1,90 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Catcheap.Models.Exception_Classes;
 
 namespace Catcheap.Models.FileIO_Classes
 {
     public class FileIO
     {
-        public void WriteTextToFile(string text, string targetFileName)
+        public FileIO ()
+        {
+        }
+        public static void WriteTextToFile(string text, string targetFileName)
         {
             string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);
 
-            File.WriteAllText(_fileName, text);
+            try
+            {
+                File.WriteAllText(_fileName, text);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.LogException(ex);
+            }
 
         }
 
-        public void UpdateTextFile(string text, string targetFileName)
+        public static void UpdateTextFile(string text, string targetFileName)
         {
             string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);
 
-            File.AppendAllText(_fileName, text);
+            try
+            {
+                File.AppendAllText(_fileName, text);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.LogException(ex);
+            }
 
         }
 
-        public string ReadTextFile(string targetFileName)
+        public static string ReadTextFile(string targetFileName)
         {
             string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);
 
-            if (File.Exists(_fileName))
-                return File.ReadAllText(_fileName);
-            else
+            try
+            {
+                if (File.Exists(_fileName))
+                    return File.ReadAllText(_fileName);
+                else
+                    return null;
+            }
+            catch
+            {
                 return null;
+            }
+            
         }
 
-        public string ReadTextFileCustom(string targetFileName)
+        public static string ReadTextFileCustom(string targetFileName)
         {
             string _fileName = Path.Combine(FileSystem.AppDataDirectory, targetFileName);
-            if (File.Exists(_fileName))
-                return File.ReadAllText(_fileName);
-            else
+
+            try
+            {
+                if (File.Exists(_fileName))
+                    return File.ReadAllText(_fileName);
+                else
+                    return null;
+            }
+            catch
+            {
                 return null;
+            }
+                
         }
 
-        public void ClearTextFile(string targetFileName)
+        public static void ClearTextFile(string targetFileName)
         {
             string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), targetFileName);
 
-            File.WriteAllText(_fileName, string.Empty);
+            try
+            {
+                File.WriteAllText(_fileName, string.Empty);
+            }
+            catch
+            {
+
+            }
         }
 
     }

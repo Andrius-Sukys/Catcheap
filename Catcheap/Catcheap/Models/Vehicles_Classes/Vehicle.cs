@@ -26,11 +26,11 @@ public class Vehicle
 
     public double BatteryLevel { get; set; }
 
-    public Journeys journeys { get; set; }
+    public Journeys Journeys { get; set; }
 
     public Journeys GetJourneys()
     {
-        return journeys;
+        return Journeys;
     }
 
     public void DecreaseExpectedRange(double JourneyDistance)

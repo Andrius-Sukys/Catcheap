@@ -8,24 +8,24 @@ namespace Catcheap
     public class JourneysLoaderSaver : ILoader<Journeys>, ISaver<Journeys>
     {
 
-        private FileIO file;
+        private readonly FileIO File;
 
         public JourneysLoaderSaver(FileIO fileIO)
         {
-            this.file = fileIO;
+            File = fileIO;
         }
 
         public void Load(Journeys journeys, String fileName = "journeys.txt")
         {
             journeys.ClearList();
 
-            string temp = file.ReadTextFile(fileName);
+            string temp = FileIO.ReadTextFile(fileName);
 
             if (temp != null)
             {
-                foreach (Match match in Regex.Matches(temp, @"\bDistance: \S+ Date: \S+"))
+                foreach (Match match in Regex.Matches(temp, @"\bDistance: \S+ Date: \S+").Cast<Match>())
                 {
-                    Journey newDistance = new Journey();
+                    Journey newDistance = new();
                     string tempDate = Regex.Replace(Regex.Match(match.Value, @"\bDate: \S+").Value, @"\bDate: ", "");
                     string tempDist = Regex.Replace(Regex.Match(match.Value, @"\bDistance: \S+").Value, @"\bDistance: ", "");
 
@@ -42,7 +42,7 @@ namespace Catcheap
         {
             journeys.SortList();
 
-            file.WriteTextToFile(journeys.ToString(), fileName);
+            FileIO.WriteTextToFile(journeys.ToString(), fileName);
         }
     }
 }

@@ -8,7 +8,7 @@ public class VehicleScooter : Vehicle
 
     public VehicleScooter(Journeys journeys)
     {
-        this.journeys = journeys;
+        this.Journeys = journeys;
     }
     public double Weight { get; set; }
 

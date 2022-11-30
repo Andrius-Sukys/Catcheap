@@ -16,12 +16,12 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
 
         public ScooterLoaderSaver(FileIO fileIO)
         {
-            this.file = fileIO;
+            file = fileIO;
         }
 
         public void Load(VehicleScooter scooter, string fileName = "scooterinfo.txt")
         {
-            string temp = file.ReadTextFile(fileName);
+            string temp = FileIO.ReadTextFile(fileName);
 
             if (temp != null)
             {
@@ -73,7 +73,7 @@ namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
         public void Save(VehicleScooter scooter, string fileName = "scooterinfo.txt")
         {
 
-            file.WriteTextToFile((int)ScooterPattern.Manufacturer + " " + scooter.Manufacturer + '\n' +
+            FileIO.WriteTextToFile((int)ScooterPattern.Manufacturer + " " + scooter.Manufacturer + '\n' +
                                  (int)ScooterPattern.Model + " " + scooter.Model + '\n' +
                                  (int)ScooterPattern.BatteryCapacity + " " + scooter.BatteryCapacity + '\n' +
                                  (int)ScooterPattern.Consumption + " " + scooter.Consumption + '\n' +

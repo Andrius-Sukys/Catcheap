@@ -1,146 +1,156 @@
-﻿using System.IO.Enumeration;
-using System.Net.Http.Headers;
-using System.Text.RegularExpressions;
-using Catcheap.Client;
+﻿using Catcheap.Client;
+using Catcheap.Models.Exception_Classes;
 using Catcheap.Models.FileIO_Classes;
-using Catcheap.Models.FileIO_Classes.Interfaces;
 using Catcheap.Models.Journeys_Classes;
 
-namespace Catcheap.Models.Vehicles_Classes.Cars_Classes
+namespace Catcheap.Models.Vehicles_Classes.Cars_Classes;
+
+public class CarLoaderSaver 
 {
-    public class CarLoaderSaver 
+    private FileIO file;
+
+    public CarLoaderSaver()
     {
-        private FileIO file;
+    }
 
-        public CarLoaderSaver()
+    public CarLoaderSaver(FileIO fileIO)
+    {
+        file = fileIO;
+    }
+
+    public static async Task Load(Car car) //, string fileName = "carinfo.txt")
+    {
+        //string temp = file.ReadTextFile(fileName);
+
+        //foreach (Match match in Regex.Matches(temp, @"^\b\d .*", RegexOptions.Multiline))
+        //{
+        //    int en = short.Parse(Regex.Match(match.Value, @"^\b\d").Value);
+
+        //    switch (en)
+        //    {
+        //        case (int)CarPattern.Manufacturer:
+        //            car.Manufacturer = Regex.Replace(match.Value, @"^\b\d ", "");
+        //            break;
+        //        case (int)CarPattern.Model:
+        //            car.Model = Regex.Replace(match.Value, @"^\b\d ", "");
+        //            break;
+        //        case (int)CarPattern.Mileage:
+        //            car.Mileage = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
+        //            break;
+        //        case (int)CarPattern.ExpectedRange:
+        //            car.ExpectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
+        //            break;
+        //        case (int)CarPattern.BatteryCapacity:
+        //            car.BatteryCapacity = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
+        //            break;
+        //        case (int)CarPattern.Consumption:
+        //            car.Consumption = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
+        //            break;
+        //        case (int)CarPattern.BatteryLevel:
+        //            car.BatteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
+        //            break;
+        //        default: break;
+        //    }
+        //}
+
+        //using (var client = new HttpClient())
+        //{
+        //    client.BaseAddress = new Uri("http://10.0.2.2:7172/");
+        //    client.DefaultRequestHeaders.Accept.Clear();
+        //    client.DefaultRequestHeaders.Accept.Add(
+        //        new MediaTypeWithQualityHeaderValue("application/json"));
+
+        try
         {
-        }
+            HttpResponseMessage response = await ApiClient.client.GetAsync("api/Cars");
 
-        public CarLoaderSaver(FileIO fileIO)
-        {
-            this.file = fileIO;
-        }
+            if (response.IsSuccessStatusCode)
+            {
+                List<Car> list = await response.Content.ReadAsAsync<List<Car>>();
 
-        public async Task Load(Car car, string fileName = "carinfo.txt")
-        {
-            //string temp = file.ReadTextFile(fileName);
-
-            //foreach (Match match in Regex.Matches(temp, @"^\b\d .*", RegexOptions.Multiline))
-            //{
-            //    int en = short.Parse(Regex.Match(match.Value, @"^\b\d").Value);
-
-            //    switch (en)
-            //    {
-            //        case (int)CarPattern.Manufacturer:
-            //            car.Manufacturer = Regex.Replace(match.Value, @"^\b\d ", "");
-            //            break;
-            //        case (int)CarPattern.Model:
-            //            car.Model = Regex.Replace(match.Value, @"^\b\d ", "");
-            //            break;
-            //        case (int)CarPattern.Mileage:
-            //            car.Mileage = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
-            //            break;
-            //        case (int)CarPattern.ExpectedRange:
-            //            car.ExpectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
-            //            break;
-            //        case (int)CarPattern.BatteryCapacity:
-            //            car.BatteryCapacity = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
-            //            break;
-            //        case (int)CarPattern.Consumption:
-            //            car.Consumption = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
-            //            break;
-            //        case (int)CarPattern.BatteryLevel:
-            //            car.BatteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
-            //            break;
-            //        default: break;
-            //    }
-            //}
-
-            //using (var client = new HttpClient())
-            //{
-            //    client.BaseAddress = new Uri("http://10.0.2.2:7172/");
-            //    client.DefaultRequestHeaders.Accept.Clear();
-            //    client.DefaultRequestHeaders.Accept.Add(
-            //        new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage response = await ApiClient.client.GetAsync("api/Cars");
-                if (response.IsSuccessStatusCode)
+                if (list.Count > 0)
                 {
-                    List<Car> list = await response.Content.ReadAsAsync<List<Car>>();
+                    car.Manufacturer = list[0].Manufacturer;
+                    car.Model = list[0].Model;
+                    car.ExpectedRange = list[0].ExpectedRange;
+                    car.BatteryCapacity = list[0].BatteryCapacity;
+                    car.Consumption = list[0].Consumption;
+                    car.BatteryLevel = Math.Round(list[0].BatteryLevel, 2);
+                    car.Journeys = list[0].Journeys;
+                    car.Mileage = list[0].Mileage;
+                }
 
-                    if (list.Count > 0)
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionLogger.LogException(ex);
+        }
+    }
+
+    public static async Task Save(Car car, string fileName = "carinfo.txt")
+    {
+        //file.WriteTextToFile((int)CarPattern.Manufacturer + " " + car.Manufacturer + '\n' +
+        //                     (int)CarPattern.Model + " " + car.Model + '\n' +
+        //                     (int)CarPattern.Mileage + " " + car.Mileage + '\n' +
+        //                     (int)CarPattern.ExpectedRange + " " + car.ExpectedRange + '\n' +
+        //                     (int)CarPattern.BatteryCapacity + " " + car.BatteryCapacity + '\n' +
+        //                     (int)CarPattern.Consumption + " " + car.Consumption + '\n' +
+        //                     (int)CarPattern.BatteryLevel + " " + car.BatteryLevel + '\n', "carinfo.txt");
+        //using (var client = new HttpClient())
+        //{
+        //    client.BaseAddress = new Uri("http://10.0.2.2:7172/");
+        //    client.DefaultRequestHeaders.Accept.Clear();
+        //    client.DefaultRequestHeaders.Accept.Add(
+        //        new MediaTypeWithQualityHeaderValue("application/json"));
+
+        try
+        { 
+            HttpResponseMessage response = await ApiClient.client.GetAsync("api/Cars");
+            if (response.IsSuccessStatusCode)
+            {
+                List<Car> list = await response.Content.ReadAsAsync<List<Car>>();
+
+                if (list.Count > 0)
+                {
+
+                    car.VehicleId = list[0].VehicleId;
+                    car.Journeys.JourneysId = list[0].Journeys.JourneysId;
+                    car.Journeys.CarVehicleId = list[0].VehicleId;
+                    car.Journeys.DistanceList = new List<Journey>();
+
+                    try
                     {
-                        car.Manufacturer = list[0].Manufacturer;
-                        car.Model = list[0].Model;
-                        car.ExpectedRange = list[0].ExpectedRange;
-                        car.BatteryCapacity = list[0].BatteryCapacity;
-                        car.Consumption = list[0].Consumption;
-                        car.BatteryLevel = list[0].BatteryLevel;
-                        car.journeys = list[0].journeys;
-                        car.Mileage = list[0].Mileage;
+                        HttpResponseMessage resp = await ApiClient.client.PutAsJsonAsync($"api/Cars/{car.VehicleId}", car);
+                        if (resp.IsSuccessStatusCode) { }
                     }
-                    
+                    catch (Exception ex)
+                    {
+                        ExceptionLogger.LogException(ex);
+                    }
                 }
                 else
                 {
-                    throw new Exception("Bad get");
-                }
-        }
-
-        public async Task Save(Car car, string fileName = "carinfo.txt")
-        {
-            //file.WriteTextToFile((int)CarPattern.Manufacturer + " " + car.Manufacturer + '\n' +
-            //                     (int)CarPattern.Model + " " + car.Model + '\n' +
-            //                     (int)CarPattern.Mileage + " " + car.Mileage + '\n' +
-            //                     (int)CarPattern.ExpectedRange + " " + car.ExpectedRange + '\n' +
-            //                     (int)CarPattern.BatteryCapacity + " " + car.BatteryCapacity + '\n' +
-            //                     (int)CarPattern.Consumption + " " + car.Consumption + '\n' +
-            //                     (int)CarPattern.BatteryLevel + " " + car.BatteryLevel + '\n', "carinfo.txt");
-            //using (var client = new HttpClient())
-            //{
-            //    client.BaseAddress = new Uri("http://10.0.2.2:7172/");
-            //    client.DefaultRequestHeaders.Accept.Clear();
-            //    client.DefaultRequestHeaders.Accept.Add(
-            //        new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage response = await ApiClient.client.GetAsync("api/Cars");
-                if (response.IsSuccessStatusCode)
-                {
-                    List<Car> list = await response.Content.ReadAsAsync<List<Car>>();
-
-                    if (list.Count > 0)
-                    {
-
-                        car.VehicleId = list[0].VehicleId;
-                        car.journeys.JourneysId = list[0].journeys.JourneysId;
-                        car.journeys.CarVehicleId = list[0].VehicleId;
-                        car.journeys.DistanceList = new List<Journey>();
-
-                        HttpResponseMessage resp = await ApiClient.client.PutAsJsonAsync($"api/Cars/{car.VehicleId}", car);
-                        if (resp.IsSuccessStatusCode) { }
-                        else
-                        {
-                            throw new Exception(resp.ToString());
-                        }
-
-                    }
-                    else
+                    try
                     {
                         HttpResponseMessage resp = await ApiClient.client.PostAsJsonAsync("api/Cars", car);
                         if (resp.IsSuccessStatusCode) { }
-                        else
-                        {
-                            throw new Exception("Bad post");
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionLogger.LogException(ex);
                     }
                 }
-                else
-                {
-                    throw new Exception("Bad get");
-                }
-            
-
+            }
+            else
+            {
+                throw new Exception("Bad get");
+            }
         }
-
+        catch (Exception ex)
+        {
+            ExceptionLogger.LogException(ex);
+        }
     }
+
 }

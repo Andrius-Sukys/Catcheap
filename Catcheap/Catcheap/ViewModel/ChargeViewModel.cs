@@ -10,14 +10,18 @@ namespace Catcheap.ViewModel;
 
 public partial class ChargeViewModel : ObservableObject
 {
-
-    CarLoaderSaver carLoaderSaver;
-    Car car;
-    ScooterLoaderSaver scooterLoaderSaver;
-    VehicleScooter scooter;
+    readonly CarLoaderSaver carLoaderSaver;
+    readonly Car car;
+    readonly ScooterLoaderSaver scooterLoaderSaver;
+    readonly VehicleScooter scooter;
 
     public ChargeViewModel(CarLoaderSaver carLoaderSaver, Car car, VehicleScooter scooter, ScooterLoaderSaver scooterLoaderSaver)
     {
+        this.carLoaderSaver = carLoaderSaver;
+        this.car = car;
+        this.scooter = scooter;
+        this.scooterLoaderSaver = scooterLoaderSaver;
+
         Charges = new ObservableCollection<Charge>();
     }
 
@@ -43,27 +47,27 @@ public partial class ChargeViewModel : ObservableObject
     double chargedKWh;
 
     [ICommand]
-    void Add()
+    async void Add()
     {
-        if(chargingPower != null && startOfCharge != null && endOfCharge != null)
+        if (chargingPower != null && startOfCharge != null && endOfCharge != null)
         {
             Charge newCharge = new Charge((double)chargingPower, (TimeSpan)startOfCharge, (TimeSpan)endOfCharge);
             Charges.Add(newCharge);
 
-            if(SelectedVehicle == "Car")
+            if (SelectedVehicle == "Car")
             {
-                carLoaderSaver.Load(car);
+                await CarLoaderSaver.Load(car);
 
-                car.UpdateFieldsAfterCharging(newCharge.chargedKWh);
+                car.UpdateFieldsAfterCharging(newCharge.ChargedKWh);
 
-                carLoaderSaver.Save(car);
+                await CarLoaderSaver.Save(car);
             }
 
             if (SelectedVehicle == "Scooter")
             {
                 scooterLoaderSaver.Load(scooter);
 
-                scooter.UpdateFieldsAfterCharging(newCharge.chargedKWh);
+                scooter.UpdateFieldsAfterCharging(newCharge.ChargedKWh);
 
                 scooterLoaderSaver.Save(scooter);
             }

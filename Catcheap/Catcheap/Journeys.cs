@@ -11,6 +11,8 @@ namespace Catcheap
         public  List<Journey> DistanceList { get; set; }
         private  List<Journey> HelperList { get; set; }
 
+        Journey tempJourney;
+
         public int CarVehicleId { get; set; }
 
         public Journeys(List<Journey> journeyList, List<Journey> helpList)
@@ -45,11 +47,10 @@ namespace Catcheap
                     if(dayJourney.Date == journey.Date)
                     {
                         inDayJourney = true;
-                        Journey newJourney = new Journey();
-                        newJourney.Date = dayJourney.Date;
-                        newJourney.Dist = dayJourney.Dist + journey.Dist;
+                        tempJourney.Date = dayJourney.Date;
+                        tempJourney.Dist = dayJourney.Dist + journey.Dist;
                         DayJourneyList.Remove(dayJourney);
-                        DayJourneyList.Add(newJourney);
+                        DayJourneyList.Add(tempJourney);
                         break;
                     }
                 }

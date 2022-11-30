@@ -62,23 +62,6 @@
             </StackLayout>
 
         </Grid>
-    
-    
-
-        <CollectionView ItemsSource="{Binding Charges}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Label Text="{Binding SelectedVehicle}"/>
-                        <Label Text="{Binding ChargingPower}"/>
-                        <Label Text="{Binding StartOfCharge}"/>
-                        <Label Text="{Binding EndOfCharge}"/>
-                        <Label Text="{Binding DurationCharge}"/>
-                        <Label Text="{Binding ChargedKWh}"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
 
     </VerticalStackLayout>
 </ContentPage>
