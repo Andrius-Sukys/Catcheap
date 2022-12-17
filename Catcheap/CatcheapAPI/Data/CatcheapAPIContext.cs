@@ -15,10 +15,10 @@ namespace CatcheapAPI.Data
         {
         }
 
-        public DbSet<CatcheapAPI.Models.Vehicles_Classes.Cars_Classes.Car> Car { get; set; } = default!;
+        public DbSet<Car> Car { get; set; } = default!;
 
-        public DbSet<CatcheapAPI.Models.Journeys_Classes.Journeys> Journeys { get; set; }
+        public DbSet<Journeys> Journeys { get; set; }
 
-        public DbSet<CatcheapAPI.Models.Journeys_Classes.Journey> Journey { get; set; }
+        public DbSet<Journey> Journey { get; set; }
     }
 }

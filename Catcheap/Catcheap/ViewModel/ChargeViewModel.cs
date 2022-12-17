@@ -2,9 +2,9 @@
 using Microsoft.Toolkit.Mvvm.Input;
 using Catcheap.Models.Charge_Classes;
 using System.Collections.ObjectModel;
-using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Views;
 using Catcheap.Models.Vehicles_Classes.Other_Classes;
+using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 
 namespace Catcheap.ViewModel;
 
@@ -14,6 +14,8 @@ public partial class ChargeViewModel : ObservableObject
     readonly Car car;
     readonly ScooterLoaderSaver scooterLoaderSaver;
     readonly VehicleScooter scooter;
+
+
 
     public ChargeViewModel(CarLoaderSaver carLoaderSaver, Car car, VehicleScooter scooter, ScooterLoaderSaver scooterLoaderSaver)
     {
@@ -51,6 +53,8 @@ public partial class ChargeViewModel : ObservableObject
     {
         if (chargingPower != null && startOfCharge != null && endOfCharge != null)
         {
+            Car car = null;
+            carService.UpdateAfterJourney(car, 12);
             Charge newCharge = new Charge((double)chargingPower, (TimeSpan)startOfCharge, (TimeSpan)endOfCharge);
             Charges.Add(newCharge);
 

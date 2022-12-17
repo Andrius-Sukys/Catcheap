@@ -9,9 +9,9 @@
     <TabBar>
 
         <ShellContent
-            Title="Dashboard"
-            Icon="icon_dashboard"
-            ContentTemplate="{DataTemplate views:DashboardPage}"/>
+            Title="Add a Car"
+            Icon="icon_car"
+            ContentTemplate="{DataTemplate views:AddCar}"/>
 
         <ShellContent
             Title="Vehicles"
@@ -32,11 +32,6 @@
             Title="Add a Journey"
             Icon="icon_add_journey"
             ContentTemplate="{DataTemplate views:AddJourneyPage}"/>
-
-        <ShellContent
-            Title="Add a Car"
-            Icon="icon_car"
-            ContentTemplate="{DataTemplate views:AddCar}"/>
 
         <ShellContent
             Title="Add a Scooter"
@@ -67,6 +62,11 @@
             Title="Calculator"
             Icon="icon_calculator"
             ContentTemplate="{DataTemplate views:JourneyCalculator}"/>
+
+        <ShellContent
+            Title="Dashboard"
+            Icon="icon_dashboard"
+            ContentTemplate="{DataTemplate views:DashboardPage}"/>
 
     </TabBar>
 

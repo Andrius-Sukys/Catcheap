@@ -50,7 +50,7 @@ public class AddJourneyPageViewModel
 
                 car.UpdateCarFieldsAfterJourney(journeyDistance: (double)JourneyField.JourneyDistance);
 
-                await CarLoaderSaver.Save(car);
+                //await CarLoaderSaver.Save(car);
                 //journeysLoaderSaver.Save(car.GetJourneys());
             }
 

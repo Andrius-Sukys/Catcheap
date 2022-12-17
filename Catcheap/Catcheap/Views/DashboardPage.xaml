@@ -5,7 +5,7 @@
              Title="Dashboard">
     <VerticalStackLayout>
         <Label 
-            Text="DASHBOARD PLACEHOLDER"
+            Text="Total trash"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

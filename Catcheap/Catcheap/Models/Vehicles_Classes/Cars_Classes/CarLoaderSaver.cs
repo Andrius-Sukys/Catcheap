@@ -1,5 +1,4 @@
 ﻿using Catcheap.Client;
-using Catcheap.Models.Exception_Classes;
 using Catcheap.Models.FileIO_Classes;
 using Catcheap.Models.Journeys_Classes;
 
@@ -18,55 +17,22 @@ public class CarLoaderSaver
         file = fileIO;
     }
 
-    public static async Task Load(Car car) //, string fileName = "carinfo.txt")
+    public static async Task Load(Car car)
     {
-        //string temp = file.ReadTextFile(fileName);
-
-        //foreach (Match match in Regex.Matches(temp, @"^\b\d .*", RegexOptions.Multiline))
-        //{
-        //    int en = short.Parse(Regex.Match(match.Value, @"^\b\d").Value);
-
-        //    switch (en)
-        //    {
-        //        case (int)CarPattern.Manufacturer:
-        //            car.Manufacturer = Regex.Replace(match.Value, @"^\b\d ", "");
-        //            break;
-        //        case (int)CarPattern.Model:
-        //            car.Model = Regex.Replace(match.Value, @"^\b\d ", "");
-        //            break;
-        //        case (int)CarPattern.Mileage:
-        //            car.Mileage = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
-        //            break;
-        //        case (int)CarPattern.ExpectedRange:
-        //            car.ExpectedRange = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
-        //            break;
-        //        case (int)CarPattern.BatteryCapacity:
-        //            car.BatteryCapacity = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
-        //            break;
-        //        case (int)CarPattern.Consumption:
-        //            car.Consumption = double.Parse(Regex.Replace(match.Value, @"^\b\d ", ""));
-        //            break;
-        //        case (int)CarPattern.BatteryLevel:
-        //            car.BatteryLevel = Math.Round(double.Parse(Regex.Replace(match.Value, @"^\b\d ", "")), 2);
-        //            break;
-        //        default: break;
-        //    }
-        //}
-
-        //using (var client = new HttpClient())
-        //{
-        //    client.BaseAddress = new Uri("http://10.0.2.2:7172/");
-        //    client.DefaultRequestHeaders.Accept.Clear();
-        //    client.DefaultRequestHeaders.Accept.Add(
-        //        new MediaTypeWithQualityHeaderValue("application/json"));
-
         try
         {
-            HttpResponseMessage response = await ApiClient.client.GetAsync("api/Cars");
+            System.Diagnostics.Debug.WriteLine("INSIDE THE CARLOADERSAVER METHOD LOAD");
+            HttpResponseMessage response = await ApiClient.client.GetAsync("api/Car");
+
+            System.Diagnostics.Debug.WriteLine("AFTER THE RESPONSE");
+
+            System.Diagnostics.Debug.WriteLine(response);
 
             if (response.IsSuccessStatusCode)
             {
                 List<Car> list = await response.Content.ReadAsAsync<List<Car>>();
+
+                Console.WriteLine(list);
 
                 if (list.Count > 0)
                 {
@@ -82,31 +48,16 @@ public class CarLoaderSaver
 
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            ExceptionLogger.LogException(ex);
         }
     }
 
     public static async Task Save(Car car, string fileName = "carinfo.txt")
     {
-        //file.WriteTextToFile((int)CarPattern.Manufacturer + " " + car.Manufacturer + '\n' +
-        //                     (int)CarPattern.Model + " " + car.Model + '\n' +
-        //                     (int)CarPattern.Mileage + " " + car.Mileage + '\n' +
-        //                     (int)CarPattern.ExpectedRange + " " + car.ExpectedRange + '\n' +
-        //                     (int)CarPattern.BatteryCapacity + " " + car.BatteryCapacity + '\n' +
-        //                     (int)CarPattern.Consumption + " " + car.Consumption + '\n' +
-        //                     (int)CarPattern.BatteryLevel + " " + car.BatteryLevel + '\n', "carinfo.txt");
-        //using (var client = new HttpClient())
-        //{
-        //    client.BaseAddress = new Uri("http://10.0.2.2:7172/");
-        //    client.DefaultRequestHeaders.Accept.Clear();
-        //    client.DefaultRequestHeaders.Accept.Add(
-        //        new MediaTypeWithQualityHeaderValue("application/json"));
-
         try
         { 
-            HttpResponseMessage response = await ApiClient.client.GetAsync("api/Cars");
+            HttpResponseMessage response = await ApiClient.client.GetAsync("api/Car");
             if (response.IsSuccessStatusCode)
             {
                 List<Car> list = await response.Content.ReadAsAsync<List<Car>>();
@@ -121,24 +72,22 @@ public class CarLoaderSaver
 
                     try
                     {
-                        HttpResponseMessage resp = await ApiClient.client.PutAsJsonAsync($"api/Cars/{car.VehicleId}", car);
+                        HttpResponseMessage resp = await ApiClient.client.PutAsJsonAsync($"api/Car/{car.VehicleId}", car);
                         if (resp.IsSuccessStatusCode) { }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        ExceptionLogger.LogException(ex);
                     }
                 }
                 else
                 {
                     try
                     {
-                        HttpResponseMessage resp = await ApiClient.client.PostAsJsonAsync("api/Cars", car);
+                        HttpResponseMessage resp = await ApiClient.client.PostAsJsonAsync("api/Car", car);
                         if (resp.IsSuccessStatusCode) { }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        ExceptionLogger.LogException(ex);
                     }
                 }
             }
@@ -147,9 +96,8 @@ public class CarLoaderSaver
                 throw new Exception("Bad get");
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            ExceptionLogger.LogException(ex);
         }
     }
 
