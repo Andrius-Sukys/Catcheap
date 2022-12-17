@@ -8,7 +8,6 @@ using Catcheap.Models.Price_Classes;
 using System.Net.Http.Headers;
 //using Android.Gms.Common.Apis;
 using Catcheap.Client;
-using Catcheap.Models.Exception_Classes;
 
 public partial class JourneyCalculator : ContentPage
 {
@@ -38,9 +37,8 @@ public partial class JourneyCalculator : ContentPage
             {
                 calc.Distance = Convert.ToDouble(DistanceEntry.Text);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ExceptionLogger.LogException(ex);
                 Navigation.PushAsync(new ExceptionPage());
             }
         }
@@ -62,9 +60,8 @@ public partial class JourneyCalculator : ContentPage
             {
                 calc.Consumption = Convert.ToDouble(ConsumptionEntry.Text);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ExceptionLogger.LogException(ex);
                 Navigation.PushAsync(new ExceptionPage());
             }
         }
@@ -86,9 +83,8 @@ public partial class JourneyCalculator : ContentPage
             {
                 calc.ElectricityPrice = Convert.ToDouble(ElectricityPriceEntry.Text);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ExceptionLogger.LogException(ex);
                 Navigation.PushAsync(new ExceptionPage());
             }
         }

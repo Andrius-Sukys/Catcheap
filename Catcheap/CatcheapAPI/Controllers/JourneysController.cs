@@ -23,14 +23,14 @@ namespace CatcheapAPI.Controllers
 
         // GET: api/Journeys
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Journeys>>> GetJourneys()
+        public async Task<ActionResult<IEnumerable<Journeys>>> GetAll()
         {
             return await _context.Journeys.ToListAsync();
         }
 
         // GET: api/Journeys/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Journeys>> GetJourneys(int id)
+        public async Task<ActionResult<Journeys>> GetById(int id)
         {
             var journeys = await _context.Journeys.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace CatcheapAPI.Controllers
         // PUT: api/Journeys/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutJourneys(int id, Journeys journeys)
+        public async Task<IActionResult> Put(int id, Journeys journeys)
         {
             if (id != journeys.JourneysId)
             {
@@ -60,7 +60,7 @@ namespace CatcheapAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!JourneysExists(id))
+                if (!Exists(id))
                 {
                     return NotFound();
                 }
@@ -76,7 +76,7 @@ namespace CatcheapAPI.Controllers
         // POST: api/Journeys
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Journeys>> PostJourneys(Journeys journeys)
+        public async Task<ActionResult<Journeys>> Post(Journeys journeys)
         {
 
             _context.Journeys.Add(journeys);
@@ -88,7 +88,7 @@ namespace CatcheapAPI.Controllers
 
         // DELETE: api/Journeys/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteJourneys(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var journeys = await _context.Journeys.FindAsync(id);
             if (journeys == null)
@@ -104,7 +104,7 @@ namespace CatcheapAPI.Controllers
             return NoContent();
         }
 
-        private bool JourneysExists(int id)
+        private bool Exists(int id)
         {
             return _context.Journeys.Any(e => e.JourneysId == id);
         }

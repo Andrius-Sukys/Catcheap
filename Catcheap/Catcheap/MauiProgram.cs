@@ -7,7 +7,6 @@ using Catcheap.Models.Validation_Classes;
 using Catcheap.Models.Vehicles_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Models.Vehicles_Classes.Other_Classes;
-using Catcheap.Models.Exception_Classes;
 using Catcheap.Views;
 using Catcheap.ViewModel;
 using Catcheap.Models.Notification_Classes;
@@ -38,8 +37,6 @@ public static class MauiProgram
         builder.Services.AddSingleton<ChargeViewModel>();
 
         ApiClient.Init();
-
-        StoragePermissions.Init();
 
         return builder.Build();
     }

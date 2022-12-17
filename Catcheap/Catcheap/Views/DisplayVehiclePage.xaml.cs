@@ -36,6 +36,8 @@ public partial class DisplayVehiclePage : ContentPage
 
     private async void CarButtonClicked(object sender, EventArgs e)
 	{
+
+        System.Diagnostics.Debug.WriteLine("CAR BUTTON CLICKED");
         Placeholder.Text = "";
 
         foreach (Vehicle vehicle in vehicleList)

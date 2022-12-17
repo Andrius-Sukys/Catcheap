@@ -1,5 +1,4 @@
 ﻿using Catcheap.Models.ChargingStations_Classes;
-using Catcheap.Models.Exception_Classes;
 
 namespace Catcheap.Views;
 
@@ -21,9 +20,8 @@ public partial class ChargingStations : ContentPage
             chargingStation.Value.GetChargingStations();
             Placeholder.Text = chargingStation.Value.DisplayChargingStations();
         }
-		catch (Exception ex)
+		catch (Exception)
 		{
-			await ExceptionLogger.LogException(ex);
             await Navigation.PushAsync(new ExceptionPage());
         }
 		
@@ -36,9 +34,8 @@ public partial class ChargingStations : ContentPage
             chargingStation.Value.GetChargingStations();
             Placeholder.Text = chargingStation.Value.FilterByCity("Vilnius");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            ExceptionLogger.LogException(ex);
             Navigation.PushAsync(new ExceptionPage());
         }
     }
@@ -50,9 +47,8 @@ public partial class ChargingStations : ContentPage
             chargingStation.Value.GetChargingStations();
             Placeholder.Text = chargingStation.Value.FilterByCity("Kaunas");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            ExceptionLogger.LogException(ex);
             Navigation.PushAsync(new ExceptionPage());
         }
     }
@@ -64,9 +60,8 @@ public partial class ChargingStations : ContentPage
             chargingStation.Value.GetChargingStations();
             Placeholder.Text = chargingStation.Value.FilterByCity("Klaipėda");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            ExceptionLogger.LogException(ex);
             Navigation.PushAsync(new ExceptionPage());
         }
     }

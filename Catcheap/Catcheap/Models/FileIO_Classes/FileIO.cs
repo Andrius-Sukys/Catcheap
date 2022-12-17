@@ -1,6 +1,4 @@
-﻿using Catcheap.Models.Exception_Classes;
-
-namespace Catcheap.Models.FileIO_Classes
+﻿namespace Catcheap.Models.FileIO_Classes
 {
     public class FileIO
     {
@@ -15,9 +13,9 @@ namespace Catcheap.Models.FileIO_Classes
             {
                 File.WriteAllText(_fileName, text);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ExceptionLogger.LogException(ex);
+
             }
 
         }
@@ -30,9 +28,9 @@ namespace Catcheap.Models.FileIO_Classes
             {
                 File.AppendAllText(_fileName, text);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ExceptionLogger.LogException(ex);
+
             }
 
         }

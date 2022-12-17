@@ -1,5 +1,4 @@
-﻿using Catcheap.Models.Exception_Classes;
-using Catcheap.Models.FileIO_Classes;
+﻿using Catcheap.Models.FileIO_Classes;
 
 namespace Catcheap.Models.Price_Classes;
 public class PriceReader
@@ -21,9 +20,8 @@ public class PriceReader
                 dayPrices.Add(new DayPrice(DateOnly.Parse(parts[0]), parts));
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            ExceptionLogger.LogException(ex);
         }
 
     }
