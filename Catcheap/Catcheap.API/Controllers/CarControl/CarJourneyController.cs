@@ -50,7 +50,7 @@ public class CarJourneyController : Controller
         return Ok(journey);
     }
 
-    [HttpPost]
+    [HttpPost("{carId}/AddJourney")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     public IActionResult CreateCarJourney(int carId, JourneyDTO journeyCreate)

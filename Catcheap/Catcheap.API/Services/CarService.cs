@@ -8,18 +8,28 @@ namespace Catcheap.API.Services;
 public class CarService : ICarService
 {
     private readonly ICarRepository _carRepository;   
+    private readonly ICarChargeService _chargeService;
 
-    public CarService(ICarRepository carRepository)
+    public CarService(ICarRepository carRepository, ICarChargeService chargeService)
     {
         _carRepository = carRepository;
+        _chargeService = chargeService;
     }
 
-    public void UpdateAfterJourney(Car car, double journeyDistance)
+    public void UpdateAfterJourney(Car car, CarJourney carJourney)
     {
-        DecreaseExpectedRange(car, journeyDistance);
-        DecreaseBatteryLevel(car, journeyDistance);
-        IncreaseMileage(car, journeyDistance);
+        DecreaseExpectedRange(car, carJourney.Distance);
+        DecreaseBatteryLevel(car, carJourney.Distance);
+        IncreaseMileage(car, carJourney.Distance);
     
+        _carRepository.UpdateCar(car);
+    }
+
+    public void UpdateAfterCharge(Car car, CarCharge carCharge)
+    {
+        IncreaseBatteryLevel(car, _chargeService.CalculateChargedKWh(carCharge));
+        CalculateExpectedRange(car);
+
         _carRepository.UpdateCar(car);
     }
 
@@ -52,4 +62,8 @@ public class CarService : ICarService
         car.Mileage += journeyDistance;
     }
 
+    public void CalculateExpectedRange(Car car)
+    {
+        car.ExpectedRange = Math.Round(car.BatteryCapacity * car.BatteryLevel * 0.01 / car.Consumption * 100, 2);
+    }
 }

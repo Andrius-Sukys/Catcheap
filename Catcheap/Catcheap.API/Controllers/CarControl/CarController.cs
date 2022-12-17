@@ -59,7 +59,7 @@ public class CarController : Controller
         return Ok(car);
     }
 
-    [HttpGet("{carId}/charge")]
+    [HttpGet("{carId}/GetCharges")]
     [ProducesResponseType(200, Type = typeof(CarCharge))]
     [ProducesResponseType(400)]
     public IActionResult GetChargesOfACar(int carId)
@@ -67,28 +67,28 @@ public class CarController : Controller
         if (!_carRepository.CarExists(carId))
             return NotFound();
 
-        var charge = _mapper.Map<ChargeDTO>(_chargeRepository.GetChargesOfACar(carId));
+        var charges = _mapper.Map<ChargeDTO>(_chargeRepository.GetChargesOfACar(carId));
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(charge);
+        return Ok(charges);
     }
 
-    [HttpGet("{carId}/journey")]
-    [ProducesResponseType(200, Type = typeof(CarCharge))]
+    [HttpGet("{carId}/GetJourneys")]
+    [ProducesResponseType(200, Type = typeof(CarJourney))]
     [ProducesResponseType(400)]
     public IActionResult GetJourneysOfACar(int carId)
     {
         if (!_carRepository.CarExists(carId))
             return NotFound();
 
-        var journey = _mapper.Map<JourneyDTO>(_journeyRepository.GetJourneysOfACar(carId));
+        var journeys = _mapper.Map<JourneyDTO>(_journeyRepository.GetJourneysOfACar(carId));
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(journey);
+        return Ok(journeys);
     }
 
     [HttpPost]
@@ -190,11 +190,11 @@ public class CarController : Controller
         return NoContent();
     }
 
-    [HttpPost("{carId}/afterjourney")]
+    [HttpPut("{carId}/UpdateAfterJourney/{journeyId}")]
     [ProducesResponseType(400)]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]
-    public IActionResult UpdateCarAfterJourney(int carId, double journeyDistance)
+    public IActionResult UpdateCarAfterJourney(int carId, int journeyId)
     {
         if (!_carRepository.CarExists(carId))
         {
@@ -206,8 +206,37 @@ public class CarController : Controller
         if (!ModelState.IsValid)
             return BadRequest();
 
-        _carService.UpdateAfterJourney(carToUpdate, journeyDistance);
+        if(!_journeyRepository.CarJourneyExists(journeyId))
+        {
+            return NotFound();
+        }
+
+        var journeyToUpdate = _journeyRepository.GetCarJourney(journeyId);
+
+
+        _carService.UpdateAfterJourney(carToUpdate, journeyToUpdate);
 
         return NoContent();
+    }
+
+    [HttpGet("{carId}/CalculateExpectedRange")]
+    [ProducesResponseType(200, Type = typeof(Car))]
+    [ProducesResponseType(400)]
+    public IActionResult CalculateExpectedRangeForCar(int carId)
+    {
+        if(!_carRepository.CarExists(carId))
+        {
+            return NotFound();
+        }
+
+        var carToCalculate = _carRepository.GetCar(carId);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        _carService.CalculateExpectedRange(carToCalculate);
+
+        return Ok(carToCalculate);
+
     }
 }

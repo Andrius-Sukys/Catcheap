@@ -18,6 +18,11 @@ public class NordpoolPriceRepository : INordpoolPriceRepository
         return _context.NordpoolPrices.Any(np => np.Id == nordpoolPriceId);
     }
 
+    public bool NordpoolPriceExistsByDate(DateTime nordpoolPriceDateTime)
+    {
+        return _context.NordpoolPrices.Any(np => np.DateAndTime.Hour == nordpoolPriceDateTime.Hour);
+    }
+
     public bool CreateNordpoolPrice(NordpoolPrice nordpoolPrice)
     {
         _context.Add(nordpoolPrice);
@@ -33,6 +38,11 @@ public class NordpoolPriceRepository : INordpoolPriceRepository
     public NordpoolPrice GetNordpoolPrice(int nordpoolPriceId)
     {
         return _context.NordpoolPrices.Where(np => np.Id == nordpoolPriceId).FirstOrDefault();
+    }
+
+    public NordpoolPrice GetNordpoolPriceByDate(DateTime nordpoolPriceDateTime)
+    {
+        return _context.NordpoolPrices.Where(np => np.DateAndTime.Hour == nordpoolPriceDateTime.Hour).FirstOrDefault();
     }
 
     public ICollection<NordpoolPrice> GetNordpoolPrices()

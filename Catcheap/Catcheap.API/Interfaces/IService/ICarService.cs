@@ -4,7 +4,11 @@ namespace Catcheap.API.Interfaces.IService;
 
 public interface ICarService
 {
-    void UpdateAfterJourney(Car car, double journeyDistance);
+    public void UpdateAfterJourney(Car car, CarJourney carJourney);
+
+    public void UpdateAfterCharge(Car car, CarCharge carCharge);
+
+    void CalculateExpectedRange(Car car);
 
     void DecreaseExpectedRange(Car car, double journeyDistance);
 

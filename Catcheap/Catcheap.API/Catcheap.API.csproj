@@ -51,11 +51,11 @@
     <Compile Include="Interfaces\IRepository\IScooterChargeRepository.cs" />
     <Compile Include="Interfaces\IRepository\IScooterJourneyRepository.cs" />
     <Compile Include="Interfaces\IRepository\IScooterRepository.cs" />
+    <Compile Include="Interfaces\IService\ICarChargeService.cs" />
     <Compile Include="Interfaces\IService\ICarService.cs" />
     <Compile Include="Models\CarModels\Car.cs" />
     <Compile Include="Models\CarModels\CarCharge.cs" />
     <Compile Include="Models\CarModels\CarJourney.cs" />
-    <Compile Include="Models\ErrorModels\ErrorDetails.cs" />
     <Compile Include="Models\MiscModels\ChargingStation.cs" />
     <Compile Include="Models\MiscModels\NordpoolPrice.cs" />
     <Compile Include="Models\ScooterModels\Scooter.cs" />
@@ -75,9 +75,7 @@
     <PackageReference Include="Autofac" Version="6.5.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.1" />
-    <PackageReference Include="AutoMapper" Version="12.0.0">
-      <TreatAsUsed>true</TreatAsUsed>
-    </PackageReference>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Castle.Core" Version="5.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />

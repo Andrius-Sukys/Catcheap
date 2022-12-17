@@ -60,12 +60,12 @@ public class ScooterController : Controller
         if (!_scooterRepository.ScooterExists(scooterId))
             return NotFound();
 
-        var charge = _mapper.Map<ChargeDTO>(_chargeRepository.GetChargesOfAScooter(scooterId));
+        var charges = _mapper.Map<ChargeDTO>(_chargeRepository.GetChargesOfAScooter(scooterId));
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(charge);
+        return Ok(charges);
     }
 
     [HttpGet("{scooterId}/journey")]
@@ -76,12 +76,12 @@ public class ScooterController : Controller
         if (!_scooterRepository.ScooterExists(scooterId))
             return NotFound();
 
-        var journey = _mapper.Map<JourneyDTO>(_journeyRepository.GetJourneysOfAScooter(scooterId));
+        var journeys = _mapper.Map<JourneyDTO>(_journeyRepository.GetJourneysOfAScooter(scooterId));
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(journey);
+        return Ok(journeys);
     }
 
     [HttpPost]

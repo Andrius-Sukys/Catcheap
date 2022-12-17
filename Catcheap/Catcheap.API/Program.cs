@@ -13,6 +13,7 @@ using Autofac.Extensions.DependencyInjection;
 using System.Runtime.CompilerServices;
 using Catcheap.API.Interfaces.IService;
 using Catcheap.API.Services;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,10 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Services.AddControllers();
 
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<ICarJourneyRepository, CarJourneyRepository>();
@@ -42,9 +47,7 @@ builder.Services.AddScoped<INordpoolPriceRepository, NordpoolPriceRepository>();
 
 
 builder.Services.AddScoped<ICarService, CarService>();
-
-
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<ICarChargeService, CarChargeService>();
 
 builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 {

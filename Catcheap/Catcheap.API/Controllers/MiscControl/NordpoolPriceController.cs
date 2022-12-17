@@ -43,6 +43,23 @@ public class NordpoolPriceController : Controller
         return Ok(nordpoolPrice);
     }
 
+    [HttpGet("{nordpoolPriceDate}")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<NordpoolPrice>))]
+    [ProducesResponseType(400)]
+    public IActionResult GetNordpoolPriceByDate(DateTime nordpoolPriceDate)
+    {
+        if (!_nordpoolPriceRepository.NordpoolPriceExistsByDate(nordpoolPriceDate))
+            return NotFound();
+
+        var nordpoolPrice = _nordpoolPriceRepository.GetNordpoolPriceByDate(nordpoolPriceDate);
+
+        if(!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(nordpoolPrice);
+
+    }
+
     [HttpPost]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]

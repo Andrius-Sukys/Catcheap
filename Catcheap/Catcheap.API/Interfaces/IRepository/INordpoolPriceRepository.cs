@@ -16,5 +16,9 @@ public interface INordpoolPriceRepository
 
     bool DeleteNordpoolPrice(NordpoolPrice nordpoolPrice);
 
+    public bool NordpoolPriceExistsByDate(DateTime nordpoolPriceDateTime);
+
+    public NordpoolPrice GetNordpoolPriceByDate(DateTime nordpoolPriceDateTime);
+
     bool Save();
 }
