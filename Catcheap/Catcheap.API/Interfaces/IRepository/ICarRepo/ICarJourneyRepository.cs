@@ -1,6 +1,6 @@
 ﻿using Catcheap.API.Models.CarModels;
 
-namespace Catcheap.API.Interfaces.IRepository;
+namespace Catcheap.API.Interfaces.IRepository.ICarRepo;
 
 public interface ICarJourneyRepository
 {

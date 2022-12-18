@@ -32,8 +32,10 @@
   <ItemGroup>
     <Compile Include="Controllers\CarControl\CarChargeController.cs" />
     <Compile Include="Controllers\CarControl\CarController.cs" />
+    <Compile Include="Controllers\CarControl\CarStatsController.cs" />
     <Compile Include="Controllers\MiscControl\ChargingStationController.cs" />
     <Compile Include="Controllers\MiscControl\NordpoolPriceController.cs" />
+    <Compile Include="Controllers\ScooterControl\ScooterStatsController.cs" />
     <Compile Include="Controllers\ScooterControl\ScooterJourneyController.cs" />
     <Compile Include="Controllers\CarControl\CarJourneyController.cs" />
     <Compile Include="Controllers\ScooterControl\ScooterChargeController.cs" />
@@ -43,19 +45,25 @@
     <Compile Include="DTO\JourneyDTO.cs" />
     <Compile Include="DTO\ScooterDTO.cs" />
     <Compile Include="DTO\VehicleDTO.cs" />
-    <Compile Include="Interfaces\IRepository\ICarChargeRepository.cs" />
-    <Compile Include="Interfaces\IRepository\ICarJourneyRepository.cs" />
-    <Compile Include="Interfaces\IRepository\ICarRepository.cs" />
-    <Compile Include="Interfaces\IRepository\IChargingStationRepository.cs" />
-    <Compile Include="Interfaces\IRepository\INordpoolPriceRepository.cs" />
-    <Compile Include="Interfaces\IRepository\IScooterChargeRepository.cs" />
-    <Compile Include="Interfaces\IRepository\IScooterJourneyRepository.cs" />
-    <Compile Include="Interfaces\IRepository\IScooterRepository.cs" />
-    <Compile Include="Interfaces\IService\ICarService.cs" />
+    <Compile Include="Interfaces\IRepository\ICarRepo\ICarChargeRepository.cs" />
+    <Compile Include="Interfaces\IRepository\ICarRepo\ICarJourneyRepository.cs" />
+    <Compile Include="Interfaces\IRepository\ICarRepo\ICarRepository.cs" />
+    <Compile Include="Interfaces\IRepository\IMiscRepo\IChargingStationRepository.cs" />
+    <Compile Include="Interfaces\IRepository\IMiscRepo\INordpoolPriceRepository.cs" />
+    <Compile Include="Interfaces\IRepository\IScooterRepo\IScooterChargeRepository.cs" />
+    <Compile Include="Interfaces\IRepository\IScooterRepo\IScooterJourneyRepository.cs" />
+    <Compile Include="Interfaces\IRepository\IScooterRepo\IScooterRepository.cs" />
+    <Compile Include="Interfaces\IService\ICarServices\ICarChargeService.cs" />
+    <Compile Include="Interfaces\IService\ICarServices\ICarService.cs" />
+    <Compile Include="Interfaces\IService\IMiscServices\IChargingStationsService.cs" />
+    <Compile Include="Interfaces\IService\IMiscServices\INordpoolPriceService.cs" />
+    <Compile Include="Interfaces\IService\IScooterServices\IScooterChargeService.cs" />
+    <Compile Include="Interfaces\IService\IScooterServices\IScooterService.cs" />
+    <Compile Include="Interfaces\IService\ICarServices\ICarStatsService.cs" />
+    <Compile Include="Interfaces\IService\IScooterServices\IScooterStatsService.cs" />
     <Compile Include="Models\CarModels\Car.cs" />
     <Compile Include="Models\CarModels\CarCharge.cs" />
     <Compile Include="Models\CarModels\CarJourney.cs" />
-    <Compile Include="Models\ErrorModels\ErrorDetails.cs" />
     <Compile Include="Models\MiscModels\ChargingStation.cs" />
     <Compile Include="Models\MiscModels\NordpoolPrice.cs" />
     <Compile Include="Models\ScooterModels\Scooter.cs" />
@@ -75,9 +83,7 @@
     <PackageReference Include="Autofac" Version="6.5.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.1" />
-    <PackageReference Include="AutoMapper" Version="12.0.0">
-      <TreatAsUsed>true</TreatAsUsed>
-    </PackageReference>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Castle.Core" Version="5.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />

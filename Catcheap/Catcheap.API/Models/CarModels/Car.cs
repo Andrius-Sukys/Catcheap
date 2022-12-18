@@ -10,6 +10,8 @@ public class Car
 
     public string Model { get; set; } = null!;
 
+    public string Numberplate { get; set; } = null!;
+
     public int YearOfManufacture { get; set; }
 
     public int EngineHorsePowers { get; set; }

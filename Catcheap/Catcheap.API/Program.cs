@@ -1,5 +1,4 @@
 using Catcheap.API.Data;
-using Catcheap.API.Interfaces.IRepository;
 using Catcheap.API.Repositories.CarRepo;
 using Catcheap.API.Repositories.MiscRepo;
 using Catcheap.API.Repositories.ScooterRepo;
@@ -11,8 +10,17 @@ using Catcheap.API.Helper;
 using Autofac.Extras.DynamicProxy;
 using Autofac.Extensions.DependencyInjection;
 using System.Runtime.CompilerServices;
-using Catcheap.API.Interfaces.IService;
-using Catcheap.API.Services;
+using System.Text.Json.Serialization;
+using Catcheap.API.Services.CarServices;
+using Catcheap.API.Services.MiscServices;
+using Catcheap.API.Services.ScooterServices;
+using Catcheap.API.Services.NordpoolPriceServices;
+using Catcheap.API.Interfaces.IRepository.ICarRepo;
+using Catcheap.API.Interfaces.IRepository.IMiscRepo;
+using Catcheap.API.Interfaces.IRepository.IScooterRepo;
+using Catcheap.API.Interfaces.IService.ICarServices;
+using Catcheap.API.Interfaces.IService.IMiscServices;
+using Catcheap.API.Interfaces.IService.IScooterServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +36,7 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Services.AddControllers();
 
+builder.Services.AddAutoMapper(typeof(MappingProfiles));
 
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<ICarJourneyRepository, CarJourneyRepository>();
@@ -42,9 +51,15 @@ builder.Services.AddScoped<INordpoolPriceRepository, NordpoolPriceRepository>();
 
 
 builder.Services.AddScoped<ICarService, CarService>();
+builder.Services.AddScoped<ICarChargeService, CarChargeService>();
+builder.Services.AddScoped<ICarStatsService, CarStatsService>();
 
+builder.Services.AddScoped<IScooterService, ScooterService>();
+builder.Services.AddScoped<IScooterChargeService, ScooterChargeService>();
+builder.Services.AddScoped<IScooterStatsService, ScooterStatsService>();
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IChargingStationsService, ChargingStationsService>();
+builder.Services.AddScoped<INordpoolPriceService, NordpoolPriceService>();
 
 builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 {

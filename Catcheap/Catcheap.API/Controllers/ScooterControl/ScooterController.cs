@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Catcheap.API.DTO;
-using Catcheap.API.Interfaces.IRepository;
+using Catcheap.API.Interfaces.IRepository.IScooterRepo;
+using Catcheap.API.Interfaces.IService.IScooterServices;
 using Catcheap.API.Models.ScooterModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,15 +14,19 @@ public class ScooterController : Controller
     private readonly IScooterRepository _scooterRepository;
     private readonly IScooterJourneyRepository _journeyRepository;
     private readonly IScooterChargeRepository _chargeRepository;
+
+    private readonly IScooterService _scooterService;
+
     private readonly IMapper _mapper;
 
     public ScooterController(IScooterRepository scooterRepository, IScooterJourneyRepository journeyRepository,
-        IScooterChargeRepository chargeRepository, IMapper mapper)
+        IScooterChargeRepository chargeRepository, IMapper mapper, IScooterService scooterService)
     {
         _scooterRepository = scooterRepository;
         _journeyRepository = journeyRepository;
         _chargeRepository = chargeRepository;
         _mapper = mapper;
+        _scooterService = scooterService;
     }
 
     [HttpGet]
@@ -52,7 +57,7 @@ public class ScooterController : Controller
         return Ok(scooter);
     }
 
-    [HttpGet("{scooterId}/charge")]
+    [HttpGet("{scooterId}/GetCharges")]
     [ProducesResponseType(200, Type = typeof(ScooterCharge))]
     [ProducesResponseType(400)]
     public IActionResult GetChargesOfAScooter(int scooterId)
@@ -60,28 +65,28 @@ public class ScooterController : Controller
         if (!_scooterRepository.ScooterExists(scooterId))
             return NotFound();
 
-        var charge = _mapper.Map<ChargeDTO>(_chargeRepository.GetChargesOfAScooter(scooterId));
+        var charges = _mapper.Map<List<ChargeDTO>>(_chargeRepository.GetChargesOfAScooter(scooterId));
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(charge);
+        return Ok(charges);
     }
 
-    [HttpGet("{scooterId}/journey")]
-    [ProducesResponseType(200, Type = typeof(ScooterCharge))]
+    [HttpGet("{scooterId}/GetJourneys")]
+    [ProducesResponseType(200, Type = typeof(ScooterJourney))]
     [ProducesResponseType(400)]
     public IActionResult GetJourneysOfAScooter(int scooterId)
     {
         if (!_scooterRepository.ScooterExists(scooterId))
             return NotFound();
 
-        var journey = _mapper.Map<JourneyDTO>(_journeyRepository.GetJourneysOfAScooter(scooterId));
+        var journeys = _mapper.Map<List<JourneyDTO>>(_journeyRepository.GetJourneysOfAScooter(scooterId));
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(journey);
+        return Ok(journeys);
     }
 
     [HttpPost]
@@ -173,7 +178,7 @@ public class ScooterController : Controller
         {
             if (!_chargeRepository.DeleteScooterCharges(chargesToDelete))
             {
-                ModelState.AddModelError("", "Unable to delete the selected Car: error deleting Charges.");
+                ModelState.AddModelError("", "Unable to delete the selected Scooter: error deleting Charges.");
                 return StatusCode(500, ModelState);
             }
         }
@@ -181,5 +186,98 @@ public class ScooterController : Controller
         _scooterRepository.DeleteScooter(scooterToDelete);
 
         return NoContent();
+    }
+
+    [HttpPut("{scooterId}/UpdateAfterJourney/{journeyId}")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult UpdateScooterAfterJourney(int scooterId, int journeyId)
+    {
+        if (!_scooterRepository.ScooterExists(scooterId))
+        {
+            return NotFound();
+        }
+
+        var scooterToUpdate = _scooterRepository.GetScooter(scooterId);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        if (!_journeyRepository.ScooterJourneyExists(journeyId))
+        {
+            return NotFound();
+        }
+
+        var journeyToUpdate = _journeyRepository.GetScooterJourney(journeyId);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        if (!_journeyRepository.GetJourneysOfAScooter(scooterId).Any(gjoas => gjoas.Id == journeyId))
+        {
+            return BadRequest();
+        }
+
+        _scooterService.UpdateAfterJourney(scooterToUpdate, journeyToUpdate);
+
+        return NoContent();
+    }
+
+    [HttpPut("{scooterId}/UpdateAfterCharge/{chargeId}")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult UpdateScooterAfterCharge(int scooterId, int chargeId)
+    {
+        if (!_scooterRepository.ScooterExists(scooterId))
+        {
+            return NotFound();
+        }
+
+        var scooterToUpdate = _scooterRepository.GetScooter(scooterId);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        if (!_chargeRepository.ScooterChargeExists(chargeId))
+        {
+            return NotFound();
+        }
+
+        var chargeToUpdate = _chargeRepository.GetScooterCharge(chargeId);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        if (!_chargeRepository.GetChargesOfAScooter(scooterId).Any(gcoas => gcoas.Id == chargeId))
+        {
+            return BadRequest();
+        }
+
+        _scooterService.UpdateAfterCharge(scooterToUpdate, chargeToUpdate);
+
+        return NoContent();
+    }
+
+    [HttpGet("{scooterId}/CalculateExpectedRange")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
+    public IActionResult CalculateExpectedRangeForScooter(int scooterId)
+    {
+        if (!_scooterRepository.ScooterExists(scooterId))
+        {
+            return NotFound();
+        }
+
+        var scooterToCalculate = _scooterRepository.GetScooter(scooterId);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        _scooterService.CalculateExpectedRange(scooterToCalculate);
+
+        return NoContent();
+
     }
 }

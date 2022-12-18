@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Catcheap.API.Interfaces.IService;
 using Catcheap.API.DTO;
-using Catcheap.API.Helper;
-using Catcheap.API.Interfaces.IRepository;
 using Catcheap.API.Models.CarModels;
-using Catcheap.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using Catcheap.API.Interfaces.IRepository.ICarRepo;
+using Catcheap.API.Interfaces.IService.ICarServices;
 
 namespace Catcheap.API.Controllers.CarControl;
 
@@ -59,7 +57,7 @@ public class CarController : Controller
         return Ok(car);
     }
 
-    [HttpGet("{carId}/charge")]
+    [HttpGet("{carId}/GetCharges")]
     [ProducesResponseType(200, Type = typeof(CarCharge))]
     [ProducesResponseType(400)]
     public IActionResult GetChargesOfACar(int carId)
@@ -67,28 +65,28 @@ public class CarController : Controller
         if (!_carRepository.CarExists(carId))
             return NotFound();
 
-        var charge = _mapper.Map<ChargeDTO>(_chargeRepository.GetChargesOfACar(carId));
+        var charges = _mapper.Map<List<ChargeDTO>>(_chargeRepository.GetChargesOfACar(carId));
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(charge);
+        return Ok(charges);
     }
 
-    [HttpGet("{carId}/journey")]
-    [ProducesResponseType(200, Type = typeof(CarCharge))]
+    [HttpGet("{carId}/GetJourneys")]
+    [ProducesResponseType(200, Type = typeof(CarJourney))]
     [ProducesResponseType(400)]
     public IActionResult GetJourneysOfACar(int carId)
     {
         if (!_carRepository.CarExists(carId))
             return NotFound();
 
-        var journey = _mapper.Map<JourneyDTO>(_journeyRepository.GetJourneysOfACar(carId));
+        var journeys = _mapper.Map<List<JourneyDTO>>(_journeyRepository.GetJourneysOfACar(carId));
 
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(journey);
+        return Ok(journeys);
     }
 
     [HttpPost]
@@ -190,11 +188,11 @@ public class CarController : Controller
         return NoContent();
     }
 
-    [HttpPost("{carId}/afterjourney")]
+    [HttpPut("{carId}/UpdateAfterJourney/{journeyId}")]
     [ProducesResponseType(400)]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]
-    public IActionResult UpdateCarAfterJourney(int carId, double journeyDistance)
+    public IActionResult UpdateCarAfterJourney(int carId, int journeyId)
     {
         if (!_carRepository.CarExists(carId))
         {
@@ -206,8 +204,80 @@ public class CarController : Controller
         if (!ModelState.IsValid)
             return BadRequest();
 
-        _carService.UpdateAfterJourney(carToUpdate, journeyDistance);
+        if(!_journeyRepository.CarJourneyExists(journeyId))
+        {
+            return NotFound();
+        }
+
+        var journeyToUpdate = _journeyRepository.GetCarJourney(journeyId);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        if (!_journeyRepository.GetJourneysOfACar(carId).Any(gjof => gjof.Id == journeyId))
+        {
+            return BadRequest();
+        }
+
+        _carService.UpdateAfterJourney(carToUpdate, journeyToUpdate);
 
         return NoContent();
+    }
+
+    [HttpPut("{carId}/UpdateAfterCharge/{chargeId}")]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public IActionResult UpdateCarAfterCharge(int carId, int chargeId)
+    {
+        if (!_carRepository.CarExists(carId))
+        {
+            return NotFound();
+        }
+
+        var carToUpdate = _carRepository.GetCar(carId);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        if (!_chargeRepository.CarChargeExists(chargeId))
+        {
+            return NotFound();
+        }
+
+        var chargeToUpdate = _chargeRepository.GetCarCharge(chargeId);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        if (!_chargeRepository.GetChargesOfACar(carId).Any(gcoac => gcoac.Id == chargeId))
+        {
+            return BadRequest();
+        }
+
+        _carService.UpdateAfterCharge(carToUpdate, chargeToUpdate);
+
+        return NoContent();
+    }
+
+    [HttpGet("{carId}/CalculateExpectedRange")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
+    public IActionResult CalculateExpectedRangeForCar(int carId)
+    {
+        if(!_carRepository.CarExists(carId))
+        {
+            return NotFound();
+        }
+
+        var carToCalculate = _carRepository.GetCar(carId);
+
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        _carService.CalculateExpectedRange(carToCalculate);
+
+        return NoContent();
+
     }
 }

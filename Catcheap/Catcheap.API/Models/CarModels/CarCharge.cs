@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Catcheap.API.Models.MiscModels;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Catcheap.API.Models.CarModels;
 
-public class CarCharge
+public class CarCharge : IComparable<CarCharge>
 {
     public int Id { get; set; }
 
@@ -16,5 +17,10 @@ public class CarCharge
     public double ChargingPrice { get; set; }
 
     public Car Car { get; set; } = null!;
+
+    public int CompareTo(CarCharge? other)
+    {
+        return StartOfCharge.CompareTo(other.StartOfCharge);
+    }
 
 }

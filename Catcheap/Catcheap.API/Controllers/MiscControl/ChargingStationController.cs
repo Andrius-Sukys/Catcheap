@@ -1,4 +1,5 @@
-﻿using Catcheap.API.Interfaces.IRepository;
+﻿using Catcheap.API.Interfaces.IRepository.IMiscRepo;
+using Catcheap.API.Interfaces.IService.IMiscServices;
 using Catcheap.API.Models.MiscModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +11,13 @@ public class ChargingStationController : Controller
 {
     private readonly IChargingStationRepository _chargingStationRepository;
 
-    public ChargingStationController(IChargingStationRepository chargingStationRepository)
+    private readonly IChargingStationsService _chargingStationService;
+
+    public ChargingStationController(IChargingStationRepository chargingStationRepository,
+        IChargingStationsService chargingStationService)
     {
         _chargingStationRepository = chargingStationRepository;
+        _chargingStationService = chargingStationService;
     }
 
     [HttpGet]
@@ -72,7 +77,7 @@ public class ChargingStationController : Controller
             return StatusCode(500, ModelState);
         }
 
-        return Ok("Successfully created");
+        return Ok("Charging Station successfully created.");
     }
 
     [HttpPut("{chargingStationId}")]
@@ -124,6 +129,21 @@ public class ChargingStationController : Controller
         }
 
         return NoContent();
+    }
+
+    [HttpGet("Filter/{city}")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<ChargingStation>))]
+    public IActionResult GetChargingStations(String city)
+    {
+        if(city == null)
+        {
+            return BadRequest();
+        }
+
+        var chargingStations = _chargingStationService
+            .FilterChargingStationsByCity(city);
+
+        return Ok(chargingStations);
     }
 
 }

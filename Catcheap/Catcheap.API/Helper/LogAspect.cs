@@ -11,7 +11,7 @@ public class LogAspect : IInterceptor
         try
         {
             invocation.Proceed();
-            Log.Logger.Information("Method named " + invocation.Method.Name + " was called with parameters " + JsonConvert.SerializeObject(invocation.Arguments) + ". It returned " + JsonConvert.SerializeObject(invocation.ReturnValue));
+            //Log.Logger.Information("Method named " + invocation.Method.Name + " was called with parameters " + JsonConvert.SerializeObject(invocation.Arguments) + ". It returned " + JsonConvert.SerializeObject(invocation.ReturnValue));
         }
         catch (Exception e)
         {

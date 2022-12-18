@@ -1,6 +1,6 @@
 ﻿using Catcheap.API.Models.MiscModels;
 
-namespace Catcheap.API.Interfaces.IRepository;
+namespace Catcheap.API.Interfaces.IRepository.IMiscRepo;
 
 public interface IChargingStationRepository
 {

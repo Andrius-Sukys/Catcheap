@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Catcheap.API.DTO;
-using Catcheap.API.Interfaces.IRepository;
+using Catcheap.API.Interfaces.IRepository.IScooterRepo;
 using Catcheap.API.Models.ScooterModels;
 using Catcheap.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -51,7 +51,7 @@ public class ScooterJourneyController : Controller
         return Ok(journey);
     }
 
-    [HttpPost]
+    [HttpPost("{scooterId}/AddJourney")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     public IActionResult CreateScooterJourney(int scooterId, JourneyDTO journeyCreate)
@@ -74,7 +74,7 @@ public class ScooterJourneyController : Controller
             return StatusCode(500, ModelState);
         }
 
-        return Ok("Scooter Journey successfully created");
+        return Ok("Scooter Journey successfully created.");
     }
 
     [HttpPut("{journeyId}")]
