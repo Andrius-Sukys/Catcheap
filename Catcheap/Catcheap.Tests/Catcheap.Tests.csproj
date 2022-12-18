@@ -29,6 +29,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Catcheap.API\Catcheap.API.csproj" />
     <ProjectReference Include="..\Catcheap\Catcheap.csproj" />
   </ItemGroup>
 
