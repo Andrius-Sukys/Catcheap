@@ -1,5 +1,5 @@
 ﻿using Catcheap.API.Data;
-using Catcheap.API.Interfaces.IRepository;
+using Catcheap.API.Interfaces.IRepository.IScooterRepo;
 using Catcheap.API.Models.ScooterModels;
 
 namespace Catcheap.API.Repositories.ScooterRepo;

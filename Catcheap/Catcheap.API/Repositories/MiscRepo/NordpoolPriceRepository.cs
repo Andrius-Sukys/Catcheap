@@ -1,5 +1,5 @@
 ﻿using Catcheap.API.Data;
-using Catcheap.API.Interfaces.IRepository;
+using Catcheap.API.Interfaces.IRepository.IMiscRepo;
 using Catcheap.API.Models.MiscModels;
 
 namespace Catcheap.API.Repositories.MiscRepo;
@@ -11,6 +11,11 @@ public class NordpoolPriceRepository : INordpoolPriceRepository
     public NordpoolPriceRepository(DataContext context)
     {
         _context = context;
+    }
+
+    public bool NordpoolPriceExistsAny()
+    {
+        return _context.NordpoolPrices.Any();
     }
 
     public bool NordpoolPriceExists(int nordpoolPriceId)

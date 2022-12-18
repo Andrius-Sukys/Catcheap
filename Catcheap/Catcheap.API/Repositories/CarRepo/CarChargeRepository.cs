@@ -1,7 +1,7 @@
 ﻿using Catcheap.API.Data;
-using Catcheap.API.Interfaces.IRepository;
 using Catcheap.API.Helper;
 using Catcheap.API.Models.CarModels;
+using Catcheap.API.Interfaces.IRepository.ICarRepo;
 
 namespace Catcheap.API.Repositories.CarRepo;
 

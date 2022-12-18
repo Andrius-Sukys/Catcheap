@@ -8,6 +8,8 @@ public class VehicleDTO
 
     public string Model { get; set; } = null!;
 
+    public string Numberplate { get; set; } = null!;
+
     public double ExpectedRange { get; set; }
 
     public double BatteryCapacity { get; set; }

@@ -1,5 +1,5 @@
 ﻿using Catcheap.API.Data;
-using Catcheap.API.Interfaces.IRepository;
+using Catcheap.API.Interfaces.IRepository.IMiscRepo;
 using Catcheap.API.Models.MiscModels;
 
 namespace Catcheap.API.Repositories.MiscRepo;

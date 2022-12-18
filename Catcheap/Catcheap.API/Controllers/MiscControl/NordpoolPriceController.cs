@@ -1,4 +1,5 @@
-﻿using Catcheap.API.Interfaces.IRepository;
+﻿using Catcheap.API.Interfaces.IRepository.IMiscRepo;
+using Catcheap.API.Interfaces.IService.IMiscServices;
 using Catcheap.API.Models.MiscModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +11,13 @@ public class NordpoolPriceController : Controller
 {
     private readonly INordpoolPriceRepository _nordpoolPriceRepository;
 
-    public NordpoolPriceController(INordpoolPriceRepository nordpoolPriceRepository)
+    private readonly INordpoolPriceService _nordpoolPriceService;
+
+    public NordpoolPriceController(INordpoolPriceRepository nordpoolPriceRepository,
+        INordpoolPriceService nordpoolPriceService)
     {
         _nordpoolPriceRepository = nordpoolPriceRepository;
+        _nordpoolPriceService = nordpoolPriceService;
     }
 
     [HttpGet]
@@ -43,7 +48,7 @@ public class NordpoolPriceController : Controller
         return Ok(nordpoolPrice);
     }
 
-    [HttpGet("{nordpoolPriceDate}")]
+    [HttpGet("ByDate/{nordpoolPriceDate}")]
     [ProducesResponseType(200, Type = typeof(IEnumerable<NordpoolPrice>))]
     [ProducesResponseType(400)]
     public IActionResult GetNordpoolPriceByDate(DateTime nordpoolPriceDate)
@@ -87,7 +92,7 @@ public class NordpoolPriceController : Controller
             return StatusCode(500, ModelState);
         }
 
-        return Ok("Car successfully created");
+        return Ok("Nordpool Price successfully created.");
     }
 
     [HttpPut("{nordpoolPriceId}")]
@@ -139,5 +144,56 @@ public class NordpoolPriceController : Controller
         }
 
         return NoContent();
+    }
+
+    [HttpGet("CheapestSince/{dateSince}")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<NordpoolPrice>))]
+    public IActionResult GetNordpoolPriceCheapest(DateTime dateSince)
+    {
+        if(!_nordpoolPriceRepository.NordpoolPriceExistsAny())
+        {
+            return NotFound();
+        }
+
+        var nordpoolPriceCheapest = _nordpoolPriceService.GetNordpoolPriceCheapestSince(dateSince);
+
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(nordpoolPriceCheapest);
+    }
+
+    [HttpGet("MostExpensiveSince/{dateSince}")]
+    [ProducesResponseType(200, Type = typeof(IEnumerable<NordpoolPrice>))]
+    public IActionResult GetNordpoolPriceMostExpensive(DateTime dateSince)
+    {
+        if (!_nordpoolPriceRepository.NordpoolPriceExistsAny())
+        {
+            return NotFound();
+        }
+
+        var nordpoolPriceMostExpensive = _nordpoolPriceService.GetNordpoolPriceMostExpensiceSince(dateSince);
+
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(nordpoolPriceMostExpensive);
+    }
+
+    [HttpGet("AverageSince/{dateSince}")]
+    [ProducesResponseType(200, Type = typeof(double))]
+    public IActionResult GetNordpoolPriceAverage(DateTime dateSince)
+    {
+        if (!_nordpoolPriceRepository.NordpoolPriceExistsAny())
+        {
+            return NotFound();
+        }
+
+        var nordpoolPriceAverage = _nordpoolPriceService.GetNordpoolPricesAverageSince(dateSince);
+
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(nordpoolPriceAverage);
     }
 }

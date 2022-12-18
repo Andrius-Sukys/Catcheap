@@ -1,6 +1,6 @@
 ﻿using Catcheap.API.Models.ScooterModels;
 
-namespace Catcheap.API.Interfaces.IRepository;
+namespace Catcheap.API.Interfaces.IRepository.IScooterRepo;
 
 public interface IScooterRepository
 {

@@ -26,8 +26,6 @@ public class Scooter
 
     public double WeightRider { get; set; }
 
-    public double AverageSpeed { get; set; }
-
     public double TopSpeed { get; set; }
 
     public ICollection<ScooterJourney> Journeys { get; set; } = null!;

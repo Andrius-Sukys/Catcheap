@@ -26,7 +26,5 @@ public class ScooterDTO
 
     public double WeightRider { get; set; }
 
-    public double AverageSpeed { get; set; }
-
     public double TopSpeed { get; set; }
 }

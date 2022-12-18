@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Catcheap.API.DTO;
-using Catcheap.API.Interfaces.IRepository;
+using Catcheap.API.Interfaces.IRepository.IScooterRepo;
+using Catcheap.API.Interfaces.IService.IScooterServices;
 using Catcheap.API.Models.ScooterModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,13 +13,18 @@ public class ScooterChargeController : Controller
 {
     private readonly IScooterChargeRepository _chargeRepository;
     private readonly IScooterRepository _scooterRepository;
+
+    private readonly IScooterChargeService _chargeService;
+
     private readonly IMapper _mapper;
 
     public ScooterChargeController(IScooterChargeRepository chargeRepository,
-        IScooterRepository scooterRepository, IMapper mapper)
+        IScooterRepository scooterRepository, IScooterChargeService chargeService,
+        IMapper mapper)
     {
         _chargeRepository = chargeRepository;
         _scooterRepository = scooterRepository;
+        _chargeService = chargeService;
         _mapper = mapper;
     }
 
@@ -50,7 +56,7 @@ public class ScooterChargeController : Controller
         return Ok(charge);
     }
 
-    [HttpPost]
+    [HttpPost("{scooterId}/AddCharge")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     public IActionResult CreateScooterCharge(int scooterId, ChargeDTO chargeCreate)
@@ -125,6 +131,26 @@ public class ScooterChargeController : Controller
         {
             ModelState.AddModelError("", "Unable to delete the selected Scooter Charge.");
         }
+
+        return NoContent();
+    }
+
+    [HttpGet("{chargeId}/CalculatePrice")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
+    public IActionResult CalculateChargePriceForScooter(int chargeId)
+    {
+        if (!_chargeRepository.ScooterChargeExists(chargeId))
+        {
+            return NotFound();
+        }
+
+        var chargeToCalculate = _chargeRepository.GetScooterCharge(chargeId);
+
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        _chargeService.CalculateChargePrice(chargeToCalculate);
 
         return NoContent();
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Catcheap.API.DTO;
-using Catcheap.API.Interfaces.IRepository;
+using Catcheap.API.Interfaces.IRepository.ICarRepo;
+using Catcheap.API.Interfaces.IService.ICarServices;
 using Catcheap.API.Models.CarModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,13 +13,17 @@ public class CarChargeController : Controller
 {
     private readonly ICarChargeRepository _chargeRepository;
     private readonly ICarRepository _carRepository;
+
+    private readonly ICarChargeService _chargeService;
+
     private readonly IMapper _mapper;
 
     public CarChargeController(ICarChargeRepository chargeRepository,
-        ICarRepository carRepository, IMapper mapper)
+        ICarRepository carRepository, ICarChargeService chargeService, IMapper mapper)
     {
         _chargeRepository = chargeRepository;
         _carRepository = carRepository;
+        _chargeService= chargeService;
         _mapper = mapper;
     }
 
@@ -50,7 +55,7 @@ public class CarChargeController : Controller
         return Ok(charge);
     }
 
-    [HttpPost]
+    [HttpPost("{carId}/AddCharge")]
     [ProducesResponseType(204)]
     [ProducesResponseType(400)]
     public IActionResult CreateCarCharge(int carId, ChargeDTO chargeCreate)
@@ -125,6 +130,26 @@ public class CarChargeController : Controller
         {
             ModelState.AddModelError("", "Unable to delete the selected Car Charge.");
         }
+
+        return NoContent();
+    }
+
+    [HttpGet("{chargeId}/CalculatePrice")]
+    [ProducesResponseType(200)]
+    [ProducesResponseType(400)]
+    public IActionResult CalculateChargePriceForCar(int chargeId)
+    {
+        if (!_chargeRepository.CarChargeExists(chargeId))
+        {
+            return NotFound();
+        }
+            
+        var chargeToCalculate = _chargeRepository.GetCarCharge(chargeId);
+
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        _chargeService.CalculateChargePrice(chargeToCalculate);
 
         return NoContent();
     }

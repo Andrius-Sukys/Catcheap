@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Catcheap.API.DTO;
-using Catcheap.API.Interfaces.IRepository;
+using Catcheap.API.Interfaces.IRepository.ICarRepo;
 using Catcheap.API.Models.CarModels;
 using Catcheap.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -73,7 +73,7 @@ public class CarJourneyController : Controller
             return StatusCode(500, ModelState);
         }
 
-        return Ok("Car Journey successfully created");
+        return Ok("Car Journey successfully created.");
     }
 
     [HttpPut("{journeyId}")]

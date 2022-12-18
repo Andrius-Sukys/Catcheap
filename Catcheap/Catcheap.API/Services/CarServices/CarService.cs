@@ -1,13 +1,13 @@
-﻿using Catcheap.API.Interfaces.IService;
-using Catcheap.API.Interfaces.IRepository;
-using Catcheap.API.Models.CarModels;
+﻿using Catcheap.API.Models.CarModels;
 using Microsoft.AspNetCore.Routing.Constraints;
+using Catcheap.API.Interfaces.IRepository.ICarRepo;
+using Catcheap.API.Interfaces.IService.ICarServices;
 
-namespace Catcheap.API.Services;
+namespace Catcheap.API.Services.CarServices;
 
 public class CarService : ICarService
 {
-    private readonly ICarRepository _carRepository;   
+    private readonly ICarRepository _carRepository;
     private readonly ICarChargeService _chargeService;
 
     public CarService(ICarRepository carRepository, ICarChargeService chargeService)
@@ -21,7 +21,7 @@ public class CarService : ICarService
         DecreaseExpectedRange(car, carJourney.Distance);
         DecreaseBatteryLevel(car, carJourney.Distance);
         IncreaseMileage(car, carJourney.Distance);
-    
+
         _carRepository.UpdateCar(car);
     }
 
@@ -37,23 +37,23 @@ public class CarService : ICarService
     {
         car.ExpectedRange -= journeyDistance;
 
-        if(car.ExpectedRange < 0)
+        if (car.ExpectedRange < 0)
             car.ExpectedRange = 0;
     }
 
     public void DecreaseBatteryLevel(Car car, double journeyDistance)
     {
-        car.BatteryLevel -= (journeyDistance / 100) * car.Consumption / car.BatteryCapacity * 100;
+        car.BatteryLevel -= journeyDistance / 100 * car.Consumption / car.BatteryCapacity * 100;
 
         if (car.BatteryLevel < 0)
             car.BatteryLevel = 0;
     }
 
-    public void IncreaseBatteryLevel(Car car, double chargedKWh)
+    public void IncreaseBatteryLevel(Car car, double chargedKW)
     {
-        car.BatteryLevel += chargedKWh / car.BatteryCapacity * 100;
+        car.BatteryLevel += chargedKW / car.BatteryCapacity * 100;
 
-        if(car.BatteryLevel > 100)
+        if (car.BatteryLevel > 100)
             car.BatteryLevel = 100;
     }
 
@@ -65,5 +65,7 @@ public class CarService : ICarService
     public void CalculateExpectedRange(Car car)
     {
         car.ExpectedRange = Math.Round(car.BatteryCapacity * car.BatteryLevel * 0.01 / car.Consumption * 100, 2);
+
+        _carRepository.UpdateCar(car);
     }
 }
