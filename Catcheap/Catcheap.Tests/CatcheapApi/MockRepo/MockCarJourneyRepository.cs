@@ -57,6 +57,8 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
             CarJourney carJourney = new CarJourney();
             carJourney.Car = new Car();
             carJourney.Car.Id = carId;
+            carJourney.Date = new DateTime(2022, 12, 19, 12, 0, 0);
+            carJourney.Distance = 100;
 
             list.Add(carJourney);
 

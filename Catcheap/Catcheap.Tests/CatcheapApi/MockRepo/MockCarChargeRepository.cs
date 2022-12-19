@@ -52,6 +52,8 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
 
             Charge.Car = new Car();
             Charge.Car.Id = carId;
+            Charge.StartOfCharge = new DateTime(2022, 12, 19, 12, 0, 0);
+            Charge.ChargingPrice = 10;
 
             list.Add(Charge);
 

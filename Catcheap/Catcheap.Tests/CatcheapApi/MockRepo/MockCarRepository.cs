@@ -16,6 +16,7 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
         {
             Car car = new Car();
             car.Id = carId;
+            car.Consumption = 10;
             return car;
         }
 
