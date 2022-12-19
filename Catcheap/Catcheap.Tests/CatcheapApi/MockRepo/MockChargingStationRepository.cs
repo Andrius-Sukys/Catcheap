@@ -37,7 +37,10 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
         public ICollection<ChargingStation> GetChargingStations()
         {
             List<ChargingStation> chargingStations = new List<ChargingStation>();
-            chargingStations.Add(new ChargingStation());
+            ChargingStation station = new ChargingStation();
+            station.Id = 69;
+            station.City = "Vilnius";
+            chargingStations.Add(station);
             return chargingStations;
         }
 
