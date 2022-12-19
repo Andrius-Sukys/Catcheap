@@ -30,22 +30,32 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
         {
             ScooterJourney scooterJourney = new ScooterJourney();
             scooterJourney.Id = scooterJourneyId;
+            scooterJourney.Scooter = new Scooter();
+
             return scooterJourney;
         }
 
         public ICollection<ScooterJourney> GetScooterJourneys()
         {
-            List <ScooterJourney> list = new List<ScooterJourney>();
-            list.Add(new ScooterJourney());
+            List<ScooterJourney> list = new List<ScooterJourney>();
+
+            ScooterJourney scooterJourney = new ScooterJourney();
+            scooterJourney.Scooter = new Scooter();
+
+            list.Add(scooterJourney);
+
             return list;
         }
 
         public ICollection<ScooterJourney> GetJourneysOfAScooter(int scooterId)
         {
             List<ScooterJourney> list = new List<ScooterJourney>();
+
             ScooterJourney scooterJourney = new ScooterJourney();
             scooterJourney.Scooter = new Scooter();
             scooterJourney.Scooter.Id = scooterId;
+            scooterJourney.Date = new DateTime(2022, 12, 19, 12, 0, 0);
+            scooterJourney.Distance = 100;
 
             list.Add(scooterJourney);
 
