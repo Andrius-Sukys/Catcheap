@@ -6,8 +6,9 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
 {
     public class MockCarChargeRepository : ICarChargeRepository
     {
+        public CarCharge Charge { get; set; }
 
-        public bool CarChargeExists(int carChargeId)
+    public bool CarChargeExists(int carChargeId)
         {
             return true;
         }
@@ -29,20 +30,16 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
 
         public CarCharge GetCarCharge(int carChargeId)
         {
-            CarCharge charge = new CarCharge();
-            charge.Id = carChargeId;
-            charge.Car = new Car();
-            return charge;
+            Charge = new CarCharge();
+            Charge.Id = carChargeId;
+            return Charge;
         }
 
         public ICollection<CarCharge> GetCarCharges()
         {
             List <CarCharge> list = new List<CarCharge>();
-
-            CarCharge charge = new CarCharge();
-            charge.Car = new Car();
-
-            list.Add(charge);
+            Charge = new CarCharge();
+            list.Add(Charge);
 
             return list;
         }
@@ -51,11 +48,12 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
         {
             List<CarCharge> list = new List<CarCharge>();
 
-            CarCharge charge = new CarCharge();
-            charge.Car = new Car();
-            charge.Car.Id = carId;
+            Charge = new CarCharge();
 
-            list.Add(charge);
+            Charge.Car = new Car();
+            Charge.Car.Id = carId;
+
+            list.Add(Charge);
 
             return list;
         }
@@ -67,6 +65,7 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
 
         public bool UpdateCarCharge(CarCharge carCharge)
         {
+            Charge = carCharge;
             return true;
         }
 

@@ -43,6 +43,7 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
         {
             NordpoolPrice nordpoolPrice = new NordpoolPrice();
             nordpoolPrice.DateAndTime = nordpoolPriceDateTime;
+            nordpoolPrice.Price = 1;
             return nordpoolPrice;
         }
 
