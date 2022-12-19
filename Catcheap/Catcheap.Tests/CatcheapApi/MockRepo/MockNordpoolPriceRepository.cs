@@ -50,7 +50,17 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
         public ICollection<NordpoolPrice> GetNordpoolPrices()
         {
             List<NordpoolPrice> nordpoolPrices = new List<NordpoolPrice>();
-            nordpoolPrices.Add(new NordpoolPrice());
+            NordpoolPrice price1 = new NordpoolPrice();
+            price1.Id = 69;
+            price1.Price = 1;
+            price1.DateAndTime = new DateTime(2022, 12, 19, 12, 0, 0);
+            NordpoolPrice price2 = new NordpoolPrice();
+            price2.Id = 420;
+            price2.Price = 10;
+            price2.DateAndTime = new DateTime(2022, 12, 18, 12, 0, 0);
+            nordpoolPrices.Add(price1);
+            nordpoolPrices.Add(price2);
+
             return nordpoolPrices;
         }
 
