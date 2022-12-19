@@ -10,6 +10,7 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
         {
             Scooter scooter = new Scooter();
             scooter.Id = scooterId;
+            scooter.Consumption = 10;
             return scooter;
         }
 
@@ -20,9 +21,9 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
 
         public ICollection<Scooter> GetScooters()
         {
-            List<Scooter> scooters = new List<Scooter>();
-            scooters.Add(new Scooter());
-            return scooters;
+            List<Scooter> list = new List<Scooter>();
+            list.Add(new Scooter());
+            return list;
         }
 
         public bool CreateScooter(Scooter scooter)

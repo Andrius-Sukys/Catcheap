@@ -1,4 +1,5 @@
 ﻿using Catcheap.API.Interfaces.IRepository.IScooterRepo;
+using Catcheap.API.Models.CarModels;
 using Catcheap.API.Models.ScooterModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
 {
     public class MockScooterChargeRepository : IScooterChargeRepository
     {
+        public ScooterCharge Charge { get; set; }
+
         public bool ScooterChargeExists(int scooterChargeId)
         {
             return true;
@@ -32,35 +35,34 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
 
         public ScooterCharge GetScooterCharge(int scooterChargeId)
         {
-            ScooterCharge scooterCharge = new ScooterCharge();
-            scooterCharge.Id = scooterChargeId;
-            scooterCharge.Scooter = new Scooter();
-            return scooterCharge;
+            Charge = new ScooterCharge();
+            Charge.Id = scooterChargeId;
+            return Charge;
         }
 
         public ICollection<ScooterCharge> GetScooterCharges()
         {
-            List<ScooterCharge> scooterCharges = new List<ScooterCharge>();
+            List<ScooterCharge> list = new List<ScooterCharge>();
+            Charge = new ScooterCharge();
+            list.Add(Charge);
 
-            ScooterCharge scooterCharge = new ScooterCharge();
-            scooterCharge.Scooter = new Scooter();
-
-            scooterCharges.Add(scooterCharge);
-
-            return scooterCharges;
+            return list;
         }
 
         public ICollection<ScooterCharge> GetChargesOfAScooter(int scooterId)
         {
-            List<ScooterCharge> scooterCharges = new List<ScooterCharge>();
+            List<ScooterCharge> list = new List<ScooterCharge>();
 
-            ScooterCharge scooterCharge = new ScooterCharge();
-            scooterCharge.Scooter = new Scooter();
-            scooterCharge.Scooter.Id = scooterId;
+            Charge = new ScooterCharge();
 
-            scooterCharges.Add(scooterCharge);
+            Charge.Scooter = new Scooter();
+            Charge.Scooter.Id = scooterId;
+            Charge.StartOfCharge = new DateTime(2022, 12, 19, 12, 0, 0);
+            Charge.ChargingPrice = 10;
 
-            return scooterCharges;
+            list.Add(Charge);
+
+            return list;
         }
 
         public bool Save()
@@ -70,6 +72,7 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
 
         public bool UpdateScooterCharge(ScooterCharge scooterCharge)
         {
+            Charge = scooterCharge;
             return true;
         }
     }
