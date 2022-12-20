@@ -49,7 +49,7 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
             List<CarCharge> list = new List<CarCharge>();
 
             Charge = new CarCharge();
-
+            Charge.Id = 10;
             Charge.Car = new Car();
             Charge.Car.Id = carId;
             Charge.StartOfCharge = new DateTime(2022, 12, 19, 12, 0, 0);
