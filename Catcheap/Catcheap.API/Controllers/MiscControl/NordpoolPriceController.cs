@@ -111,7 +111,7 @@ public class NordpoolPriceController : Controller
             return NotFound();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if (!_nordpoolPriceRepository.UpdateNordpoolPrice(updatedNordpoolPrice))
         {

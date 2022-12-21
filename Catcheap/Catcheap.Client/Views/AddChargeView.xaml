@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catcheap.Client.Views.AddChargeView"
+             xmlns:viewmodel="clr-namespace:Catcheap.Client.ViewModels"
+             x:DataType="viewmodel:AddCarChargeViewModel"
+             Title="Add a Charge">
+    <VerticalStackLayout>
+        <Frame Margin="20, 20, 20, 10" Padding="10, 5, 1, 1" HeightRequest="50">
+        <Picker x:Name="picker"
+                Title="Select a car..."
+                ItemsSource="{Binding Cars}"
+                ItemDisplayBinding="{Binding Numberplate}"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"/>
+        </Frame>
+        <Grid HeightRequest="200" RowDefinitions="*,Auto" ColumnDefinitions="*,*,*" ColumnSpacing="5">
+
+            <TableView Intent="Data" Grid.Row="0" Grid.ColumnSpan="3" Margin="20, 0, 20, 0">
+
+            <TableRoot>
+                <TableSection>
+                    <EntryCell Label="Charging Power " Text="{Binding ChargingPower}" />
+                    <EntryCell Label="Starf of Charge " Text="{Binding StartOfCharge}" />
+                    <EntryCell Label="End of Charge " Text="{Binding EndOfCharge}" />
+                </TableSection>
+            </TableRoot>
+
+            </TableView>
+        </Grid>
+
+        <Button Margin="20, 15, 20, 20" Text="Add charge" Command="{Binding InsertChargeCommand}"/>
+
+    </VerticalStackLayout>
+</ContentPage>

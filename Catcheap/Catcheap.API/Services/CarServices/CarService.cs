@@ -43,7 +43,7 @@ public class CarService : ICarService
 
     public void DecreaseBatteryLevel(Car car, double journeyDistance)
     {
-        car.BatteryLevel -= journeyDistance / 100 * car.Consumption / car.BatteryCapacity * 100;
+        car.BatteryLevel = Math.Round(car.BatteryLevel - journeyDistance / 100 * car.Consumption / car.BatteryCapacity * 100, 2);
 
         if (car.BatteryLevel < 0)
             car.BatteryLevel = 0;
@@ -51,7 +51,7 @@ public class CarService : ICarService
 
     public void IncreaseBatteryLevel(Car car, double chargedKW)
     {
-        car.BatteryLevel += chargedKW / car.BatteryCapacity * 100;
+        car.BatteryLevel = Math.Round(car.BatteryLevel + (chargedKW / car.BatteryCapacity) * 100, 2);
 
         if (car.BatteryLevel > 100)
             car.BatteryLevel = 100;
@@ -64,7 +64,7 @@ public class CarService : ICarService
 
     public void CalculateExpectedRange(Car car)
     {
-        car.ExpectedRange = Math.Round(car.BatteryCapacity * car.BatteryLevel * 0.01 / car.Consumption * 100, 2);
+        car.ExpectedRange = Math.Round(car.BatteryCapacity * (car.BatteryLevel * 0.01) / (car.Consumption) * 100, 2);
 
         _carRepository.UpdateCar(car);
     }

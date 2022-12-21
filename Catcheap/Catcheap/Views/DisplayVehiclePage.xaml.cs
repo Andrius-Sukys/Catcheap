@@ -1,3 +1,4 @@
+using Catcheap.Client;
 using Catcheap.Models.ToStringConverter_Classes;
 using Catcheap.Models.Vehicles_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
@@ -37,16 +38,14 @@ public partial class DisplayVehiclePage : ContentPage
     private async void CarButtonClicked(object sender, EventArgs e)
 	{
 
-        System.Diagnostics.Debug.WriteLine("CAR BUTTON CLICKED");
-        Placeholder.Text = "";
+        HttpResponseMessage response = await ApiClient.client.GetAsync("api/Car");
 
-        foreach (Vehicle vehicle in vehicleList)
+        if(response.IsSuccessStatusCode)
         {
-            if(vehicle is Car car)
-            {
-                await CarLoaderSaver.Load(car);
-                Placeholder.Text += carString.ToString(car) + '\n';
-            }
+            List<Car> cars = await response.Content.ReadAsAsync<List<Car>>();
+
+            foreach (Car car in cars)
+                System.Diagnostics.Debug.WriteLine(car.Manufacturer + " ");
         }
 	}
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Catcheap.API.Models.ScooterModels;
 
@@ -14,6 +15,7 @@ public class ScooterJourney
 
     public string EndLocation { get; set; } = null!;
 
+    [JsonIgnore]
     public Scooter Scooter { get; set; } = null!;
 
 }

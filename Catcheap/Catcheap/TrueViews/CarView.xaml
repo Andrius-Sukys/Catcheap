@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catcheap.TrueViews.CarView"
+             xmlns:viewmodel="clr-namespace:Catcheap.ViewModels"
+             x:DataType="viewmodel:CarViewModel"
+             Title="CarView">
+    <VerticalStackLayout>
+        <Label 
+            Text="{Binding ExpectedRange}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

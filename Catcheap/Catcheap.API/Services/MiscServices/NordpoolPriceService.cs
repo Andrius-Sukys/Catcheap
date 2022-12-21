@@ -2,7 +2,7 @@
 using Catcheap.API.Interfaces.IService.IMiscServices;
 using Catcheap.API.Models.MiscModels;
 
-namespace Catcheap.API.Services.NordpoolPriceServices;
+namespace Catcheap.API.Services.MiscServices;
 
 public class NordpoolPriceService : INordpoolPriceService
 {

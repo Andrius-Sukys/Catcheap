@@ -61,6 +61,7 @@
     <Compile Include="Interfaces\IService\IScooterServices\IScooterService.cs" />
     <Compile Include="Interfaces\IService\ICarServices\ICarStatsService.cs" />
     <Compile Include="Interfaces\IService\IScooterServices\IScooterStatsService.cs" />
+    <Compile Include="Interfaces\IService\IMiscServices\IValidationService.cs" />
     <Compile Include="Models\CarModels\Car.cs" />
     <Compile Include="Models\CarModels\CarCharge.cs" />
     <Compile Include="Models\CarModels\CarJourney.cs" />

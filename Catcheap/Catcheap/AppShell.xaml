@@ -34,6 +34,11 @@
             ContentTemplate="{DataTemplate views:AddJourneyPage}"/>
 
         <ShellContent
+            Title="Add a Journey"
+            Icon="icon_add_journey"
+            ContentTemplate="{DataTemplate trueviews:CarView}"/>
+
+        <ShellContent
             Title="Add a Scooter"
             Icon="icon_scooter"
             ContentTemplate="{DataTemplate views:AddElectricScooter}"/>

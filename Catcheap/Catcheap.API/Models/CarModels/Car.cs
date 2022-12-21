@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Catcheap.API.Models.CarModels;
 
@@ -29,7 +30,9 @@ public class Car
 
     public double Mileage { get; set; }
 
+    [JsonIgnore]
     public ICollection<CarJourney> Journeys { get; set; } = null!;
 
+    [JsonIgnore]
     public ICollection<CarCharge> Charges { get; set; } = null!;
 }

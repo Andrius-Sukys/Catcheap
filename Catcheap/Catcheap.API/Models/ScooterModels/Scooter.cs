@@ -1,4 +1,6 @@
-﻿namespace Catcheap.API.Models.ScooterModels;
+﻿using Newtonsoft.Json;
+
+namespace Catcheap.API.Models.ScooterModels;
 
 public class Scooter
 {
@@ -28,8 +30,10 @@ public class Scooter
 
     public double TopSpeed { get; set; }
 
+    [JsonIgnore]
     public ICollection<ScooterJourney> Journeys { get; set; } = null!;
 
+    [JsonIgnore]
     public ICollection<ScooterCharge> Charges { get; set; } = null!;
 
 }

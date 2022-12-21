@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catcheap.Client.Views.AddCarView"
+             Title="Add a Car">
+
+    <Grid RowDefinitions="*,Auto" ColumnDefinitions="*,*,*" ColumnSpacing="5">
+        <TableView Intent="Data" Grid.Row="0" Grid.ColumnSpan="3">
+            <TableRoot>
+                <TableSection>
+                    <EntryCell Label="Manufacturer " Text="{Binding Manufacturer}" />
+                    <EntryCell Label="Model " Text="{Binding Model}" />
+                    <EntryCell Label="Numberplate" Text="{Binding Numberplate}" />
+                    <EntryCell Label="Year of Manufacture " Text="{Binding YearOfManufacture}"/>
+                    <EntryCell Label="Battery Capactity " Text="{Binding BatteryCapacity}" />
+                    <EntryCell Label="Consumption " Text="{Binding Consumption}" />
+                    <EntryCell Label="Battery Level " Text="{Binding BatteryLevel}" />
+                    <EntryCell Label="Mileage " Text="{Binding Mileage}" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+
+        <Button Text="Save" Grid.Row="1" Grid.Column="0" Command="{Binding SaveCommand}" Margin="10, 15, 10, 130"/>
+        <Button Text="Delete" Grid.Row="1" Grid.Column="1" Command="{Binding DeleteCommand}" Margin="10, 15, 10, 130"/>
+        <Button Text="Cancel" Grid.Row="1" Grid.Column="2" Command="{Binding DoneEditingCommand}" Margin="10, 15, 10, 130"/>
+    </Grid>
+
+</ContentPage>
