@@ -40,6 +40,8 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
             ChargingStation station = new ChargingStation();
             station.Id = 69;
             station.City = "Vilnius";
+            station.Street = "labas";
+            station.StreetNumber = 1;
             chargingStations.Add(station);
             return chargingStations;
         }
