@@ -54,6 +54,7 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
             ScooterJourney scooterJourney = new ScooterJourney();
             scooterJourney.Scooter = new Scooter();
             scooterJourney.Scooter.Id = scooterId;
+            scooterJourney.Id = 10;
             scooterJourney.Date = new DateTime(2022, 12, 19, 12, 0, 0);
             scooterJourney.Distance = 100;
 

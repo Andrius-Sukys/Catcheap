@@ -57,6 +57,7 @@ namespace Catcheap.Tests.CatcheapApi.MockRepo
 
             Charge.Scooter = new Scooter();
             Charge.Scooter.Id = scooterId;
+            Charge.Id = 10;
             Charge.StartOfCharge = new DateTime(2022, 12, 19, 12, 0, 0);
             Charge.ChargingPrice = 10;
 
