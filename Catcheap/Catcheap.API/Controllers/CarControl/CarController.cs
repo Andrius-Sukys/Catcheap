@@ -102,6 +102,8 @@ public class CarController : Controller
             return BadRequest(ModelState);
         }
 
+        _carService.CalculateExpectedRange(_mapper.Map<Car>(carCreate));
+
         var carMap = _mapper.Map<Car>(carCreate);
 
         if (!_carRepository.CreateCar(carMap))
@@ -110,7 +112,9 @@ public class CarController : Controller
             return StatusCode(500, ModelState);
         }
 
-        return Ok("Car successfully created.");
+        var carReturn = _mapper.Map<CarDTO>(_chargeRepository.GetCarCharge(carMap.Id));
+
+        return Ok(carReturn);
     }
 
     [HttpPut("{carId}")]
@@ -129,7 +133,8 @@ public class CarController : Controller
             return NotFound();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
+
 
         var carMap = _mapper.Map<Car>(updatedCar);
 
@@ -158,12 +163,12 @@ public class CarController : Controller
         var journeysToDelete = _journeyRepository.GetJourneysOfACar(carId).ToList();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         var chargesToDelete = _chargeRepository.GetChargesOfACar(carId).ToList();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if (journeysToDelete.Any())
         {
@@ -202,7 +207,7 @@ public class CarController : Controller
         var carToUpdate = _carRepository.GetCar(carId);
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if(!_journeyRepository.CarJourneyExists(journeyId))
         {
@@ -212,11 +217,11 @@ public class CarController : Controller
         var journeyToUpdate = _journeyRepository.GetCarJourney(journeyId);
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if (!_journeyRepository.GetJourneysOfACar(carId).Any(gjof => gjof.Id == journeyId))
         {
-            return BadRequest();
+            return BadRequest(ModelState);
         }
 
         _carService.UpdateAfterJourney(carToUpdate, journeyToUpdate);
@@ -238,7 +243,7 @@ public class CarController : Controller
         var carToUpdate = _carRepository.GetCar(carId);
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if (!_chargeRepository.CarChargeExists(chargeId))
         {
@@ -248,11 +253,11 @@ public class CarController : Controller
         var chargeToUpdate = _chargeRepository.GetCarCharge(chargeId);
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if (!_chargeRepository.GetChargesOfACar(carId).Any(gcoac => gcoac.Id == chargeId))
         {
-            return BadRequest();
+            return BadRequest(ModelState);
         }
 
         _carService.UpdateAfterCharge(carToUpdate, chargeToUpdate);
@@ -273,7 +278,7 @@ public class CarController : Controller
         var carToCalculate = _carRepository.GetCar(carId);
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         _carService.CalculateExpectedRange(carToCalculate);
 

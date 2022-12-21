@@ -3,11 +3,6 @@
 public class Car : Vehicle
 {
 
-    public Car(Journeys journeys)
-    {
-        this.Journeys = journeys;
-    }
-
     public double Mileage { get; set; }
 
     public void SetAll(string manufacturer, string model, string mileage,

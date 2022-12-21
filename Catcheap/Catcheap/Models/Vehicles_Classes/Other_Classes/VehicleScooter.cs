@@ -6,10 +6,6 @@ namespace Catcheap.Models.Vehicles_Classes.Other_Classes;
 public class VehicleScooter : Vehicle
 {
 
-    public VehicleScooter(Journeys journeys)
-    {
-        this.Journeys = journeys;
-    }
     public double Weight { get; set; }
 
     public double WeightCapacity { get; set; }

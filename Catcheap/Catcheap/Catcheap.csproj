@@ -74,10 +74,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\AddElectricScooter.xaml">
+	  <MauiXaml Update="TrueViews\CarView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Charges.xaml">
+	  <MauiXaml Update="Views\AddElectricScooter.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ChargingStations.xaml">

@@ -93,7 +93,7 @@ public class ScooterJourneyController : Controller
             return NotFound();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         var journeyMap = _mapper.Map<ScooterJourney>(updatedJourney);
 

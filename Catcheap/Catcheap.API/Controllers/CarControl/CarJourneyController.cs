@@ -73,7 +73,9 @@ public class CarJourneyController : Controller
             return StatusCode(500, ModelState);
         }
 
-        return Ok("Car Journey successfully created.");
+        var journeyReturn = _mapper.Map <JourneyDTO>(_journeyRepository.GetCarJourney(journeyMap.Id));
+
+        return Ok(journeyReturn);
     }
 
     [HttpPut("{journeyId}")]
@@ -92,7 +94,7 @@ public class CarJourneyController : Controller
             return NotFound();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         var journeyMap = _mapper.Map<CarJourney>(updatedJourney);
 

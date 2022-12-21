@@ -8,7 +8,7 @@ using Catcheap.Models.Vehicles_Classes;
 using Catcheap.Models.Vehicles_Classes.Cars_Classes;
 using Catcheap.Models.Vehicles_Classes.Other_Classes;
 using Catcheap.Views;
-using Catcheap.ViewModel;
+using Catcheap.ViewModels;
 using Catcheap.Models.Notification_Classes;
 using Catcheap.Client;
 
@@ -34,7 +34,6 @@ public static class MauiProgram
         builder.Services.AddTransient<JourneyField>();
         builder = RegisterModels(builder);
         builder.Services.AddSingleton<Charges>();
-        builder.Services.AddSingleton<ChargeViewModel>();
 
         ApiClient.Init();
 
@@ -69,10 +68,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<Calculator>();
         mauiAppBuilder.Services.AddTransient<FileIO>();
         mauiAppBuilder.Services.AddTransient<List<Journey>>();
-        mauiAppBuilder.Services.AddTransient<Journeys>();
-        mauiAppBuilder.Services.AddTransient<Lazy<Journeys>>();
         mauiAppBuilder.Services.AddTransient<Vehicle>();
-        mauiAppBuilder.Services.AddTransient<JourneysLoaderSaver>();
         mauiAppBuilder.Services.AddTransient<Price>();
         mauiAppBuilder.Services.AddTransient<List<DayPrice>>();
         mauiAppBuilder.Services.AddTransient<PriceReader>();

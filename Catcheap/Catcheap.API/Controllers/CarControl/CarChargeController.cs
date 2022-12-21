@@ -78,7 +78,10 @@ public class CarChargeController : Controller
             return StatusCode(500, ModelState);
         }
 
-        return Ok("Car Charge successfully created.");
+        var chargeReturn = _mapper.Map<ChargeDTO>(_chargeRepository.GetCarCharge(chargeMap.Id));
+
+        return Ok(chargeReturn);
+
     }
 
     [HttpPut("{chargeId}")]
@@ -97,7 +100,7 @@ public class CarChargeController : Controller
             return NotFound();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         var chargeMap = _mapper.Map<CarCharge>(updatedCharge);
 

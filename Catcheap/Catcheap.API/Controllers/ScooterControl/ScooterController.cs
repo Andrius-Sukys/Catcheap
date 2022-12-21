@@ -129,7 +129,7 @@ public class ScooterController : Controller
             return NotFound();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         var scooterMap = _mapper.Map<Scooter>(updatedScooter);
 
@@ -158,12 +158,12 @@ public class ScooterController : Controller
         var journeysToDelete = _journeyRepository.GetJourneysOfAScooter(scooterId).ToList();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         var chargesToDelete = _chargeRepository.GetChargesOfAScooter(scooterId).ToList();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if (journeysToDelete.Any())
         {
@@ -202,7 +202,7 @@ public class ScooterController : Controller
         var scooterToUpdate = _scooterRepository.GetScooter(scooterId);
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if (!_journeyRepository.ScooterJourneyExists(journeyId))
         {
@@ -212,11 +212,11 @@ public class ScooterController : Controller
         var journeyToUpdate = _journeyRepository.GetScooterJourney(journeyId);
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if (!_journeyRepository.GetJourneysOfAScooter(scooterId).Any(gjoas => gjoas.Id == journeyId))
         {
-            return BadRequest();
+            return BadRequest(ModelState);
         }
 
         _scooterService.UpdateAfterJourney(scooterToUpdate, journeyToUpdate);
@@ -238,7 +238,7 @@ public class ScooterController : Controller
         var scooterToUpdate = _scooterRepository.GetScooter(scooterId);
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if (!_chargeRepository.ScooterChargeExists(chargeId))
         {
@@ -248,11 +248,11 @@ public class ScooterController : Controller
         var chargeToUpdate = _chargeRepository.GetScooterCharge(chargeId);
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if (!_chargeRepository.GetChargesOfAScooter(scooterId).Any(gcoas => gcoas.Id == chargeId))
         {
-            return BadRequest();
+            return BadRequest(ModelState);
         }
 
         _scooterService.UpdateAfterCharge(scooterToUpdate, chargeToUpdate);
@@ -273,7 +273,7 @@ public class ScooterController : Controller
         var scooterToCalculate = _scooterRepository.GetScooter(scooterId);
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         _scooterService.CalculateExpectedRange(scooterToCalculate);
 
