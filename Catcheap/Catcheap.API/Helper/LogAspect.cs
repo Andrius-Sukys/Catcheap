@@ -11,11 +11,11 @@ public class LogAspect : IInterceptor
         try
         {
             invocation.Proceed();
-            //Log.Logger.Information("Method named " + invocation.Method.Name + " was called with parameters " + JsonConvert.SerializeObject(invocation.Arguments) + ". It returned " + JsonConvert.SerializeObject(invocation.ReturnValue));
+            Log.Logger.Information("Method named " + invocation.Method.Name + " of interface " + invocation.GetType().Name.ToString().Split("_").First() + " was called with parameters " + JsonConvert.SerializeObject(invocation.Arguments) + ". It returned " + JsonConvert.SerializeObject(invocation.ReturnValue));
         }
         catch (Exception e)
         {
-            Log.Logger.Error("Error detected in method named " + invocation.Method.Name + "The error is " + e);
+            Log.Logger.Error("Error detected in method named " + invocation.Method.Name + " of interface " + invocation.GetType().Name.ToString().Split("_").First() + ". The error is " + e);
             throw;
         }
     }

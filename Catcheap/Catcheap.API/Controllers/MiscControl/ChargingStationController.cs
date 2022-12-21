@@ -96,7 +96,7 @@ public class ChargingStationController : Controller
             return NotFound();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         if (!_chargingStationRepository.UpdateChargingStation(updatedChargingStation))
         {
@@ -137,7 +137,7 @@ public class ChargingStationController : Controller
     {
         if(city == null)
         {
-            return BadRequest();
+            return BadRequest(ModelState);
         }
 
         var chargingStations = _chargingStationService

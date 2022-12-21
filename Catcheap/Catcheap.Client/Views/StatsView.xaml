@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catcheap.Client.Views.StatsView"
+             xmlns:viewmodel="clr-namespace:Catcheap.Client.ViewModels"
+             x:DataType="viewmodel:StatsViewModel"
+             Title="Stats">
+    <VerticalStackLayout>
+        <Frame Margin="20, 10, 20, 10" Padding="10, 5, 1, 1" HeightRequest="50">
+        <Picker x:Name="picker"
+                Title="Select a car..."
+                ItemsSource="{Binding Cars}"
+                ItemDisplayBinding="{Binding Numberplate}"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"/>
+        </Frame>
+
+        <Button Margin="20, 0, 20, 0" Text="Search" Command="{Binding ViewStatsCommand}"></Button>
+        <VerticalStackLayout Padding="15,10" Margin="10,5,10,5">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Charges This Week: " FontSize="16"/>
+                        <Span Text="{Binding ChargesCountWeek}" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Charges This Month: " FontSize="16"/>
+                        <Span Text="{Binding ChargesCountMonth}" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Charges This Year: " FontSize="16"/>
+                        <Span Text="{Binding ChargesCountYear}" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Charges All-Time: " FontSize="16"/>
+                        <Span Text="{Binding ChargesCountAll}" FontSize="16"/>
+                        
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="" FontSize="16"/>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Journeys This Week: " FontSize="16"/>
+                        <Span Text="{Binding JourneysCountWeek}" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Journeys This Month: " FontSize="16"/>
+                        <Span Text="{Binding JourneysCountMonth}" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Journeys This Year: " FontSize="16"/>
+                        <Span Text="{Binding JourneysCountYear}" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Journeys All-Time: " FontSize="16"/>
+                        <Span Text="{Binding JourneysCountAll}" FontSize="16"/>
+                        <Span Text="" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="" FontSize="16"/>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Journey Distance This Week: " FontSize="16"/>
+                        <Span Text="{Binding JourneyDistanceWeek}" FontSize="16"/>
+                        <Span Text="km" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Journey Distance This Month: " FontSize="16"/>
+                        <Span Text="{Binding JourneyDistanceMonth}" FontSize="16"/>
+                        <Span Text="km" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Journey Distance This Year: " FontSize="16"/>
+                        <Span Text="{Binding JourneyDistanceYear}" FontSize="16"/>
+                        <Span Text="km" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Journey Distance All-Time: " FontSize="16"/>
+                        <Span Text="{Binding JourneyDistanceAll}" FontSize="16"/>
+                        <Span Text="km" FontSize="16"/>
+                        
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="" FontSize="16"/>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Consumption This Week: " FontSize="16"/>
+                        <Span Text="{Binding ConsumptionWeek}" FontSize="16"/>
+                        <Span Text="kWh" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Consumption This Month: " FontSize="16"/>
+                        <Span Text="{Binding ConsumptionMonth}" FontSize="16"/>
+                        <Span Text="kWh" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Consumption This Year: " FontSize="16"/>
+                        <Span Text="{Binding ConsumptionYear}" FontSize="16"/>
+                        <Span Text="kWh" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Consumption All-Time: " FontSize="16"/>
+                        <Span Text="{Binding ConsumptionAll}" FontSize="16"/>
+                        <Span Text="kWh" FontSize="16"/>
+                        <Span Text="" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="" FontSize="16"/>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Money Spent This Week: " FontSize="16"/>
+                        <Span Text="{Binding MoneySpentWeek}" FontSize="16"/>
+                        <Span Text="€" FontSize="16"/>
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Money Spent This Month: " FontSize="16"/>
+                        <Span Text="{Binding MoneySpentMonth}" FontSize="16"/>
+                        <Span Text="€" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Money Spent This Year: " FontSize="16"/>
+                        <Span Text="{Binding MoneySpentYear}" FontSize="16"/>
+                        <Span Text="€" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Money Spent All-Time: " FontSize="16"/>
+                        <Span Text="{Binding MoneySpentAll}" FontSize="16"/>
+                        <Span Text="€" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

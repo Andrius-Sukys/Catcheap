@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catcheap.Client.Views.JourneysView"
+             xmlns:viewmodel="clr-namespace:Catcheap.Client.ViewModels"
+             x:DataType="viewmodel:JourneysViewModel"
+             Title="Journeys">
+    <VerticalStackLayout>
+
+        <Frame Margin="20, 10, 20, 10" Padding="10, 5, 1, 1" HeightRequest="50">
+            <Picker x:Name="picker"
+                Title="Select a car..."
+                ItemsSource="{Binding Cars}"
+                ItemDisplayBinding="{Binding Numberplate}"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"/>
+        </Frame>
+
+        <Button Margin="15, 10, 20, 20" Text="Show Journeys" Command="{Binding LoadDataCommand}"> </Button>
+
+        <Grid RowDefinitions="Auto,*" ColumnDefinitions="*">
+            <CollectionView  Margin="0,0,10,30"
+                             ItemsSource="{Binding Journeys}"                             
+                             SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                             SelectionMode="Single"
+                             EmptyView="No journeys to display!">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="20" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="15,10" Margin="1,0,10,5">
+
+                            <Label Text="{Binding Date}" FontSize="20" Margin="0,0,0,5"/>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Distance}"/>
+                                        <Span Text=" km: "/>
+                                        <Span Text="{Binding StartLocation}"/>
+                                        <Span Text=" – "/>
+                                        <Span Text="{Binding EndLocation}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catcheap.Client.Views.PriceTrends"
+             xmlns:viewmodel="clr-namespace:Catcheap.Client.ViewModels"
+             x:DataType="viewmodel:NordpoolPriceViewModel"
+             Title="Price Trends">
+
+                    <VerticalStackLayout Padding="15,10" Margin="10,5,10,5">
+                        <Label Text="{Binding LowestPriceWeek.DateAndTime}" FontSize="20" Margin="0,0,0,5"/>
+                        <Label Text="{Binding LowestPriceWeek.Price}" FontSize="15" Grid.Column="0"/>
+                    </VerticalStackLayout>
+
+
+</ContentPage>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Catcheap.Client.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Catcheap.Client"
+    xmlns:views="clr-namespace:Catcheap.Client.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+
+    
+
+    <TabBar>
+        <ShellContent
+            Title="Cars"
+            ContentTemplate="{DataTemplate views:CarView}"
+            Route="car"
+            Icon="icon_vehicles"/>
+
+        <ShellContent
+            Title="Stats"
+            ContentTemplate="{DataTemplate views:StatsView}"
+            Route="statsview"
+            Icon="icon_stats"/>
+
+       
+        <ShellContent
+            Title="Add Charge"
+            ContentTemplate="{DataTemplate views:AddChargeView}"
+            Route="addcarcharge"
+            Icon="icon_charging"/>
+
+        <ShellContent
+            Title="Add Journey"
+            ContentTemplate="{DataTemplate views:AddJourneyView}"
+            Route="addcarjourney"
+            Icon="icon_add_journey"/>
+
+        <ShellContent
+            Title="Nordpool Prices"
+            ContentTemplate="{DataTemplate views:NordpoolPricesView}"
+            Route="pricesview"
+            Icon="icon_price"/>
+
+        <ShellContent
+            Title="Journeys"
+            ContentTemplate="{DataTemplate views:JourneysView}"
+            Route="journeysview"
+            Icon="icon_journeys"/>
+
+        <ShellContent
+            Title="Add Car"
+            ContentTemplate="{DataTemplate views:AddCarView}"
+            Route="addcar"
+            Icon="icon_car"/>
+
+
+    </TabBar>
+</Shell>

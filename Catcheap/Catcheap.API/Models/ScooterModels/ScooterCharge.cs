@@ -1,5 +1,6 @@
 ﻿using Catcheap.API.Models.CarModels;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Catcheap.API.Models.ScooterModels;
@@ -16,6 +17,7 @@ public class ScooterCharge : IComparable<ScooterCharge>
 
     public double ChargingPrice { get; set; }
 
+    [JsonIgnore]
     public Scooter Scooter { get; set; } = null!;
 
     public int CompareTo(ScooterCharge? other)

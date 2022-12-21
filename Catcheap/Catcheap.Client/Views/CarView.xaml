@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Catcheap.Client.Views.CarView"
+             Title="Cars">
+
+    <VerticalStackLayout>
+        <Button Grid.Row="0" Grid.Column="0" Text="Add a New Car" Margin="20, 20, 20, 10" Command="{Binding AddNewCarCommand}" />
+        <CollectionView  Margin="20,20,20,20"
+                             ItemsSource="{Binding Cars}"                             
+                             SelectedItem="{Binding SelectedCar, Mode=TwoWay}"
+                             SelectionChangedCommand="{Binding CarSelectedCommand}"
+                             SelectionMode="Single"
+                             EmptyView="No cars to display!">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
+        </CollectionView.ItemsLayout >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Padding="5,5" Margin="10,5,10,5">
+
+                        <Label Text="{Binding Numberplate}" FontSize="30" Margin="0,0,0,5"/>
+                        <Label FontSize="20">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding YearOfManufacture}"/>
+                                    <Span Text=" – "/>
+                                    <Span Text="{Binding Manufacturer}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding Model}"/>
+                                    <Span Text=" – "/>
+                                    <Span Text="{Binding BatteryLevel}"/>
+                                    <Span Text="%"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label FontSize="20">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Mileage: "/>
+                                    <Span Text="{Binding Mileage}"/>
+                                    <Span Text="km"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label FontSize="20">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Battery Capacity: "/>
+                                    <Span Text="{Binding BatteryCapacity}"/>
+                                    <Span Text="kW"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label FontSize="20">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Consumption: "/>
+                                    <Span Text="{Binding Consumption}"/>
+                                    <Span Text="kWh"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label FontSize="20">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Expected Range: "/>
+                                    <Span Text="{Binding ExpectedRange}"/>
+                                    <Span Text="km"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

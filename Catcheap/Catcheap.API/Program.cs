@@ -14,7 +14,6 @@ using System.Text.Json.Serialization;
 using Catcheap.API.Services.CarServices;
 using Catcheap.API.Services.MiscServices;
 using Catcheap.API.Services.ScooterServices;
-using Catcheap.API.Services.NordpoolPriceServices;
 using Catcheap.API.Interfaces.IRepository.ICarRepo;
 using Catcheap.API.Interfaces.IRepository.IMiscRepo;
 using Catcheap.API.Interfaces.IRepository.IScooterRepo;
@@ -92,6 +91,39 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
         .InstancePerDependency();
 
     builder.RegisterType<NordpoolPriceRepository>().As<INordpoolPriceRepository>()
+        .EnableInterfaceInterceptors().InterceptedBy(typeof(LogAspect))
+        .InstancePerDependency();
+
+
+    builder.RegisterType<CarService>().As<ICarService>()
+        .EnableInterfaceInterceptors().InterceptedBy(typeof(LogAspect))
+        .InstancePerDependency();
+
+    builder.RegisterType<CarChargeService>().As<ICarChargeService>()
+        .EnableInterfaceInterceptors().InterceptedBy(typeof(LogAspect))
+        .InstancePerDependency();
+
+    builder.RegisterType<CarStatsService>().As<ICarStatsService>()
+        .EnableInterfaceInterceptors().InterceptedBy(typeof(LogAspect))
+        .InstancePerDependency();
+
+    builder.RegisterType<ScooterService>().As<IScooterService>()
+        .EnableInterfaceInterceptors().InterceptedBy(typeof(LogAspect))
+        .InstancePerDependency();
+
+    builder.RegisterType<ScooterChargeService>().As<IScooterChargeService>()
+        .EnableInterfaceInterceptors().InterceptedBy(typeof(LogAspect))
+        .InstancePerDependency();
+
+    builder.RegisterType<ScooterStatsService>().As<IScooterStatsService>()
+        .EnableInterfaceInterceptors().InterceptedBy(typeof(LogAspect))
+        .InstancePerDependency();
+
+    builder.RegisterType<ChargingStationsService>().As<IChargingStationsService>()
+        .EnableInterfaceInterceptors().InterceptedBy(typeof(LogAspect))
+        .InstancePerDependency();
+
+    builder.RegisterType<NordpoolPriceService>().As<INordpoolPriceService>()
         .EnableInterfaceInterceptors().InterceptedBy(typeof(LogAspect))
         .InstancePerDependency();
 

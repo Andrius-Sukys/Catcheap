@@ -98,7 +98,7 @@ public class ScooterChargeController : Controller
             return NotFound();
 
         if (!ModelState.IsValid)
-            return BadRequest();
+            return BadRequest(ModelState);
 
         var chargeMap = _mapper.Map<ScooterCharge>(updatedCharge);
 
